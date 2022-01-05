@@ -1,0 +1,12 @@
+.toolbar {
+  img {
+    width: 128px;
+  }
+}
+
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  height: 80px;
+}
