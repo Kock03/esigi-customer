@@ -2,62 +2,122 @@
   <div class="customer-form">
     <form (submit)="next()" [formGroup]="customerForm" fxLayout="column">
       <div fxFlex="100" fxLayoutGap="16px">
-        <mat-form-field fxFlex="35" appearance="outline">
-          <mat-label>Razão Social</mat-label>
-          <input matInput placeholder="Nome" formControlName="corporateName" />
-        </mat-form-field>
-        <mat-form-field fxFlex="35" appearance="outline">
-          <mat-label>Razão Social</mat-label>
-          <input matInput placeholder="Nome" formControlName="corporateName" />
-        </mat-form-field>
         <mat-form-field fxFlex="30" appearance="outline">
           <mat-label>Razão Social</mat-label>
-          <input matInput placeholder="Nome" formControlName="corporateName" />
+          <input
+            matInput
+            placeholder="Razão Social"
+            formControlName="customerGroup"
+          />
         </mat-form-field>
-      </div>
-
-      <div fxFlex="100" fxLayoutGap="16px">
-        <mat-form-field fxFlex="50" appearance="outline">
-          <mat-label>CEP</mat-label>
-          <input matInput placeholder="Nome" formControlName="corporateName" />
-        </mat-form-field>
-        <mat-form-field fxFlex="50" appearance="outline">
-          <mat-label>Razão Social</mat-label>
-          <input matInput placeholder="Nome" formControlName="corporateName" />
-        </mat-form-field>
-      </div>
-
-      <div fxFlex="100" fxLayoutGap="16px">
-        <mat-form-field fxFlex="25" appearance="outline">
-          <mat-label>Razão Social</mat-label>
-          <input matInput placeholder="Nome" formControlName="corporateName" />
+        <mat-form-field fxFlex="30" appearance="outline">
+          <mat-label>Nome fantasia</mat-label>
+          <input
+            matInput
+            placeholder="Nome fantasia"
+            formControlName="customerGroup"
+          />
         </mat-form-field>
         <mat-form-field fxFlex="20" appearance="outline">
-          <mat-label>Razão Social</mat-label>
-          <input matInput placeholder="Nome" formControlName="corporateName" />
+          <mat-label>Data da criação</mat-label>
+          <input
+            matInput
+            placeholder="Data de criação"
+            formControlName="customerGroup"
+          />
         </mat-form-field>
-        <mat-form-field fxFlex="15" appearance="outline">
-          <mat-label>Razão Social</mat-label>
-          <input matInput placeholder="Nome" formControlName="corporateName" />
+        <mat-checkbox
+          fxFlex="20"
+          color="primary"
+          formControlName="customerGroup"
+          >Ativo</mat-checkbox
+        >
+      </div>
+
+      <div fxFlex="100" fxLayoutGap="16px">
+        <mat-form-field fxFlex="30" appearance="outline">
+          <mat-label>CNPJ</mat-label>
+          <input matInput placeholder="CNPJ" formControlName="customerGroup" />
         </mat-form-field>
-        <mat-form-field fxFlex="40" appearance="outline">
-          <mat-label>Razão Social</mat-label>
-          <input matInput placeholder="Nome" formControlName="corporateName" />
+        <mat-form-field fxFlex="30" appearance="outline">
+          <mat-label>Inscrição Estadual</mat-label>
+          <input
+            matInput
+            placeholder="Inscrição Estadual"
+            formControlName="customerGroup"
+          />
+        </mat-form-field>
+        <mat-form-field fxFlex="20" appearance="outline">
+          <mat-label>Inscrição Municipal</mat-label>
+          <input
+            matInput
+            placeholder="Inscrição Municipal"
+            formControlName="customerGroup"
+          />
+        </mat-form-field>
+        <mat-form-field fxFlex="20" appearance="outline">
+          <mat-label>CEP</mat-label>
+          <input matInput placeholder="CEP" formControlName="customerGroup" />
         </mat-form-field>
       </div>
 
       <div fxFlex="100" fxLayoutGap="16px">
-        <mat-form-field fxFlex="40" appearance="outline">
-          <mat-label>Razão Social</mat-label>
-          <input matInput placeholder="Nome" formControlName="corporateName" />
+        <mat-form-field fxFlex="30" appearance="outline">
+          <mat-label>Rua</mat-label>
+          <input matInput placeholder="Rua" formControlName="customerGroup" />
         </mat-form-field>
-        <mat-form-field fxFlex="35" appearance="outline">
-          <mat-label>Razão Social</mat-label>
-          <input matInput placeholder="Nome" formControlName="corporateName" />
+        <mat-form-field fxFlex="10" appearance="outline">
+          <mat-label>Número</mat-label>
+          <input
+            matInput
+            placeholder="Número"
+            formControlName="customerGroup"
+          />
+        </mat-form-field>
+        <mat-form-field fxFlex="60" appearance="outline">
+          <mat-label>Complemento</mat-label>
+          <input
+            matInput
+            placeholder="Complemento"
+            formControlName="customerGroup"
+          />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="100" fxLayoutGap="16px">
+        <mat-form-field fxFlex="25" appearance="outline">
+          <mat-label>Estado</mat-label>
+          <input
+            matInput
+            placeholder="Estado"
+            formControlName="customerGroup"
+          />
         </mat-form-field>
         <mat-form-field fxFlex="25" appearance="outline">
-          <mat-label>Razão Social</mat-label>
-          <input matInput placeholder="Nome" formControlName="corporateName" />
+          <mat-label>Cidade</mat-label>
+          <input
+            matInput
+            placeholder="Cidade"
+            formControlName="customerGroup"
+          />
+        </mat-form-field>
+        <mat-form-field fxFlex="20" appearance="outline">
+          <mat-label>Telefone</mat-label>
+          <input
+            matInput
+            placeholder="Telefone"
+            formControlName="customerGroup"
+          />
+        </mat-form-field>
+        <mat-form-field fxFlex="35" appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Email" formControlName="customerGroup" />
+        </mat-form-field>
+      </div>
+      <div fxFlex="100" fxLayoutGap="16px">
+        <mat-form-field fxFlex="100" appearance="outline">
+          <mat-label>Site</mat-label>
+          <input matInput placeholder="Site" formControlName="customerGroup" />
         </mat-form-field>
       </div>
     </form>

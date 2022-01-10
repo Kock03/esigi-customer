@@ -7,6 +7,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatTableModule } from '@angular/material/table'  
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 import { CustomerCreateComponent } from './customer-create/customer-create.component';
 import { CustomerRegisterTabComponent } from './customer-create/customer-register-tab/customer-register-tab.component';
@@ -36,6 +39,10 @@ const routes: Routes = [
     MatInputModule,
     FlexLayoutModule,
     MatButtonModule,
+    MatCheckboxModule,
+    MatTableModule,
+    MatSidenavModule,
+    
   ],
   entryComponents: [
     CustomerRegisterTabComponent,

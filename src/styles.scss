@@ -78,3 +78,36 @@ html {
 .title {
   margin-bottom: 24px !important;
 }
+
+.envolti-table{
+
+  table {
+
+    width: 100% !important;
+
+    background: white !important;
+
+    border: 1px solid #673ab7 !important;
+
+  }
+
+  table th {
+
+    color: white !important;
+
+    background: #673ab7 !important;
+
+  }
+
+ 
+
+  table td {
+
+    border-bottom: 0.1px solid #e5ff784d !important;
+
+    height: 56px !important;
+
+    color: black !important;
+
+  }
+}
