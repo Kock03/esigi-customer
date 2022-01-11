@@ -10,6 +10,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatTableModule } from '@angular/material/table'  
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatIconModule } from "@angular/material/icon";
+import {MatSelectModule} from '@angular/material/select';
+
+
+
 
 import { CustomerCreateComponent } from './customer-create/customer-create.component';
 import { CustomerRegisterTabComponent } from './customer-create/customer-register-tab/customer-register-tab.component';
@@ -42,6 +47,11 @@ const routes: Routes = [
     MatCheckboxModule,
     MatTableModule,
     MatSidenavModule,
+    MatIconModule,
+    MatSelectModule,  
+    ReactiveFormsModule
+
+
     
   ],
   entryComponents: [

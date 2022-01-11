@@ -37,7 +37,12 @@
   <app-customer-contract-tab [hidden]="step != 3"></app-customer-contract-tab>
 
   <div class="navigation-buttons" fxLayoutAlign="center end" fxLayoutGap="16px">
-    <button mat-button *ngIf="step != 1" (click)="navigate('back')">
+    <button
+      mat-stroked-button
+      color="primary"
+      *ngIf="step != 1"
+      (click)="navigate('back')"
+    >
       Voltar
     </button>
     <button

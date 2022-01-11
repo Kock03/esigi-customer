@@ -37,7 +37,24 @@
       <div fxFlex="100" fxLayoutGap="16px">
         <mat-form-field fxFlex="30" appearance="outline">
           <mat-label>CNPJ</mat-label>
-          <input matInput placeholder="CNPJ" formControlName="customerGroup" />
+          <input matInput placeholder="CNPJ" formControlName="cnpj" />
+          <mat-error
+            *ngIf="customerForm.controls['cnpj'].hasError('minlength')"
+          >
+            CNPJ muito pequeno
+          </mat-error>
+          <mat-error
+            *ngIf="customerForm.controls['cnpj'].hasError('maxlength')"
+          >
+            CNPJ muito grande
+          </mat-error>
+          <mat-error
+            *ngIf="
+              customerForm && customerForm.controls['cnpj'].hasError('required')
+            "
+          >
+            Campo CNPJ é orbrigatório
+          </mat-error>
         </mat-form-field>
         <mat-form-field fxFlex="30" appearance="outline">
           <mat-label>Inscrição Estadual</mat-label>
@@ -57,7 +74,24 @@
         </mat-form-field>
         <mat-form-field fxFlex="20" appearance="outline">
           <mat-label>CEP</mat-label>
-          <input matInput placeholder="CEP" formControlName="customerGroup" />
+          <input matInput placeholder="CEP" formControlName="cep" />
+          <mat-error
+            *ngIf="customerForm.controls['cep'].hasError('minlength')"
+          >
+            CEP muito pequeno
+          </mat-error>
+          <mat-error
+            *ngIf="customerForm.controls['cep'].hasError('maxlength')"
+          >
+            CEP muito grande
+          </mat-error>
+          <mat-error
+            *ngIf="
+              customerForm && customerForm.controls['cep'].hasError('required')
+            "
+          >
+            Campo CEP é orbrigatório
+          </mat-error>
         </mat-form-field>
       </div>
 
@@ -106,12 +140,26 @@
           <input
             matInput
             placeholder="Telefone"
-            formControlName="customerGroup"
+            formControlName="phoneNumber"
           />
         </mat-form-field>
         <mat-form-field fxFlex="35" appearance="outline">
           <mat-label>Email</mat-label>
-          <input matInput placeholder="Email" formControlName="customerGroup" />
+          <input matInput placeholder="Email" formControlName="mail" />
+          <mat-error
+            *ngIf="
+              customerForm && customerForm.controls['mail'].hasError('email')
+            "
+          >
+            E-mail inválido</mat-error
+          >
+          <mat-error
+            *ngIf="
+              customerForm && customerForm.controls['mail'].hasError('required')
+            "
+          >
+            Campo e-mail é orbrigatório
+          </mat-error>
         </mat-form-field>
       </div>
       <div fxFlex="100" fxLayoutGap="16px">

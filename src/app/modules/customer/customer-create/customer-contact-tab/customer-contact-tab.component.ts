@@ -12,17 +12,18 @@ export interface contact {
 }
 
 const contacts: contact[] = [
-  { name: 'Bianca', office: 'Estagiária', email: 'bianca.nilsen@envolti.com.br', cell: '(47) 99283-4501',  status: 'Ativa'},
-  { name: 'Bianca', office: 'Estagiária', email: 'bianca.nilsen@envolti.com.br', cell: '(47) 99283-4501',  status: 'Ativa'},
-  { name: 'Bianca', office: 'Estagiária', email: 'bianca.nilsen@envolti.com.br', cell: '(47) 99283-4501',  status: 'Ativa'},
-  { name: 'Bianca', office: 'Estagiária', email: 'bianca.nilsen@envolti.com.br', cell: '(47) 99283-4501',  status: 'Ativa'},
-  { name: 'Bianca', office: 'Estagiária', email: 'bianca.nilsen@envolti.com.br', cell: '(47) 99283-4501',  status: 'Ativa'},
-  { name: 'Bianca', office: 'Estagiária', email: 'bianca.nilsen@envolti.com.br', cell: '(47) 99283-4501',  status: 'Ativa'},
-  { name: 'Bianca', office: 'Estagiária', email: 'bianca.nilsen@envolti.com.br', cell: '(47) 99283-4501',  status: 'Ativa'},
-  { name: 'Bianca', office: 'Estagiária', email: 'bianca.nilsen@envolti.com.br', cell: '(47) 99283-4501',  status: 'Ativa'},
-  { name: 'Bianca', office: 'Estagiária', email: 'bianca.nilsen@envolti.com.br', cell: '(47) 99283-4501',  status: 'Ativa'},
+  { name: 'Bianca Nilsen', office: 'Estagiária', email: 'bianca.nilsen@envolti.com.br', cell: '(47) 99283-4501',  status: 'Ativa'},
+  { name: 'Bianca Nilsen', office: 'Estagiária', email: 'bianca.nilsen@envolti.com.br', cell: '(47) 99283-4501',  status: 'Ativa'},
+  { name: 'Bianca Nilsen', office: 'Estagiária', email: 'bianca.nilsen@envolti.com.br', cell: '(47) 99283-4501',  status: 'Ativa'},
+  { name: 'Bianca Nilsen', office: 'Estagiária', email: 'bianca.nilsen@envolti.com.br', cell: '(47) 99283-4501',  status: 'Ativa'},
+  { name: 'Bianca Nilsen', office: 'Estagiária', email: 'bianca.nilsen@envolti.com.br', cell: '(47) 99283-4501',  status: 'Ativa'},
+  { name: 'Bianca Nilsen', office: 'Estagiária', email: 'bianca.nilsen@envolti.com.br', cell: '(47) 99283-4501',  status: 'Ativa'},
+  { name: 'Bianca Nilsen', office: 'Estagiária', email: 'bianca.nilsen@envolti.com.br', cell: '(47) 99283-4501',  status: 'Ativa'},
+  { name: 'Bianca Nilsen', office: 'Estagiária', email: 'bianca.nilsen@envolti.com.br', cell: '(47) 99283-4501',  status: 'Ativa'},
+  { name: 'Bianca Nilsen', office: 'Estagiária', email: 'bianca.nilsen@envolti.com.br', cell: '(47) 99283-4501',  status: 'Ativa'},
 
 ]; 
+
 @Component({
   selector: 'app-customer-contact-tab',
   templateUrl: './customer-contact-tab.component.html',
@@ -33,7 +34,7 @@ export class CustomerContactTabComponent implements OnInit {
   @Input('form') customerForm!: FormGroup;
   @Output('onChange') onChange: EventEmitter<any> = new EventEmitter();
 
-  displayedColumns: string[] = ['name', 'office', 'email', 'cell', 'status'];
+  displayedColumns: string[] = ['name', 'office', 'email', 'cell', 'status', 'icon'];
   dataSource = contacts;
 
   constructor() {}
@@ -45,4 +46,6 @@ export class CustomerContactTabComponent implements OnInit {
     this.onChange.next(true);
   }
 }
+
+
 

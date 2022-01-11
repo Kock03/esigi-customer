@@ -54,6 +54,7 @@ export class AppComponent {
   navigate(route: string) {
     this.router.navigate([route]);
   }
+  
 }
 
 

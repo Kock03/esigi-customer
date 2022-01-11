@@ -10,7 +10,7 @@ import { Form, FormGroup } from '@angular/forms';
 export class CustomerRegisterTabComponent implements OnInit {
   @Input('form') customerForm!: FormGroup;
   @Output('onChange') onChange: EventEmitter<any> = new EventEmitter();
-  constructor() {}
+
 
   ngOnInit(): void {
  

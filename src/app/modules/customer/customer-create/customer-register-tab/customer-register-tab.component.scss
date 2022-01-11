@@ -1,12 +1,11 @@
-// #customerRegisterTab {
-//   height: 100%!important;
-//   .customer-form {
-//     height: calc(100% - 200px) !important;
-//     margin-bottom: 24px;
-//     overflow: auto;
-//   }
-// }
-// .active{
-//     font-color: rgb(169, 172, 169);
+.navigation-buttons{
+    margin-top: 300px;
+    max-width: 900px;
+}
 
-// }
+#customerRegisterTab{
+    max-width: 100%;;
+}
+.mat-checkbox{
+  margin-top: 15px;
+}
