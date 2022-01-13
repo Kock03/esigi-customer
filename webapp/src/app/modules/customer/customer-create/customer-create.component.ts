@@ -72,11 +72,25 @@ export class CustomerCreateComponent implements OnInit {
       createDate: ["01/07/2003", [Validators.required]],
 
       Contacts: this.fb.array([{
-        name: "Teste",
-        office: "Diretor",
-        phoneNumber: "71 992952121",
+        name: "João",
+        office: "Comprador",
+        phoneNumber: "71 992535862",
         mail: "asda@asdsa",
-      }]),
+      },
+      {
+        name: "Pedro",
+        office: "Diretor",
+        phoneNumber: "47 992952121",
+        mail: "asda@asdsa",
+      },
+      {
+        name: "Maria",
+        office: "Gerente de TI",
+        phoneNumber: "48 992538654",
+        mail: "asda@asdsa",
+      },
+
+    ]),
     });
   }
 
