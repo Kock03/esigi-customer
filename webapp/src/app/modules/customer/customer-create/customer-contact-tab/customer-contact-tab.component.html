@@ -29,14 +29,14 @@
           />
           <mat-error
             *ngIf="
-              customerForm && customerForm.controls['mail'].hasError('mail')
+            contactForm && contactForm.controls['mail'].hasError('email')
             "
           >
             E-mail inválido</mat-error
           >
           <mat-error
             *ngIf="
-              customerForm && customerForm.controls['mail'].hasError('required')
+              contactForm && contactForm.controls['mail'].hasError('required')
             "
           >
             Campo e-mail é orbrigatório

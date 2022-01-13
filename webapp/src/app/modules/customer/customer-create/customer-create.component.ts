@@ -26,12 +26,12 @@ export class CustomerCreateComponent implements OnInit {
   initForm() {
     this.customerForm = this.fb.group({
       customerGroup: ["", Validators.required],
-      corporateName: ["", [Validators.required]],
-      tradingName: ["", [Validators.required]],
+      corporateName: ["TUPI LTDA", [Validators.required]],
+      tradingName: ["TUPI", [Validators.required]],
 
       active: ["", [Validators.required]],
       cnpj: [
-        "",
+        "89177533968",
         [
           Validators.required,
           Validators.maxLength(14),
@@ -39,15 +39,15 @@ export class CustomerCreateComponent implements OnInit {
         ],
       ],
       stateRegistration: [
-        "",
+        "362410298",
         [Validators.required, Validators.maxLength(9), Validators.minLength(9)],
       ],
       municipalRegistration: [
-        "",
+        "021563985",
         [Validators.required, Validators.maxLength(9), Validators.minLength(9)],
       ],
 
-      phoneNumber: ["", Validators.required],
+      phoneNumber: ["47 3330-9563", Validators.required],
       mail: ["", [Validators.required, Validators.email]],
       site: ["", [Validators.required]],
       // name: ["", [Validators.required]],
@@ -55,21 +55,22 @@ export class CustomerCreateComponent implements OnInit {
 
       Address: this.fb.group({
         zipCode: [
-          "",
+          "89032560",
           [
             Validators.required,
             Validators.maxLength(8),
             Validators.minLength(8),
           ],
         ],
-        street: ["", [Validators.required]],
-        number: ["", [Validators.required]],
-        complement: [""],
-        state: ["", [Validators.required]],
-        city: ["", [Validators.required]],
+        street: ["Rua Bahia", [Validators.required]],
+        number: ["5088", [Validators.required]],
+        complement: ["Perto da Academia SportLife"],
+        state: ["Santa Catarina ", [Validators.required]],
+        city: ["Joinville", [Validators.required]],
       }),
 
-      createDate: ["", [Validators.required]],
+      createDate: ["01/07/2003", [Validators.required]],
+      site: ["www.tupi.com.br", [Validators.required]],
 
       Contacts: this.fb.array([{
         name: "Teste",

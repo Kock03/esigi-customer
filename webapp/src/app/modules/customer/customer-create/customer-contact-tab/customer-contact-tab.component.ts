@@ -58,13 +58,18 @@ export class CustomerContactTabComponent implements OnInit {
   roleList = [
     {
       id: 1,
-      name: "Diretor",
-      value: "Diretor",
+      name: "Comprador",
+      value: "Comprador",
     },
     {
       id: 2,
-      name: "Presidente",
-      value: "Presidente",
+      name: "Diretor de TI",
+      value: "Diretor de TI",
+    },
+    {
+      id: 3,
+      name: "Gerente de TI",
+      value: "Gerente de TI",
     },
   ];
 
