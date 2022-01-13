@@ -70,7 +70,6 @@ export class CustomerCreateComponent implements OnInit {
       }),
 
       createDate: ["01/07/2003", [Validators.required]],
-      site: ["www.tupi.com.br", [Validators.required]],
 
       Contacts: this.fb.array([{
         name: "Teste",

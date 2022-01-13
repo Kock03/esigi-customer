@@ -11,12 +11,6 @@ export class CustomerRegisterTabComponent implements OnInit {
   @Input('form') customerForm!: FormGroup;
   @Output('onChange') onChange: EventEmitter<any> = new EventEmitter();
 
-  // register = [
-
-  //   { corporateName: "1"},
-
-  // ];
-
 
   ngOnInit(): void {
   }
