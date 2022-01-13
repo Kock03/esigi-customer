@@ -27,7 +27,6 @@ export class CustomerCreateComponent implements OnInit {
 
   initForm() {
     this.customerForm = this.fb.group({
-      customerGroup: ["", Validators.required],
       corporateName: ["TUPI LTDA", [Validators.required]],
       tradingName: ["TUPI", [Validators.required]],
 
@@ -71,7 +70,7 @@ export class CustomerCreateComponent implements OnInit {
         city: ["Joinville", [Validators.required]],
       }),
 
-      createDate: ["01/07/2003", [Validators.required]],
+      // createDate: ["01/07/2003", [Validators.required]],
 
       Contacts: this.fb.array([{
         name: "João",

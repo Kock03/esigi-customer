@@ -36,7 +36,7 @@ export class CustomersEntity {
   municipalRegistration: String;
 
   @Column()
-  phoneNumber: Number;
+  phoneNumber: String;
 
   @Column()
   mail: String;
@@ -46,7 +46,7 @@ export class CustomersEntity {
 
   @OneToMany(() => ContactsEntity, contacts => contacts.customers, {cascade: ["insert", "update", "remove"], orphanedRowAction: 'delete'})
   @JoinColumn()
-  Contacts: ContactsEntity;
+  Contacts: ContactsEntity[];
 
   @OneToOne(() => AddressEntity, address => address.customer, {cascade: ["insert", "update", "remove"]})
   @JoinColumn()

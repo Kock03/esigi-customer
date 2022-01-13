@@ -1,4 +1,6 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsOptional } from 'class-validator';
+import { AddressEntity } from 'src/app/address/address.entity';
+import { ContactsEntity } from 'src/app/contacts/contacts.entity';
 import { CustomersEntity } from '../customers.entity';
 
 export class CreateCustomerDto {
@@ -11,7 +13,7 @@ export class CreateCustomerDto {
     @IsNotEmpty()
     cnpj: string;
 
-    @IsNotEmpty()
+    @IsOptional()
     active: Boolean;
 
     @IsNotEmpty()
@@ -21,12 +23,18 @@ export class CreateCustomerDto {
     municipalRegistration: String;
 
     @IsNotEmpty()
-    phoneNumber: Number;
+    phoneNumber: String;
 
-    @IsNotEmpty()
+    @IsOptional()
     mail: String;
-
-    @IsNotEmpty()
+    
+    @IsOptional()
     site: String;
+
+    @IsOptional()
+    Address: AddressEntity;
+
+    @IsOptional()
+    Contacts: ContactsEntity[];
 
 }
