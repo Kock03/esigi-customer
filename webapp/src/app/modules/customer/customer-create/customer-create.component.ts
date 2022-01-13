@@ -1,5 +1,7 @@
+import { HttpClient } from "@angular/common/http";
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { CustomerProvider } from "src/providers/customer.provider";
 
 @Component({
   selector: "app-customer-create",
@@ -11,7 +13,7 @@ export class CustomerCreateComponent implements OnInit {
   customerForm!: FormGroup;
   step: number = 2;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private customerProvider: CustomerProvider, private http: HttpClient) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -94,14 +96,18 @@ export class CustomerCreateComponent implements OnInit {
     });
   }
 
-  saveCustomer() {
-    if (this.customerForm.valid) {
+  async saveCustomer() {
+    
       const data = this.customerForm.getRawValue();
-      console.log(
-        "🚀 ~ file: customer-create.component.ts ~ line 29 ~ CustomerCreateComponent ~ saveCustomer ~ data",
-        data
-      );
-    }
+
+      try {
+        const customer = await this.customerProvider.store(data);
+        console.log("🚀 ~ file: customer-create.component.ts ~ line 104 ~ CustomerCreateComponent ~ saveCustomer ~ data", data)
+      }catch (error) {
+        console.log('ERROR 132' + error)
+      }
+ 
+    
   }
   handleChanges(value: any): void {
     console.log(

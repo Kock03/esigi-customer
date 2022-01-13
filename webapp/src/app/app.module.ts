@@ -12,6 +12,7 @@ import { LayoutModule } from "@angular/cdk/layout";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDividerModule } from "@angular/material/divider";
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [AppComponent, ToolbarComponent],
@@ -26,6 +27,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     LayoutModule,
     MatButtonModule,
     MatDividerModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],
