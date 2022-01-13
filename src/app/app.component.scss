@@ -8,22 +8,9 @@ mat-toolbar {
   }
 }
 
-.mat-toolbar-row,
-.mat-toolbar-single-row {
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-  height: 80px;
-}
-
-.mat-toolbar {
-  background-color: #753bbd;
-  border-bottom-right-radius: 16px;
-  border-bottom-left-radius: 16px;
-}
-
 mat-sidenav {
   width: 224px;
-  background: #753bbd;
+  background: #6815cc;
   color: white;
   padding: 4px;
   text-align: center;

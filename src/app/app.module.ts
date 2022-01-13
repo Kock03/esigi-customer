@@ -11,9 +11,10 @@ import { MatSidenavModule } from "@angular/material/sidenav";
 import { LayoutModule } from "@angular/cdk/layout";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDividerModule } from "@angular/material/divider";
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ToolbarComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

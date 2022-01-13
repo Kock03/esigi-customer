@@ -15,11 +15,21 @@ export class CustomerCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
+    this.customerForm.valueChanges.subscribe((res) => {
+      console.log(
+        "🚀 ~ file: customer-create.component.ts ~ line 20 ~ CustomerCreateComponent ~ ngOnInit ~ this.customerForm.getRawValue();",
+        this.customerForm.getRawValue()
+      );
+    });
   }
 
   initForm() {
     this.customerForm = this.fb.group({
       customerGroup: ["", Validators.required],
+      corporateName: ["", [Validators.required]],
+      tradingName: ["", [Validators.required]],
+
+      active: ["", [Validators.required]],
       cnpj: [
         "",
         [
@@ -28,23 +38,45 @@ export class CustomerCreateComponent implements OnInit {
           Validators.minLength(14),
         ],
       ],
-  
-      cep: [
-        "",
-        [Validators.required, 
-        Validators.maxLength(8), 
-        Validators.minLength(8)],
-      ],
-      phoneNumber: ["", Validators.required],
-      
-      mail: ["", [Validators.required, Validators.email]],
-
       stateRegistration: [
         "",
-        [Validators.required, 
-        Validators.maxLength(9), 
-        Validators.minLength(9)],
+        [Validators.required, Validators.maxLength(9), Validators.minLength(9)],
       ],
+      municipalRegistration: [
+        "",
+        [Validators.required, Validators.maxLength(9), Validators.minLength(9)],
+      ],
+
+      phoneNumber: ["", Validators.required],
+      mail: ["", [Validators.required, Validators.email]],
+      site: ["", [Validators.required]],
+      // name: ["", [Validators.required]],
+      // office: ["", [Validators.required]],
+
+      Address: this.fb.group({
+        zipCode: [
+          "",
+          [
+            Validators.required,
+            Validators.maxLength(8),
+            Validators.minLength(8),
+          ],
+        ],
+        street: ["", [Validators.required]],
+        number: ["", [Validators.required]],
+        complement: [""],
+        state: ["", [Validators.required]],
+        city: ["", [Validators.required]],
+      }),
+
+      createDate: ["", [Validators.required]],
+
+      Contacts: this.fb.array([{
+        name: "Teste",
+        office: "Diretor",
+        phoneNumber: "71 992952121",
+        mail: "asda@asdsa",
+      }]),
     });
   }
 
