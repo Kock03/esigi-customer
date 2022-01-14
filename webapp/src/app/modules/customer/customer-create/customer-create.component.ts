@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { CustomerProvider } from "src/providers/customer.provider";
+import { CepService } from "src/services/cep.service";
 
 @Component({
   selector: "app-customer-create",
@@ -13,7 +14,7 @@ export class CustomerCreateComponent implements OnInit {
   customerForm!: FormGroup;
   step: number = 2;
 
-  constructor(private fb: FormBuilder, private customerProvider: CustomerProvider, private http: HttpClient) {}
+  constructor(private fb: FormBuilder, private customerProvider: CustomerProvider, private http: HttpClient, private cepService: CepService) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -22,6 +23,22 @@ export class CustomerCreateComponent implements OnInit {
         "🚀 ~ file: customer-create.component.ts ~ line 20 ~ CustomerCreateComponent ~ ngOnInit ~ this.customerForm.getRawValue();",
         this.customerForm.getRawValue()
       );
+    });
+
+    this.customerForm.valueChanges.subscribe((res) => {
+      const addressForm = this.customerForm.controls[
+        'Address'
+      ] as FormGroup;
+      console.log(
+        
+        addressForm
+      );
+      addressForm.controls['cep'].valueChanges.subscribe((res) => {
+        console.log(
+          "🚀 ~ file: collaborator-register-tab.component.ts ~ line 57 ~ CollaboratorRegisterTabComponent ~ addressForm.controls['cep'].valueChanges.subscribe ~ res",
+          res
+        );
+      });
     });
   }
 
@@ -60,8 +77,8 @@ export class CustomerCreateComponent implements OnInit {
           "89032560",
           [
             Validators.required,
-            Validators.maxLength(8),
-            Validators.minLength(8),
+            Validators.maxLength(9),
+            Validators.minLength(9),
           ],
         ],
         street: ["Rua Bahia", [Validators.required]],
@@ -127,4 +144,6 @@ export class CustomerCreateComponent implements OnInit {
       this.step += 1;
     }
   }
+
+ 
 }

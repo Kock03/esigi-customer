@@ -104,7 +104,9 @@
         <mat-form-field fxFlex="20" appearance="outline" formGroupName="Address">
           <mat-label>CEP</mat-label>
           <input matInput placeholder="CEP" formControlName="zipCode" />
-          <mat-icon matSuffix>search</mat-icon>
+          <mat-icon matSuffix style="cursor: pointer" (click)="getAddress()">
+            search
+          </mat-icon>
           <!-- <mat-error
             *ngIf="customerForm.controls['zipCode'].hasError('minlength')"
           >
