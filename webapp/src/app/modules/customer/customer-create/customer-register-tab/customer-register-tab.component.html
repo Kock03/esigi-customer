@@ -1,0 +1,187 @@
+<div id="customerRegisterTab" class="tab">
+  <div class="customer-form">
+    <form (submit)="next()" [formGroup]="customerForm" fxLayout="column">
+      <div fxFlex="100" fxLayoutGap="16px">
+        <mat-form-field fxFlex="30" appearance="outline">
+          <mat-label>Razão Social</mat-label>
+          <input 
+            matInput
+            placeholder="Razão Social"
+            formControlName="corporateName"
+          />
+        </mat-form-field>
+        <mat-form-field fxFlex="30" appearance="outline">
+          <mat-label>Nome fantasia</mat-label>
+          <input
+            matInput
+            placeholder="Nome fantasia"
+            formControlName="tradingName"
+          />
+        </mat-form-field>
+        <!-- <mat-form-field fxFlex="20" appearance="outline">
+          <mat-label>Data da criação</mat-label>
+          <input
+            matInput
+            placeholder="Data de criação"
+            formControlName="createDate"
+          />
+        </mat-form-field> -->
+        <mat-checkbox fxFlex="20" color="primary" formControlName="active"
+          >Ativo</mat-checkbox
+        >
+      </div>
+
+      <div fxFlex="100" fxLayoutGap="16px">
+        <mat-form-field fxFlex="30" appearance="outline">
+          <mat-label>CNPJ</mat-label>
+          <input matInput placeholder="CNPJ" formControlName="cnpj" />
+          <mat-error
+            *ngIf="customerForm.controls['cnpj'].hasError('minlength')"
+          >
+            CNPJ muito pequeno
+          </mat-error>
+          <mat-error
+            *ngIf="customerForm.controls['cnpj'].hasError('maxlength')"
+          >
+            CNPJ muito grande
+          </mat-error>
+          <mat-error
+            *ngIf="
+              customerForm && customerForm.controls['cnpj'].hasError('required')
+            "
+          >
+            Campo orbrigatório
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex="30" appearance="outline">
+          <mat-label>Inscrição Estadual</mat-label>
+          <input
+            matInput
+            placeholder="Inscrição Estadual"
+            formControlName="stateRegistration"
+          />
+          <mat-error
+            *ngIf="
+              customerForm.controls['stateRegistration'].hasError('minlength')
+            "
+          >
+            Inscrição Estadual muito pequena
+          </mat-error>
+          <mat-error
+            *ngIf="
+              customerForm.controls['stateRegistration'].hasError('maxlength')
+            "
+          >
+            Inscrição Estadual muito grande
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex="20" appearance="outline">
+          <mat-label>Inscrição Municipal</mat-label>
+          <input
+            matInput
+            placeholder="Inscrição Municipal"
+            formControlName="municipalRegistration"
+          />
+          <mat-error
+            *ngIf="
+              customerForm.controls['municipalRegistration'].hasError(
+                'minlength'
+              )
+            "
+          >
+            Inscrição Municipal muito pequena
+          </mat-error>
+          <mat-error
+            *ngIf="
+              customerForm.controls['municipalRegistration'].hasError(
+                'maxlength'
+              )
+            "
+          >
+            Inscrição Municipal muito grande
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex="20" appearance="outline" formGroupName="Address">
+          <mat-label>CEP</mat-label>
+          <input matInput placeholder="CEP" formControlName="zipCode" />
+          <mat-icon matSuffix style="cursor: pointer" (click)="getAddress()">
+            search
+          </mat-icon>
+          <!-- <mat-error
+            *ngIf="customerForm.controls['zipCode'].hasError('minlength')"
+          >
+            CEP muito pequeno
+          </mat-error>
+          <mat-error
+            *ngIf="customerForm.controls['zipCode'].hasError('maxlength')"
+          >
+            CEP muito grande
+          </mat-error>
+          <mat-error
+            *ngIf="
+              customerForm &&
+              customerForm.controls['zipCode'].hasError('required')
+            "
+          >
+            Campo orbrigatório
+          </mat-error> -->
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="100" fxLayoutGap="16px" formGroupName="Address">
+        <mat-form-field fxFlex="30" appearance="outline">
+          <mat-label>Rua</mat-label>
+          <input matInput placeholder="Rua" formControlName="street" />
+        </mat-form-field>
+        <mat-form-field fxFlex="10" appearance="outline">
+          <mat-label>Número</mat-label>
+          <input matInput placeholder="Número" formControlName="number" />
+        </mat-form-field>
+        <mat-form-field fxFlex="60" appearance="outline">
+          <mat-label>Complemento</mat-label>
+          <input
+            matInput
+            placeholder="Complemento"
+            formControlName="complement"
+          />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="100" fxLayoutGap="16px">
+        <mat-form-field fxFlex="25" appearance="outline" formGroupName="Address">
+          <mat-label>Estado</mat-label>
+          <input matInput placeholder="Estado" formControlName="state" />
+        </mat-form-field>
+        <mat-form-field fxFlex="25" appearance="outline" formGroupName="Address">
+          <mat-label>Cidade</mat-label>
+          <input matInput placeholder="Cidade" formControlName="city" />
+        </mat-form-field>
+        <mat-form-field fxFlex="20" appearance="outline">
+          <mat-label>Telefone</mat-label>
+          <input
+            matInput
+            placeholder="Telefone"
+            formControlName="phoneNumber"
+          />
+        </mat-form-field>
+        <mat-form-field fxFlex="35" appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Email" formControlName="mail" />
+          <mat-error
+            *ngIf="
+              customerForm && customerForm.controls['mail'].hasError('email')
+            "
+          >
+            E-mail inválido</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div fxFlex="100" fxLayoutGap="16px">
+        <mat-form-field fxFlex="100" appearance="outline">
+          <mat-label>Site</mat-label>
+          <input matInput placeholder="Site" formControlName="site" />
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+</div>

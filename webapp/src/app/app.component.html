@@ -1,0 +1,50 @@
+<mat-toolbar fxLayoutAlign="space-between center">
+  <div>
+    <img src="../assets/logo/envolti.png" alt="" />
+  </div>
+  <div>
+    <button
+      mat-icon-button
+      *ngIf="sidenav.mode === 'over'"
+      (click)="sidenav.toggle()"
+    >
+      <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+      <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+    <img
+      class="avatar mat-elevation-z8"
+      src="https://st.depositphotos.com/1734074/4228/v/450/depositphotos_42286141-stock-illustration-vector-man-with-mustache-in.jpg"
+    />
+    <h4 class="name">Usuário</h4>
+    <p class="designation">Função</p>
+
+    <mat-divider></mat-divider>
+
+    <div *ngFor="let menu of menuList">
+      <button
+        [ngClass]="{ active: menu.action == activeMenu }"
+        mat-button
+        class="menu-button"
+        (click)="navigate(menu.action)"
+      >
+        <mat-icon>{{ menu.icon }}</mat-icon>
+        <span>{{ menu.name }}</span>
+      </button>
+    </div>
+
+    <button mat-button class="menu-button logout">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
