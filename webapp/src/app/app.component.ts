@@ -1,4 +1,4 @@
-import { Component, ViewChild } from "@angular/core";
+import { Component, ViewChild, ViewEncapsulation } from "@angular/core";
 import { MatSidenav } from "@angular/material/sidenav";
 import { BreakpointObserver, LayoutModule } from "@angular/cdk/layout";
 import { NavigationEnd, Router } from "@angular/router";
@@ -6,7 +6,7 @@ import { filter } from "rxjs";
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"],
+  styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
   title = "esigi-customer";
@@ -29,7 +29,7 @@ export class AppComponent {
     },
   ];
 
-  constructor(private observer: BreakpointObserver, private router: Router) {}
+  constructor(private observer: BreakpointObserver, private router: Router) { }
 
   ngOnInit(): void {
     this.router.events
@@ -54,7 +54,7 @@ export class AppComponent {
   navigate(route: string) {
     this.router.navigate([route]);
   }
-  
+
 }
 
 

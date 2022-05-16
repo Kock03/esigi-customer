@@ -8,7 +8,7 @@ body {
 }
 
 body {
-  height: 100vh !important;
+  height: 100vh;
   width: 100vw;
 }
 
@@ -20,50 +20,61 @@ html {
   overflow: scroll;
   overflow-x: hidden;
 }
+
 ::-webkit-scrollbar {
-  width: 0; /* Remove scrollbar space */
-  background: transparent; /* Optional: just make scrollbar invisible */
+  width: 0;
+  background: transparent;
 }
 
 .page {
-  padding: 32px;
+  padding: 32px 32px 0;
   max-width: 1280px;
   margin: auto;
+  height: calc(100% - 64px);
 }
+
+// @media (min-width: 1201px) {
+//   .page {
+//     height: calc(100vh - 200px) !important;
+//   }
+// }
 
 .tab {
   margin-top: 24px;
+
   &-group {
     width: 100%;
     max-width: 220px;
   }
+
   &-item {
     cursor: default;
     margin-bottom: 8px !important;
     color: black;
   }
+
   &-border {
     border-bottom: 4px solid #b8bdbf;
     border-radius: 4px;
   }
-  // &-item:hover {
-  //   color: #ff6a39;
-  // }
 
   .done {
     .tab-border {
       border-color: #ff6a39 !important;
     }
   }
+
   .active {
     p {
       color: #ff6a39;
     }
   }
+
   .disabled {
     cursor: not-allowed !important;
     color: grey;
     opacity: 0.5;
+
     p {
       cursor: not-allowed !important;
     }
@@ -73,43 +84,100 @@ html {
 .navigation-buttons {
   margin: auto;
   width: 100%;
+  position: relative;
+  display: flex;
+  bottom: 0;
+  margin-top: 12px;
 }
 
 .title {
   margin-bottom: 24px !important;
 }
 
+.table-styles {
+  max-width: 1220px;
 
-.envolti-table {
-  overflow: auto;
-  max-height: 300px;
-  width: 100%;
-  background: white !important;
-  border: 1px solid #673ab7 !important;
-
-  table th {
-
-    color: white !important;
-
-    background: #673ab7 !important;
+  table {
+    width: 100%;
   }
 
-  tr.mat-header-row {
-    background: #673ab7;
-  }
+  .envolti-table {
+    margin-top: 20px;
+    overflow: auto;
+    max-height: 600px;
+    width: 100%;
+    border-radius: 10px;
 
-  table td {
-    border-bottom: 0.1px solid #e5ff784d !important;
-    height: 56px !important;
-    color: black !important;
-  }
 
+
+
+    .mat-column-icon {
+      width: 50px;
+    }
+
+    .button-tab {
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .edit-button {
+      background-color: transparent !important;
+      color: white;
+    }
+  }
 }
 
 .table-button {
-  height: 30px;
+  height: 100%;
+  margin-right: 0px !important;
 
   mat-icon {
-    color: #673ab7;
+    color: #753bbd;
+
   }
+}
+
+.confirm-modal {
+  mat-dialog-container {
+    padding: 20px !important;
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+    max-height: 180px;
+    border-radius: 10px;
+    border: 2px solid #8f8d92;
+
+    p {
+      letter-spacing: 0.25px;
+    }
+
+    button.delete {
+      color: #673ab7;
+    }
+  }
+}
+
+.content-scroll {
+  overflow: auto;
+  height: calc(100vh - 280px);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
