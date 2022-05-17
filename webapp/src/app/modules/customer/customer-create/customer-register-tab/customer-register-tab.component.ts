@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { Form, FormGroup } from '@angular/forms';
+import { Form, FormBuilder, FormGroup } from '@angular/forms';
 import { CepService } from 'src/services/cep.service';
 
 @Component({
@@ -12,8 +12,10 @@ export class CustomerRegisterTabComponent implements OnInit {
   @Input('form') customerForm!: FormGroup;
   @Output('onChange') onChange: EventEmitter<any> = new EventEmitter();
 
+  // customerForm!: FormGroup;
 
-  constructor(private cepService: CepService){}
+  constructor(private cepService: CepService,
+    private fb: FormBuilder,){}
 
   ngOnInit(): void {
   }

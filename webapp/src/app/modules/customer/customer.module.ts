@@ -20,11 +20,16 @@ import { CustomerCreateComponent } from './customer-create/customer-create.compo
 import { CustomerRegisterTabComponent } from './customer-create/customer-register-tab/customer-register-tab.component';
 import { CustomerContactTabComponent } from './customer-create/customer-contact-tab/customer-contact-tab.component';
 import { CustomerContractTabComponent } from './customer-create/customer-contract-tab/customer-contract-tab.component';
+import { CustomerListComponent } from './customer-list/customer-list.component';
 
 const routes: Routes = [
   {
+    path: 'lista',
+    component: CustomerListComponent,
+  },
+  {
     path: 'novo',
-    component: CustomerCreateComponent,
+    component: CustomerRegisterTabComponent,
   },
 ];
 
@@ -34,6 +39,7 @@ const routes: Routes = [
     CustomerRegisterTabComponent,
     CustomerContactTabComponent,
     CustomerContractTabComponent,
+    CustomerListComponent,
   ],
   imports: [
     RouterModule.forChild(routes),
@@ -49,15 +55,16 @@ const routes: Routes = [
     MatSidenavModule,
     MatIconModule,
     MatSelectModule,  
-    ReactiveFormsModule
 
 
     
   ],
   entryComponents: [
+    CustomerListComponent,
     CustomerRegisterTabComponent,
     CustomerContactTabComponent,
     CustomerContractTabComponent,
+    CustomerRegisterTabComponent,
   ]
 })
 export class CustomerModule {}
