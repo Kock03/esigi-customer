@@ -60,13 +60,13 @@ export class CustomerProvider {
     });
   }
 
-  update(id: string | null, collaborator: any): Promise<any> {
+  update(id: string | null, customer: any): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
         .put(
           environment.CUSTOMER_MS + 'customers/:id',
           { id: id },
-          collaborator
+          customer
         )
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
@@ -74,10 +74,10 @@ export class CustomerProvider {
     });
   }
 
-  store(collaborator: any): Promise<any> {
+  store(customer: any): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .post(environment.CUSTOMER_MS + 'customers', collaborator)
+        .post(environment.CUSTOMER_MS + 'customers', customer)
 
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
@@ -85,10 +85,10 @@ export class CustomerProvider {
     });
   }
 
-  destroy(collaboratorId: string): Promise<any> {
+  destroy(customerId: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .delete(environment.CUSTOMER_MS + 'customers/' + collaboratorId)
+        .delete(environment.CUSTOMER_MS + 'customers/' + customerId)
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
