@@ -19,7 +19,8 @@
     <div *ngFor="let menu of menuList">
       <button [ngClass]="{
         active: menu.action.startsWith(this.activeMenu)
-      }" mat-button class="menu-button" (click)="navigate(menu.action)">
+      }" mat-button class="menu-button" (click)="navigate(menu.action)"
+      fxLayoutAlign="start" >
         <mat-icon>{{ menu.icon }}</mat-icon>
         <span>{{ menu.name }}</span>
       </button>

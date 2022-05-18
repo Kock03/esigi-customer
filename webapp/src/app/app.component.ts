@@ -16,7 +16,7 @@ export class AppComponent {
 
   menuList = [
     {
-      name: "Home",
+      name: "Início",
       icon: "home",
       selected: false,
       action: "/home",

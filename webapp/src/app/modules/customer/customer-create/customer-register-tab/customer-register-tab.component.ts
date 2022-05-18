@@ -12,8 +12,6 @@ export class CustomerRegisterTabComponent implements OnInit {
   @Input('form') customerForm!: FormGroup;
   @Output('onChange') onChange: EventEmitter<any> = new EventEmitter();
 
-  // customerForm!: FormGroup;
-
   constructor(private cepService: CepService,
     private fb: FormBuilder,){}
 
@@ -25,50 +23,22 @@ export class CustomerRegisterTabComponent implements OnInit {
   }
 
   async getAddress() {
-
     const address = this.customerForm.controls['Address'].value;
-
-    console.log(address.zipCode);
-
     const district = await this.cepService.findDistrict(
-
-      address.zipCode.replace('-', '')
-
+      address.cep.replace('-', '')
     );
-
-    console.log(
-
-      '🚀 ~ file: collaborator-register-tab.component.ts ~ line 75 ~ CollaboratorRegisterTabComponent ~ getAddress ~ district',
-
-      district
-
-    );
-
-
 
     if (district.erro) {
-
       window.alert('Cep inválido');
-
       this.customerForm.controls['Address'].reset();
-
     } else {
-
       this.customerForm.controls['Address'].patchValue({
-
         zipCode: district.cep,
-
         city: district.localidade,
-
         street: district.logradouro,
-
         state: district.uf,
-
-        // district: district.bairro
-
+        district: district.bairro,
       });
-
     }
-
   }
 }
