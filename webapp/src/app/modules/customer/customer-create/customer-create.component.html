@@ -7,16 +7,20 @@
       class="tab-group"
       [ngClass]="{ done: step > 0, active: step == 1 }"
     >
+    <div [ngClass]="{ done: step > 0, active: step == 1 }" (click)="handleStep(1)" fxLayout="column" class="tab-group">
       <p class="tab-item">Cadastro</p>
       <span class="tab-border"></span>
+    </div>
     </div>
     <div
       fxLayout="column"
       class="tab-group"
       [ngClass]="{ done: step > 1, active: step == 2 }"
     >
+    <div [ngClass]="{ done: step > 1, active: step == 2 }" (click)="handleStep(2)" fxLayout="column" class="tab-group">
       <p class="tab-item">Contatos</p>
       <span class="tab-border"></span>
+    </div>
     </div>
     <div fxLayout="column" class="tab-group disabled">
       <p class="tab-item disabled">Contratos</p>

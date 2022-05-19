@@ -14,6 +14,8 @@ export class CustomerCreateComponent implements OnInit {
   customerForm!: FormGroup;
   step: any = 2;
 
+  validations = [['corporateName', 'cnpj', 'mail', 'site']];
+
   constructor(private fb: FormBuilder, private customerProvider: CustomerProvider, private http: HttpClient, private cepService: CepService) {}
 
   ngOnInit(): void {
@@ -128,15 +130,40 @@ export class CustomerCreateComponent implements OnInit {
     );
   }
 
+  checkValid(): boolean {
+    let isValid = true;
+    const validations = this.validations[this.step - 1];
+    if (validations !== undefined) {
+      for (let index = 0; index < validations.length; index++) {
+        if (this.customerForm.controls[validations[index]].invalid) {
+          isValid = false;
+
+          this.customerForm.markAllAsTouched();
+        }
+      }
+    }
+    return isValid;
+  }
+
+
+
   handleStep(number: number): void {
-    this.step = number;
+    if (!this.checkValid() && this.step < number) {
+    } else if (this.step - number < 1) {
+      this.step = number;
+      sessionStorage.setItem('project_tab', this.step.toString());
+    } else {
+      this.step = number;
+      sessionStorage.setItem('project_tab', this.step.toString());
+    }
   }
 
   navigate(direction: string) {
-    if (this.step > 1 && direction === "back") {
+    if (this.step > 1 && direction === 'back') {
       this.step -= 1;
-    } else if (this.step < 3 && direction === "next") {
+    } else if (this.checkValid() && this.step < 4 && direction === 'next') {
       this.step += 1;
+
     }
   }
 
