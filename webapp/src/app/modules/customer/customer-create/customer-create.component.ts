@@ -12,7 +12,7 @@ import { CepService } from "src/services/cep.service";
 })
 export class CustomerCreateComponent implements OnInit {
   customerForm!: FormGroup;
-  step: any = 1;
+  step: any = 2;
 
   constructor(private fb: FormBuilder, private customerProvider: CustomerProvider, private http: HttpClient, private cepService: CepService) {}
 
