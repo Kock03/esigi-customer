@@ -12,7 +12,7 @@ import { CepService } from "src/services/cep.service";
 })
 export class CustomerCreateComponent implements OnInit {
   customerForm!: FormGroup;
-  step: number = 2;
+  step: any = 1;
 
   constructor(private fb: FormBuilder, private customerProvider: CustomerProvider, private http: HttpClient, private cepService: CepService) {}
 
@@ -44,47 +44,43 @@ export class CustomerCreateComponent implements OnInit {
 
   initForm() {
     this.customerForm = this.fb.group({
-      corporateName: ["TUPI LTDA", [Validators.required]],
-      tradingName: ["TUPI", [Validators.required]],
-
-      active: ["", [Validators.required]],
+      corporateName: [ '', Validators.required],
+      tradingName: ['', Validators.required],
+      createDate: ['', Validators.required],
+      active: [false, Validators.required],
       cnpj: [
-        "89177533968",
-        [
+        '',
           Validators.required,
           Validators.maxLength(14),
           Validators.minLength(14),
-        ],
+  
       ],
       stateRegistration: [
-        "362410298",
-        [Validators.required, Validators.maxLength(9), Validators.minLength(9)],
-      ],
+        '',
+        Validators.required, Validators.maxLength(9), Validators.minLength(9)],
       municipalRegistration: [
-        "021563985",
-        [Validators.required, Validators.maxLength(9), Validators.minLength(9)],
-      ],
+        '',
+        Validators.required, Validators.maxLength(9), Validators.minLength(9)],
 
-      phoneNumber: ["47 3330-9563", Validators.required],
-      mail: ["", [Validators.required, Validators.email]],
-      site: ["", [Validators.required]],
+      phoneNumber: ['', Validators.required],
+      mail: ['', Validators.required, Validators.email],
+      site: ['', Validators.required],
       // name: ["", [Validators.required]],
       // office: ["", [Validators.required]],
 
       Address: this.fb.group({
         zipCode: [
-          "89032560",
-          [
+          '',
             Validators.required,
             Validators.maxLength(9),
             Validators.minLength(9),
-          ],
         ],
-        street: ["Rua Bahia", [Validators.required]],
-        number: ["5088", [Validators.required]],
-        complement: ["Perto da Academia SportLife"],
-        state: ["Santa Catarina ", [Validators.required]],
-        city: ["Joinville", [Validators.required]],
+        street: ['', Validators.required],
+        number: ['', Validators.required],
+        complement: [''],
+        state: ['', Validators.required],
+        city: ['', Validators.required],
+        site: [ '', Validators.required]
       }),
 
       // createDate: ["01/07/2003", [Validators.required]],

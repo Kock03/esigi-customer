@@ -40,6 +40,7 @@ export class AppComponent {
   }
 
   ngAfterViewInit() {
+    setTimeout(() => {
     this.observer.observe(["(max-width: 800px)"]).subscribe((res: any) => {
       if (res.matches) {
         this.sidenav.mode = "over";
@@ -49,6 +50,7 @@ export class AppComponent {
         this.sidenav.open();
       }
     });
+  }, 50);
   }
 
   navigate(route: string) {

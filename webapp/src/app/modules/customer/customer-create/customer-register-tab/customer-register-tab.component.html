@@ -1,6 +1,6 @@
 <div id="customerRegisterTab" class="tab">
-  <div class="customer-form">
-    <form (submit)="next()" [formGroup]="customerForm" fxLayout="column">
+  <div class="customer-form" >
+    <form (submit)="next()" [formGroup]="customerForm" *ngIf="customerForm" fxLayout="column">
       <div fxFlex="100" fxLayoutGap="16px">
         <mat-form-field fxFlex="30" appearance="outline">
           <mat-label>Razão Social</mat-label>
