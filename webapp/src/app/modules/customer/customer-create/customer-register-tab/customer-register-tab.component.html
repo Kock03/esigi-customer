@@ -25,31 +25,21 @@
         <mat-form-field fxFlex="30" appearance="outline">
           <mat-label>Inscrição Estadual</mat-label>
           <input matInput placeholder="Inscrição Estadual" formControlName="stateRegistration" />
-          <mat-error *ngIf="
-            customerForm &&  customerForm.controls['stateRegistration'].hasError('minlength')
-            ">
-            Inscrição Estadual muito pequena
-          </mat-error>
-          <mat-error *ngIf="
-            customerForm &&  customerForm.controls['stateRegistration'].hasError('maxlength')
-            ">
-            Inscrição Estadual muito grande
-          </mat-error>
         </mat-form-field>
         <mat-form-field fxFlex="20" appearance="outline">
           <mat-label>Inscrição Municipal</mat-label>
           <input matInput placeholder="Inscrição Municipal" formControlName="municipalRegistration" />
         </mat-form-field>
-        <mat-form-field fxFlex="20" appearance="outline" formGroupName="Address">
+      </div>
+
+      <div fxFlex="100" fxLayoutGap="16px" formGroupName="Address">
+        <mat-form-field fxFlex="20" appearance="outline">
           <mat-label>CEP</mat-label>
           <input matInput placeholder="CEP" formControlName="zipCode" />
           <mat-icon matSuffix style="cursor: pointer" (click)="getAddress()">
             search
           </mat-icon>
         </mat-form-field>
-      </div>
-
-      <div fxFlex="100" fxLayoutGap="16px" formGroupName="Address">
         <mat-form-field fxFlex="30" appearance="outline">
           <mat-label>Rua</mat-label>
           <input matInput placeholder="Rua" formControlName="street" />
