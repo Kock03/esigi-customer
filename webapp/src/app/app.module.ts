@@ -13,6 +13,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatDividerModule } from "@angular/material/divider";
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { HttpClientModule } from "@angular/common/http";
+import { NgxMaskModule, IConfig } from 'ngx-mask';
 
 @NgModule({
   declarations: [AppComponent, ToolbarComponent],
@@ -20,6 +21,7 @@ import { HttpClientModule } from "@angular/common/http";
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    NgxMaskModule.forRoot(),
     FlexLayoutModule,
     MatToolbarModule,
     MatIconModule,

@@ -12,6 +12,7 @@ import { MatTableModule } from '@angular/material/table'
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatIconModule } from "@angular/material/icon";
 import {MatSelectModule} from '@angular/material/select';
+import { NgxMaskModule } from 'ngx-mask';
 
 
 
@@ -50,6 +51,7 @@ const routes: Routes = [
     MatInputModule,
     FlexLayoutModule,
     MatButtonModule,
+    NgxMaskModule,
     MatCheckboxModule,
     MatTableModule,
     MatSidenavModule,
