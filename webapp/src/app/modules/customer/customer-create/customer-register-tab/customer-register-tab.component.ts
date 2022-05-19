@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { Form, FormBuilder, FormGroup } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Form, FormBuilder, FormGroup, NgModel } from '@angular/forms';
 import { CepService } from 'src/services/cep.service';
 
 @Component({
@@ -12,10 +12,15 @@ export class CustomerRegisterTabComponent implements OnInit {
   @Input('form') customerForm!: FormGroup;
   @Output('onChange') onChange: EventEmitter<any> = new EventEmitter();
 
+
   constructor(private cepService: CepService,
     private fb: FormBuilder,){}
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit(){
+    
   }
 
   next() {

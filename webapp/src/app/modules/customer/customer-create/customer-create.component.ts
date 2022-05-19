@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 import { CustomerProvider } from "src/providers/customer.provider";
 import { CepService } from "src/services/cep.service";
 
@@ -16,7 +17,7 @@ export class CustomerCreateComponent implements OnInit {
 
   validations = [['corporateName', 'cnpj', 'mail', 'site']];
 
-  constructor(private fb: FormBuilder, private customerProvider: CustomerProvider, private http: HttpClient, private cepService: CepService) {}
+  constructor(private fb: FormBuilder, private customerProvider: CustomerProvider, private http: HttpClient, private cepService: CepService, private router: Router) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -32,30 +33,30 @@ export class CustomerCreateComponent implements OnInit {
         'Address'
       ] as FormGroup;
       console.log(
-        
+
         addressForm
       );
-      addressForm.controls['cep'].valueChanges.subscribe((res) => {
-        console.log(
-          "🚀 ~ file: collaborator-register-tab.component.ts ~ line 57 ~ CollaboratorRegisterTabComponent ~ addressForm.controls['cep'].valueChanges.subscribe ~ res",
-          res
-        );
-      });
+      // addressForm.controls['cep'].valueChanges.subscribe((res) => {
+      //   console.log(
+      //     "🚀 ~ file: collaborator-register-tab.component.ts ~ line 57 ~ CollaboratorRegisterTabComponent ~ addressForm.controls['cep'].valueChanges.subscribe ~ res",
+      //     res
+      //   );
+      // });
     });
   }
 
   initForm() {
     this.customerForm = this.fb.group({
-      corporateName: [ '', Validators.required],
+      corporateName: ['', Validators.required],
       tradingName: ['', Validators.required],
       createDate: ['', Validators.required],
       active: [false, Validators.required],
       cnpj: [
         '',
-          Validators.required,
-          Validators.maxLength(14),
-          Validators.minLength(14),
-  
+        Validators.required,
+        Validators.maxLength(14),
+        Validators.minLength(14),
+
       ],
       stateRegistration: [
         '',
@@ -73,16 +74,16 @@ export class CustomerCreateComponent implements OnInit {
       Address: this.fb.group({
         zipCode: [
           '',
-            Validators.required,
-            Validators.maxLength(9),
-            Validators.minLength(9),
+          Validators.required,
+          Validators.maxLength(9),
+          Validators.minLength(9),
         ],
         street: ['', Validators.required],
         number: ['', Validators.required],
         complement: [''],
         state: ['', Validators.required],
         city: ['', Validators.required],
-        site: [ '', Validators.required]
+        site: ['', Validators.required]
       }),
 
       // createDate: ["01/07/2003", [Validators.required]],
@@ -106,22 +107,23 @@ export class CustomerCreateComponent implements OnInit {
         mail: "asda@asdsa",
       },
 
-    ]),
+      ]),
     });
   }
 
   async saveCustomer() {
-    
-      const data = this.customerForm.getRawValue();
 
-      try {
-        const customer = await this.customerProvider.store(data);
-        console.log("🚀 ~ file: customer-create.component.ts ~ line 104 ~ CustomerCreateComponent ~ saveCustomer ~ data", data)
-      }catch (error) {
-        console.log('ERROR 132' + error)
-      }
- 
-    
+    const data = this.customerForm.getRawValue();
+
+    try {
+      const customer = await this.customerProvider.store(data);
+      console.log("🚀 ~ file: customer-create.component.ts ~ line 104 ~ CustomerCreateComponent ~ saveCustomer ~ data", data)
+      this.router.navigate(['cliente/lista']);
+    } catch (error) {
+      console.log('ERROR 132' + error)
+    }
+
+
   }
   handleChanges(value: any): void {
     console.log(
@@ -167,5 +169,5 @@ export class CustomerCreateComponent implements OnInit {
     }
   }
 
- 
+
 }
