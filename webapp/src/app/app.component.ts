@@ -25,7 +25,7 @@ export class AppComponent {
       name: "Cliente",
       icon: "person",
       selected: false,
-      action: "/cliente/novo",
+      action: "/cliente/lista",
     },
   ];
 
