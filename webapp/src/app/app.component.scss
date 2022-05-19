@@ -29,12 +29,15 @@ mat-sidenav-container {
   height: 100vh;
 }
 
-.menu-button{
+.menu-button {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  font-size: 1rem;  
+  font-size: 1rem;
+  mat-icon {
+    margin-right: 8px;
+  }
 }
 
 .menu-button:hover:not(.active) {
