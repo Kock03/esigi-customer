@@ -36,12 +36,10 @@
   // }
   .edit-button {
     height: 50px;
-    margin-top: 5px;
+    margin-top: 0px;
   }
 
   .mat-icon {
-    margin-top: 6px;
-    // width: 150px !important;
     width: 100% !important;
     size: 50px;
   }
@@ -56,13 +54,13 @@
 }
 
 #customerContactDialog {
+  max-height: 470px ;
+  height: 100%;
+
   .button-dialog {
     margin-left: 140px;
+    margin-top: 20px;
   }
 
-  .content-scroll {
-    overflow: auto;
-    height: calc(100vh - 300px);
-    position: block;
-  }
+  
 }

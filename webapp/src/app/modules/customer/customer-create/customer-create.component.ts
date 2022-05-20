@@ -88,15 +88,16 @@ export class CustomerCreateComponent implements OnInit {
         Validators.minLength(9)],
       ],
 
+      
+      mail: ["", [Validators.email, Validators.required]],
+      site: ["", Validators.required],
+      name: ["", Validators.required],
+      office: ["", Validators.required],
       Phone: this.fb.group({
         phoneNumber: [null],
         ddd: [null],
         ddi: [null],
       }),
-      mail: ["", [Validators.email, Validators.required]],
-      site: ["", Validators.required],
-      name: ["", Validators.required],
-      office: ["", Validators.required],
 
       Address: this.fb.group({
         zipCode: [
@@ -109,7 +110,7 @@ export class CustomerCreateComponent implements OnInit {
         complement: [""],
         state: [""],
         city: [""],
-        site: [""],
+        site: ["", Validators.required],
       }),
     });
   }

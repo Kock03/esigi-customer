@@ -81,7 +81,7 @@ export class CustomerContactTabComponent implements OnInit {
     sessionStorage.setItem('method', this.method);
     const dialogRef = this.dialog.open(CustomerContactDialog, {
       width: '500px',
-      height: '470px',
+      height: '400px',
     });
 
     dialogRef.afterClosed().subscribe(contact => {
@@ -98,7 +98,7 @@ export class CustomerContactTabComponent implements OnInit {
     sessionStorage.setItem('contact_id', this.contactId);
     const dialogRef = this.dialog.open(CustomerContactDialog, {
       width: '500px',
-      height: '620px',
+      height: '400px',
       data: contactSelected,
     });
     dialogRef.afterClosed().subscribe(contact => {

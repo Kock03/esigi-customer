@@ -1,5 +1,5 @@
 <div id="customerContactDialog" class="dialog">
-  <div class="content-scroll" *ngIf="contactForm">
+  <div  *ngIf="contactForm">
     <h2 class="title-dialog" mat-dialog-title>Cadastrar Contatos</h2>
     <mat-dialog-content class="mat-typography">
       <form [formGroup]="contactForm" fxLayout="column">
@@ -7,6 +7,14 @@
           <mat-form-field fxFlex="50" appearance="outline">
             <mat-label>Nome</mat-label>
             <input matInput placeholder="Nome" formControlName="name" />
+            <mat-error
+            *ngIf="
+            contactForm &&
+            contactForm.controls['name'].hasError('required')
+            "
+          >
+            Campo obrigatório
+          </mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="outline" fxFlex="50">
@@ -16,6 +24,14 @@
                 >{{ role.name }}</mat-option
               >
             </mat-select>
+            <mat-error
+            *ngIf="
+            contactForm &&
+            contactForm.controls['office'].hasError('required')
+            "
+          >
+            Campo obrigatório
+          </mat-error>
           </mat-form-field>
         </div>
 
@@ -24,18 +40,42 @@
             <mat-label>DDI</mat-label>
             <input matInput placeholder="DDI" formControlName="ddi" mask="+00"
               />
+              <mat-error
+              *ngIf="
+              phoneForm &&
+              phoneForm.controls['ddi'].hasError('required')
+              "
+            >
+              Campo obrigatório
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field fxFlex="15" appearance="outline">
             <mat-label>DDD</mat-label>
             <input matInput placeholder="DDD" formControlName="ddd" mask="(00)"
               />
+              <mat-error
+              *ngIf="
+              phoneForm &&
+              phoneForm.controls['ddd'].hasError('required')
+              "
+            >
+              Campo obrigatório
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field fxFlex="70" appearance="outline">
             <mat-label>Telefone</mat-label>
             <input matInput placeholder="Telefone" formControlName="phoneNumber"
               mask="0000-0000||00000-0000" />
+              <mat-error
+              *ngIf="
+              phoneForm &&
+              phoneForm.controls['phoneNumber'].hasError('required')
+              "
+            >
+              Campo obrigatório
+            </mat-error>
           </mat-form-field>
         </div>
 
