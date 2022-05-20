@@ -17,6 +17,7 @@ export class CustomerRegisterTabComponent implements OnInit {
   customerId!: string | null;
   customer!: any;
   addressForm!: FormGroup;
+  phoneForm!: FormGroup;
 
   constructor(private cepService: CepService,
     private fb: FormBuilder,
@@ -32,6 +33,12 @@ export class CustomerRegisterTabComponent implements OnInit {
         ] as FormGroup;
         this.addressForm = addressForm
         addressForm.controls['cep'].valueChanges.subscribe(res => { });
+
+        const phoneForm = this.customerForm.controls[
+          'Phone'
+        ] as FormGroup;
+        this.phoneForm = phoneForm
+        phoneForm.controls['ddi'].valueChanges.subscribe(res => {});
       })
     }
   }

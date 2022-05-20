@@ -172,22 +172,37 @@
           <input matInput placeholder="Estado" formControlName="state" />
         </mat-form-field>
         <mat-form-field
-          fxFlex="25"
+          fxFlex="20"
           appearance="outline"
           formGroupName="Address"
         >
           <mat-label>Cidade</mat-label>
           <input matInput placeholder="Cidade" formControlName="city" />
         </mat-form-field>
-        <mat-form-field fxFlex="20" appearance="outline">
-          <mat-label>Telefone</mat-label>
-          <input
-            matInput
-            placeholder="Telefone"
-            formControlName="phoneNumber"
-          />
-        </mat-form-field>
-        <mat-form-field fxFlex="35" appearance="outline">
+        
+        <div formGroupName="Phone" fxFlex="100" fxLayoutGap="16px">
+          <mat-form-field fxFlex="15" appearance="outline">
+            <mat-label>DDI</mat-label>
+            <input matInput placeholder="DDI" formControlName="ddi" mask="+00"
+              />
+          </mat-form-field>
+
+          <mat-form-field fxFlex="15" appearance="outline">
+            <mat-label>DDD</mat-label>
+            <input matInput placeholder="DDD" formControlName="ddd" mask="(00)"
+              />
+          </mat-form-field>
+
+          <mat-form-field fxFlex="70" appearance="outline">
+            <mat-label>Telefone</mat-label>
+            <input matInput placeholder="Telefone" formControlName="phoneNumber"
+              mask="0000-0000||00000-0000" />
+          </mat-form-field>
+        </div>
+
+      </div>
+      <div fxFlex="100" fxLayoutGap="16px">
+        <mat-form-field fxFlex="50" appearance="outline">
           <mat-label>Email</mat-label>
           <input matInput placeholder="Email" formControlName="mail" />
           <mat-error
@@ -198,9 +213,7 @@
             Email inválido
           </mat-error>
         </mat-form-field>
-      </div>
-      <div fxFlex="100" fxLayoutGap="16px">
-        <mat-form-field fxFlex="100" appearance="outline">
+        <mat-form-field fxFlex="50" appearance="outline">
           <mat-label>Site</mat-label>
           <input matInput placeholder="Site" formControlName="site" />
         </mat-form-field>
