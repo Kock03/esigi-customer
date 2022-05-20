@@ -90,7 +90,11 @@ export class CustomerCreateComponent implements OnInit {
         Validators.minLength(9)],
       ],
 
-      phoneNumber: [""],
+      Phone: this.fb.group({
+        phoneNumber: [null, [Validators.required, Validators.maxLength(9)]],
+        ddd: [null, [Validators.required, Validators.maxLength(2)]],
+        ddi: [null, Validators.required],
+      }),
       mail: ["", [Validators.email, Validators.required]],
       site: ["", Validators.required],
       name: ["", Validators.required],
