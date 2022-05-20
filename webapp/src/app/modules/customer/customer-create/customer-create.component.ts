@@ -48,7 +48,7 @@ export class CustomerCreateComponent implements OnInit {
 
   async getCustomer() {
     try {
-      this.customer = await this.customerProvider.findOne(this.customer);
+      this.customer = await this.customerProvider.findOne(this.customerId);
     } catch (error) {
       console.error(error);
     }
