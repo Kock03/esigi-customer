@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Form, FormBuilder, FormGroup, NgModel } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { CepService } from 'src/services/cep.service';
 
 @Component({
@@ -13,14 +14,30 @@ export class CustomerRegisterTabComponent implements OnInit {
   @Output('onChange') onChange: EventEmitter<any> = new EventEmitter();
 
 
+  customerId!: string | null;
+  customer!: any;
+  addressForm!: FormGroup;
+
   constructor(private cepService: CepService,
-    private fb: FormBuilder,){}
+    private fb: FormBuilder,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-  }
+    this.customerId = this.route.snapshot.paramMap.get('id');
 
-  ngAfterViewInit(){
-    
+    if (this.customerId == 'novo') {
+      this.customerForm.valueChanges.subscribe(res => {
+        const addressForm = this.customerForm.controls[
+          'Address'
+        ] as FormGroup;
+        this.addressForm = addressForm
+        addressForm.controls['cep'].valueChanges.subscribe(res => { });
+      })
+    }
+  }
+  
+  ngAfterViewInit() {
+
   }
 
   next() {

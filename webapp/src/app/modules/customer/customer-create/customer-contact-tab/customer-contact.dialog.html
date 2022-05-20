@@ -1,0 +1,69 @@
+<div id="customerContactDialog" class="dialog">
+  <div class="content-scroll" *ngIf="contactForm">
+    <h2 class="title-dialog" mat-dialog-title>Cadastrar Contatos</h2>
+    <mat-dialog-content class="mat-typography">
+      <form [formGroup]="contactForm" fxLayout="column">
+        <div fxFlex="100" fxLayout="row" fxLayoutGap="16px">
+          <mat-form-field fxFlex="50" appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input matInput placeholder="Nome" formControlName="name" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" fxFlex="50">
+            <mat-label>Cargo</mat-label>
+            <mat-select matInput disableRipple formControlName="office">
+              <mat-option *ngFor="let role of roleList" [value]="role.value"
+                >{{ role.name }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="100" fxLayout="row" fxLayoutGap="16px">
+          <mat-form-field fxFlex="50" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" formControlName="mail" />
+            <mat-error
+              *ngIf="
+              contactForm && contactForm.controls['mail'].hasError('email')
+              "
+            >
+              E-mail inválido</mat-error
+            >
+            <mat-error
+              *ngIf="
+                contactForm && contactForm.controls['mail'].hasError('required')
+              "
+            >
+              Campo e-mail é orbrigatório
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="45" appearance="outline">
+            <mat-label>Celular</mat-label>
+            <input
+              matInput
+              placeholder="Celular"
+              formControlName="phoneNumber"
+            />
+          </mat-form-field>
+        </div>
+      </form>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <div class="button-dialog">
+        <button mat-flat-button mat-dialog-close (click)="onNoClick()">
+          Cancelar
+        </button>
+        <button
+          color="primary"
+          [disabled]="contactForm.invalid"
+          mat-flat-button
+          [mat-dialog-close]="true"
+          (click)="save()">
+          Salvar
+        </button>
+      </div>
+    </mat-dialog-actions>
+  </div>
+</div>

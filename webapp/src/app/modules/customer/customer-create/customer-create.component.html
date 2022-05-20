@@ -1,6 +1,11 @@
 <div id="customerCreate" class="page">
-  <h2 class="title">Cadastro de Cliente</h2>
-
+  <div fxLayout="row" fxLayoutAlign="start start">
+    <button (click)="listCustomer()" color="primary" mat-button>
+      <mat-icon> chevron_left </mat-icon>
+    </button>
+    <h2 class="title">Cadastro de Cliente</h2>
+  </div>
+ 
   <div fxLayout="row" class="tab" fxLayoutGap="16px">
     <div
       fxLayout="column"
@@ -35,35 +40,53 @@
   ></app-customer-register-tab>
   <app-customer-contact-tab
     [hidden]="step != 2"
-    [form]="customerForm"
     (onChange)="handleChanges($event)"
   ></app-customer-contact-tab>
   <app-customer-contract-tab [hidden]="step != 3"></app-customer-contract-tab>
 
-  <div class="navigation-buttons" fxLayoutAlign="center end" fxLayoutGap="16px">
-    <button
-      mat-stroked-button
-      color="primary"
-      *ngIf="step != 1"
-      (click)="navigate('back')"
-    >
-      Voltar
-    </button>
-    <button
-      mat-flat-button
-      *ngIf="step != 2"
-      (click)="navigate('next')"
-      color="primary"
-    >
-      Continuar
-    </button>
-    <button
-      mat-flat-button
-      *ngIf="step == 2"
-      (click)="saveCustomer()"
-      color="primary"
-    >
-      Salvar
-    </button>
-  </div>
+  <div
+  class="navigation-buttons"
+  fxLayoutAlign="center end"
+  fxLayoutGap="16px"
+  *ngIf="customerId === 'novo'">
+  <button mat-button *ngIf="step != 1" (click)="navigate('back')">
+    Voltar
+  </button>
+  <button
+    mat-flat-button
+    *ngIf="step !== 1 && step !== 3"
+    (click)="navigate('next')"
+    color="primary">
+    Continuar
+  </button>
+  <button
+    mat-flat-button
+    *ngIf="step === 1"
+    (click)="saveCustomer()"
+    color="primary">
+    Salvar
+  </button>
+</div>
+<div
+  class="navigation-buttons"
+  fxLayoutAlign="center end"
+  fxLayoutGap="16px"
+  *ngIf="customerId !== 'novo'">
+
+  <button mat-button *ngIf="step != 1" (click)="navigate('back')">
+    Voltar
+  </button>
+
+  <button
+    mat-flat-button
+    *ngIf="step !== 1 && step !== 5"
+    (click)="navigate('next')"
+    color="primary">
+    Continuar
+  </button>
+
+  <button mat-flat-button  *ngIf="step === 1" (click)="saveEditCustomer()" color="primary">
+    Savar
+  </button>
+</div>
 </div>

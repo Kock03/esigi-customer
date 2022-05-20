@@ -1,3 +1,4 @@
+import { MatTableModule } from '@angular/material/table';
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 
@@ -14,6 +15,7 @@ import { MatDividerModule } from "@angular/material/divider";
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { HttpClientModule } from "@angular/common/http";
 import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [AppComponent, ToolbarComponent],
@@ -29,7 +31,10 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
     LayoutModule,
     MatButtonModule,
     MatDividerModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule,
+    MatTableModule
+
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,4 +1,5 @@
-import { NgModule } from '@angular/core';
+
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -13,7 +14,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatIconModule } from "@angular/material/icon";
 import {MatSelectModule} from '@angular/material/select';
 import { NgxMaskModule } from 'ngx-mask';
-
+import { MatSortModule } from '@angular/material/sort';
 
 
 
@@ -22,6 +23,8 @@ import { CustomerRegisterTabComponent } from './customer-create/customer-registe
 import { CustomerContactTabComponent } from './customer-create/customer-contact-tab/customer-contact-tab.component';
 import { CustomerContractTabComponent } from './customer-create/customer-contract-tab/customer-contract-tab.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
+import { CustomerContactDialog } from './customer-create/customer-contact-tab/customer-contact-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const routes: Routes = [
   {
@@ -41,6 +44,7 @@ const routes: Routes = [
     CustomerContactTabComponent,
     CustomerContractTabComponent,
     CustomerListComponent,
+    CustomerContactDialog
   ],
   imports: [
     RouterModule.forChild(routes),
@@ -57,7 +61,8 @@ const routes: Routes = [
     MatSidenavModule,
     MatIconModule,
     MatSelectModule,  
-
+    MatSortModule,
+    MatDialogModule,
 
     
   ],
@@ -67,6 +72,7 @@ const routes: Routes = [
     CustomerContactTabComponent,
     CustomerContractTabComponent,
     CustomerRegisterTabComponent,
-  ]
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CustomerModule {}

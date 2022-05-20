@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { CustomerProvider } from "src/providers/customer.provider";
 import { CepService } from "src/services/cep.service";
 
@@ -13,36 +13,50 @@ import { CepService } from "src/services/cep.service";
 })
 export class CustomerCreateComponent implements OnInit {
   customerForm!: FormGroup;
-  step: any = 2;
+  step: any = 1;
+  customer!: any;
+  customerId!: string | null;
+
 
   validations = [['corporateName', 'cnpj', 'mail', 'site']];
 
-  constructor(private fb: FormBuilder, private customerProvider: CustomerProvider, private http: HttpClient, private cepService: CepService, private router: Router) { }
+  constructor(private fb: FormBuilder, private customerProvider: CustomerProvider, private http: HttpClient, private cepService: CepService, private router: Router, private route: ActivatedRoute) { }
 
-  ngOnInit(): void {
-    this.initForm();
-    this.customerForm.valueChanges.subscribe((res) => {
-      console.log(
-        "🚀 ~ file: customer-create.component.ts ~ line 20 ~ CustomerCreateComponent ~ ngOnInit ~ this.customerForm.getRawValue();",
-        this.customerForm.getRawValue()
+  async ngOnInit(): Promise<void> {
+    if (sessionStorage.getItem('customer_tab') == undefined) {
+      sessionStorage.setItem('customer_tab', '1');
+    }
+    this.customerId = this.route.snapshot.paramMap.get('id');
+    this.step = JSON.parse(sessionStorage.getItem('customer_tab')!);
+
+    if (this.customerId !== 'novo') {
+      await this.getCustomer();
+      this.initForm();
+      this.setFormValue();
+    } else {
+      this.initForm();
+    }
+  }
+
+  async getCustomer() {
+    try {
+      this.customer = await this.customerProvider.findOne(
+        this.customer
       );
-    });
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
-    this.customerForm.valueChanges.subscribe((res) => {
-      const addressForm = this.customerForm.controls[
-        'Address'
-      ] as FormGroup;
-      console.log(
+  setFormValue() {
+    if (this.customer) {
+      this.customerForm.patchValue(this.customer);
+    }
+  }
 
-        addressForm
-      );
-      // addressForm.controls['cep'].valueChanges.subscribe((res) => {
-      //   console.log(
-      //     "🚀 ~ file: collaborator-register-tab.component.ts ~ line 57 ~ CollaboratorRegisterTabComponent ~ addressForm.controls['cep'].valueChanges.subscribe ~ res",
-      //     res
-      //   );
-      // });
-    });
+  listCustomer() {
+    this.router.navigate(['cliente/lista']);
+    sessionStorage.clear();
   }
 
   initForm() {
@@ -68,8 +82,8 @@ export class CustomerCreateComponent implements OnInit {
       phoneNumber: ['', Validators.required],
       mail: ['', Validators.required, Validators.email],
       site: ['', Validators.required],
-      // name: ["", [Validators.required]],
-      // office: ["", [Validators.required]],
+      name: ["", [Validators.required]],
+      office: ["", [Validators.required]],
 
       Address: this.fb.group({
         zipCode: [
@@ -85,89 +99,66 @@ export class CustomerCreateComponent implements OnInit {
         city: ['', Validators.required],
         site: ['', Validators.required]
       }),
-
-      // createDate: ["01/07/2003", [Validators.required]],
-
-      Contacts: this.fb.array([{
-        name: "João",
-        office: "Comprador",
-        phoneNumber: "71 992535862",
-        mail: "asda@asdsa",
-      },
-      {
-        name: "Pedro",
-        office: "Diretor",
-        phoneNumber: "47 992952121",
-        mail: "asda@asdsa",
-      },
-      {
-        name: "Maria",
-        office: "Gerente de TI",
-        phoneNumber: "48 992538654",
-        mail: "asda@asdsa",
-      },
-
-      ]),
     });
   }
-
   async saveCustomer() {
-
-    const data = this.customerForm.getRawValue();
-
+    let data = this.customerForm.getRawValue();
     try {
+      this.handleStep(2)
       const customer = await this.customerProvider.store(data);
-      console.log("🚀 ~ file: customer-create.component.ts ~ line 104 ~ CustomerCreateComponent ~ saveCustomer ~ data", data)
-      this.router.navigate(['cliente/lista']);
+      sessionStorage.setItem('customer_id', customer.id);
+      sessionStorage.clear();
+    } catch (error: any) {
+      console.log('ERROR 132' + error);
+    }
+  }
+
+  async saveEditCustomer() {
+    let data = this.customerForm.getRawValue();
+    try {
+      const customer = await this.customerProvider.update(this.customerId, data);
+      this.router.navigate(['curriculo/lista']);
     } catch (error) {
-      console.log('ERROR 132' + error)
+      console.error(error);
     }
-
-
-  }
-  handleChanges(value: any): void {
-    console.log(
-      "🚀 ~ file: customer-create.component.ts ~ line 28 ~ CustomerCreateComponent ~ handleChanges ~ value",
-      value
-    );
-  }
-
-  checkValid(): boolean {
-    let isValid = true;
-    const validations = this.validations[this.step - 1];
-    if (validations !== undefined) {
-      for (let index = 0; index < validations.length; index++) {
-        if (this.customerForm.controls[validations[index]].invalid) {
-          isValid = false;
-
-          this.customerForm.markAllAsTouched();
-        }
-      }
-    }
-    return isValid;
   }
 
 
+  handleChanges(value: any): void { }
 
   handleStep(number: number): void {
     if (!this.checkValid() && this.step < number) {
     } else if (this.step - number < 1) {
       this.step = number;
-      sessionStorage.setItem('project_tab', this.step.toString());
+      sessionStorage.setItem('customer_tab', this.step.toString());
     } else {
       this.step = number;
-      sessionStorage.setItem('project_tab', this.step.toString());
+      sessionStorage.setItem('customer_tab', this.step.toString());
     }
   }
 
   navigate(direction: string) {
     if (this.step > 1 && direction === 'back') {
       this.step -= 1;
-    } else if (this.checkValid() && this.step < 4 && direction === 'next') {
+    } else if (this.checkValid() && this.step < 8 && direction === 'next') {
       this.step += 1;
-
+    } else {
+      // this.snackbarService.showAlert('Verifique os campos');
     }
   }
 
+  checkValid(): boolean {
+    let isValid = true;
+    const validations = this.validations[0];
+    for (let index = 0; index < validations.length; index++) {
+      if (this.customerForm.controls[validations[index]].invalid) {
+        isValid = false;
 
+        this.customerForm.markAllAsTouched();
+      }
+    }
+    return isValid;
+  }
+
+ 
 }

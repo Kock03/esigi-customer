@@ -1,94 +1,9 @@
 <div id="customerContactTab" class="tab">
   <div class="content-scroll">
-    <form (submit)="next()" [formGroup]="contactForm" fxLayout="column">
-      <div fxFlex="100" fxLayout="row" fxLayoutGap="16px">
-        <mat-form-field fxFlex="50" appearance="outline">
-          <mat-label>Nome</mat-label>
-          <input matInput placeholder="Nome" formControlName="name" />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" fxFlex="50">
-          <mat-label>Cargo</mat-label>
-          <mat-select matInput disableRipple formControlName="office">
-            <mat-option
-              *ngFor="let role of roleList"
-              [value]="role.value"
-              >{{ role.name }}</mat-option
-            >
-          </mat-select>
-        </mat-form-field>
-      </div>
-
-      <div fxFlex="100" fxLayout="row" fxLayoutGap="16px">
-        <mat-form-field fxFlex="50" appearance="outline">
-          <mat-label>Email</mat-label>
-          <input
-            matInput
-            placeholder="Email"
-            formControlName="mail"
-          />
-          <mat-error
-            *ngIf="
-            contactForm && contactForm.controls['mail'].hasError('email')
-            "
-          >
-            E-mail inválido</mat-error
-          >
-          <mat-error
-            *ngIf="
-              contactForm && contactForm.controls['mail'].hasError('required')
-            "
-          >
-            Campo e-mail é orbrigatório
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field fxFlex="45" appearance="outline">
-          <mat-label>Celular</mat-label>
-          <input
-            matInput
-            placeholder="Celular"
-            formControlName="phoneNumber"
-          />
-        </mat-form-field>
-
-        <button
-          fxFlex="5"
-          class="edit-button"
-          mat-flat-button
-          color="primary"
-          (click)="saveContact()"
-          *ngIf="index == null"
-        >
-          <mat-icon>add</mat-icon>
-        </button>
-        <button
-          fxFlex="5"
-          class="edit-button"
-          mat-flat-button
-          color="primary"
-          (click)="editContact()"
-          *ngIf="index != null"
-        >
-          <mat-icon>save</mat-icon>
-        </button>
-        <button
-          fxFlex="5"
-          class="edit-button"
-          mat-flat-button
-          color="primary"
-          (click)="cancelEdit()"
-          *ngIf="index != null"
-        >
-          <mat-icon>clear</mat-icon>
-        </button>
-      </div>
-    </form>
-
     <div class="envolti-table mat-elevation-z8" fxLayout="column">
       <table
         mat-table
-        [dataSource]="customerForm.controls['Contacts'].value"
+        [dataSource]="data"
         #contactTable
       >
         >
@@ -119,24 +34,30 @@
         </ng-container> -->
 
         <ng-container matColumnDef="icon">
+          <th mat-header-cell *matHeaderCellDef style="text-align: end">
+            <button
+              class="edit-button"
+              mat-flat-button
+              color="primary"
+              (click)="openDialog()">
+              <mat-icon>add</mat-icon>
+            </button>
+          </th>
           <th mat-header-cell *matHeaderCellDef></th>
           <td
             class="button-tab"
             mat-cell
-            *matCellDef="let contact; let index = index"
-          >
+            *matCellDef="let contact; let index = index">
             <button
               class="table-button"
               mat-button
-              (click)="getContact(contact, index)"
-            >
+              (click)="getContact(contact, contact.id)">
               <mat-icon>edit</mat-icon>
             </button>
             <button
               class="table-button"
               mat-button
-              (click)="deleteContact(index)"
-            >
+              (click)="deleteContact(contact.id)">
               <mat-icon>delete</mat-icon>
             </button>
           </td>
