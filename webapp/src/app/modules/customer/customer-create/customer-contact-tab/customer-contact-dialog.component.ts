@@ -17,6 +17,7 @@ export class CustomerContactDialog{
     method!: string;
     customerId!: string | null;
     contactId!: string | null;
+    phoneForm!: FormGroup;
 
     roleList = [
       {
@@ -48,6 +49,12 @@ export class CustomerContactDialog{
         this.method = sessionStorage.getItem('method')!;
         this.customerId = sessionStorage.getItem('customer_id')!;
         this.initForm();
+
+        const phoneForm = this.contactForm.controls[
+          'Phone'
+        ] as FormGroup;
+        this.phoneForm = phoneForm
+        phoneForm.controls['ddi'].valueChanges.subscribe(res => {});
       }
 
       initForm(): void {
@@ -55,7 +62,11 @@ export class CustomerContactDialog{
           name: ["", [Validators.required]],
           office: ["", [Validators.required]],
           mail: ["", [Validators.required, Validators.email]],
-          phoneNumber: ["", Validators.required],
+          Phone: this.fb.group({
+            phoneNumber: [null],
+            ddd: [null],
+            ddi: [null],
+          }),
         });
         if (this.data) {
             this.contactForm.patchValue(this.data);

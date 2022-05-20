@@ -48,7 +48,7 @@ export class CustomerCreateComponent implements OnInit {
 
   async getCustomer() {
     try {
-      this.customer = await this.customerProvider.findOne(this.customerId);
+      this.customer = await this.customerProvider.findOne(this.customer);
     } catch (error) {
       console.error(error);
     }
@@ -69,7 +69,7 @@ export class CustomerCreateComponent implements OnInit {
     this.customerForm = this.fb.group({
       corporateName: ["", Validators.required],
       tradingName: ["", Validators.required],
-      createDate: [""],
+      birthDate: [""],
       active: [false],
       cnpj: [
         "",
@@ -77,13 +77,13 @@ export class CustomerCreateComponent implements OnInit {
       ],
       stateRegistration: [
         "",
-        [Validators.required,
+        [
         Validators.maxLength(9),
         Validators.minLength(9)],
       ],
       municipalRegistration: [
         "",
-        [Validators.required,
+        [
         Validators.maxLength(9),
         Validators.minLength(9)],
       ],

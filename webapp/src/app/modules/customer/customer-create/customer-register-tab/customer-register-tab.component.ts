@@ -32,7 +32,7 @@ export class CustomerRegisterTabComponent implements OnInit {
           'Address'
         ] as FormGroup;
         this.addressForm = addressForm
-        addressForm.controls['cep'].valueChanges.subscribe(res => { });
+        // addressForm.controls['cep'].valueChanges.subscribe(res => { });
 
         const phoneForm = this.customerForm.controls[
           'Phone'

@@ -46,7 +46,7 @@
             [showMaskTyped]="true"
             [dropSpecialCharacters]="false"
             placeholder="Data de criação"
-            formControlName="createDate"
+            formControlName="birthDate"
           />
         </mat-form-field>
         <mat-checkbox fxFlex="10" color="primary" formControlName="active"
@@ -76,14 +76,6 @@
           <mat-error
             *ngIf="
               customerForm &&
-              customerForm.controls['stateRegistration'].hasError('required')
-            "
-          >
-            Campo obrigatório
-          </mat-error>
-          <mat-error
-            *ngIf="
-              customerForm &&
               customerForm.controls['stateRegistration'].hasError('maxlength')
             "
           >
@@ -105,14 +97,6 @@
             placeholder="Inscrição Municipal"
             formControlName="municipalRegistration"
           />
-          <mat-error
-            *ngIf="
-              customerForm &&
-              customerForm.controls['municipalRegistration'].hasError('required')
-            "
-          >
-            Campo obrigatório
-          </mat-error>
           <mat-error
             *ngIf="
               customerForm &&
