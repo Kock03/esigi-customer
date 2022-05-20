@@ -1,34 +1,138 @@
 <div id="customerRegisterTab" class="tab">
-  <div class="content-scroll" >
-    <form (submit)="next()" [formGroup]="customerForm" *ngIf="customerForm" fxLayout="column">
+  <div class="content-scroll">
+    <form
+      (submit)="next()"
+      [formGroup]="customerForm"
+      *ngIf="customerForm"
+      fxLayout="column"
+    >
       <div fxFlex="100" fxLayoutGap="16px">
         <mat-form-field fxFlex="30" appearance="outline">
           <mat-label>Razão Social</mat-label>
-          <input matInput placeholder="Razão Social" formControlName="corporateName" />
+          <input
+            matInput
+            placeholder="Razão Social"
+            formControlName="corporateName"
+          />
+          <mat-error
+            *ngIf="
+              customerForm &&
+              customerForm.controls['corporateName'].hasError('required')
+            "
+          >
+            campo obrigatório
+          </mat-error>
         </mat-form-field>
         <mat-form-field fxFlex="30" appearance="outline">
           <mat-label>Nome fantasia</mat-label>
-          <input matInput placeholder="Nome fantasia" formControlName="tradingName" />
+          <input
+            matInput
+            placeholder="Nome fantasia"
+            formControlName="tradingName"
+          />
+          <mat-error
+            *ngIf="
+              customerForm && customerForm.controls['tradingName'].hasError('required')
+            "
+          >
+            Campo obrigatório
+          </mat-error>
         </mat-form-field>
         <mat-form-field fxFlex="20" appearance="outline">
           <mat-label>Data da criação</mat-label>
-          <input matInput mask="00/00/0000" [showMaskTyped]="true" [dropSpecialCharacters]="false" placeholder="Data de criação" formControlName="createDate"  />
+          <input
+            matInput
+            mask="00/00/0000"
+            [showMaskTyped]="true"
+            [dropSpecialCharacters]="false"
+            placeholder="Data de criação"
+            formControlName="createDate"
+          />
         </mat-form-field>
-        <mat-checkbox fxFlex="20" color="primary" formControlName="active">Ativo</mat-checkbox>
+        <mat-checkbox fxFlex="20" color="primary" formControlName="active"
+          >Ativo</mat-checkbox
+        >
       </div>
 
       <div fxFlex="100" fxLayoutGap="16px">
-        <mat-form-field fxFlex="30" appearance="outline">
+        <mat-form-field fxFlex="40" appearance="outline">
           <mat-label>CNPJ</mat-label>
           <input matInput placeholder="CNPJ" formControlName="cnpj" />
+          <mat-error
+            *ngIf="
+              customerForm && customerForm.controls['cnpj'].hasError('required')
+            "
+          >
+            Campo obrigatório
+          </mat-error>
         </mat-form-field>
         <mat-form-field fxFlex="30" appearance="outline">
           <mat-label>Inscrição Estadual</mat-label>
-          <input matInput placeholder="Inscrição Estadual" formControlName="stateRegistration" />
+          <input
+            mask="000.000.0000"
+            matInput
+            placeholder="Inscrição Estadual"
+            formControlName="stateRegistration"
+          />
+          <mat-error
+            *ngIf="
+              customerForm &&
+              customerForm.controls['stateRegistration'].hasError('required')
+            "
+          >
+            Campo obrigatório
+          </mat-error>
+          <mat-error
+            *ngIf="
+              customerForm &&
+              customerForm.controls['stateRegistration'].hasError('maxlength')
+            "
+          >
+            Inscrição Estadual muito grande
+          </mat-error>
+          <mat-error
+            *ngIf="
+              customerForm &&
+              customerForm.controls['stateRegistration'].hasError('minlength')
+            "
+          >
+            Inscrição Estadual muito pequena
+          </mat-error>
         </mat-form-field>
-        <mat-form-field fxFlex="20" appearance="outline">
+        <mat-form-field fxFlex="30" appearance="outline">
           <mat-label>Inscrição Municipal</mat-label>
-          <input matInput placeholder="Inscrição Municipal" formControlName="municipalRegistration" />
+          <input
+            mask="000.000.0000"
+            matInput
+            placeholder="Inscrição Municipal"
+            formControlName="municipalRegistration"
+          />
+          <mat-error
+            *ngIf="
+              customerForm &&
+              customerForm.controls['municipalRegistration'].hasError('required')
+            "
+          >
+            Campo obrigatório
+          </mat-error>
+          <mat-error
+            *ngIf="
+              customerForm &&
+              customerForm.controls['municipalRegistration'].hasError('maxlength')
+            "
+          >
+            Inscrição Estadual muito grande
+          </mat-error>
+          <mat-error
+            *ngIf="
+              customerForm &&
+              customerForm.controls['municipalRegistration'].hasError(
+                'minlength'
+              )
+            "
+          >
+            Inscrição Estadual muito pequena
+          </mat-error>
         </mat-form-field>
       </div>
 
@@ -50,26 +154,49 @@
         </mat-form-field>
         <mat-form-field fxFlex="60" appearance="outline">
           <mat-label>Complemento</mat-label>
-          <input matInput placeholder="Complemento" formControlName="complement" />
+          <input
+            matInput
+            placeholder="Complemento"
+            formControlName="complement"
+          />
         </mat-form-field>
       </div>
 
       <div fxFlex="100" fxLayoutGap="16px">
-        <mat-form-field fxFlex="25" appearance="outline" formGroupName="Address">
+        <mat-form-field
+          fxFlex="25"
+          appearance="outline"
+          formGroupName="Address"
+        >
           <mat-label>Estado</mat-label>
           <input matInput placeholder="Estado" formControlName="state" />
         </mat-form-field>
-        <mat-form-field fxFlex="25" appearance="outline" formGroupName="Address">
+        <mat-form-field
+          fxFlex="25"
+          appearance="outline"
+          formGroupName="Address"
+        >
           <mat-label>Cidade</mat-label>
           <input matInput placeholder="Cidade" formControlName="city" />
         </mat-form-field>
         <mat-form-field fxFlex="20" appearance="outline">
           <mat-label>Telefone</mat-label>
-          <input matInput placeholder="Telefone" formControlName="phoneNumber" />
+          <input
+            matInput
+            placeholder="Telefone"
+            formControlName="phoneNumber"
+          />
         </mat-form-field>
         <mat-form-field fxFlex="35" appearance="outline">
           <mat-label>Email</mat-label>
           <input matInput placeholder="Email" formControlName="mail" />
+          <mat-error
+            *ngIf="
+              customerForm && customerForm.controls['mail'].hasError('email')
+            "
+          >
+            Email inválido
+          </mat-error>
         </mat-form-field>
       </div>
       <div fxFlex="100" fxLayoutGap="16px">

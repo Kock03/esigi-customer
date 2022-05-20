@@ -19,13 +19,13 @@ export class AppComponent {
       name: "Início",
       icon: "home",
       selected: false,
-      action: "/home",
+      action: "home",
     },
     {
       name: "Cliente",
       icon: "person",
       selected: false,
-      action: "/cliente/lista",
+      action: "cliente/lista",
     },
   ];
 
@@ -33,26 +33,25 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
+      .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe((res: any) => {
-        this.activeMenu = res.url;
+        this.activeMenu = res.url.split('/')[1];
       });
   }
 
   ngAfterViewInit() {
     setTimeout(() => {
-    this.observer.observe(["(max-width: 800px)"]).subscribe((res: any) => {
-      if (res.matches) {
-        this.sidenav.mode = "over";
-        this.sidenav.close();
-      } else {
-        this.sidenav.mode = "side";
-        this.sidenav.open();
-      }
-    });
-  }, 50);
+      this.observer.observe(['(max-width: 800px)']).subscribe((res: any) => {
+        if (res.matches) {
+          this.sidenav.mode = 'over';
+          this.sidenav.close();
+        } else {
+          this.sidenav.mode = 'side';
+          this.sidenav.open();
+        }
+      });
+    }, 50);
   }
-
   navigate(route: string) {
     this.router.navigate([route]);
   }
