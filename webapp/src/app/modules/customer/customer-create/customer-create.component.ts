@@ -23,10 +23,12 @@ export class CustomerCreateComponent implements OnInit {
   constructor(private fb: FormBuilder, private customerProvider: CustomerProvider, private http: HttpClient, private cepService: CepService, private router: Router, private route: ActivatedRoute) { }
 
   async ngOnInit(): Promise<void> {
+    this.customerId = this.route.snapshot.paramMap.get('id');
+    console.log("🚀 ~ file: customer-create.component.ts ~ line 27 ~ CustomerCreateComponent ~ ngOnInit ~ this.customerId", this.customerId)
     if (sessionStorage.getItem('customer_tab') == undefined) {
       sessionStorage.setItem('customer_tab', '1');
     }
-    this.customerId = this.route.snapshot.paramMap.get('id');
+   
     this.step = JSON.parse(sessionStorage.getItem('customer_tab')!);
 
     if (this.customerId !== 'novo') {
