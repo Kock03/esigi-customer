@@ -14,6 +14,9 @@ export class CustomersEntity {
   @Column()
   tradingName: String;
 
+  @Column()
+  birthDate: Date;
+
   @Column({ unique: true })
   cnpj: string;
 
