@@ -9,6 +9,9 @@ export class UpdateCustomerDto {
 
     @IsNotEmpty()
     tradingName: string;
+    
+    @IsNotEmpty()
+    birthDate: Date;
 
     @IsNotEmpty()
     cnpj: string;

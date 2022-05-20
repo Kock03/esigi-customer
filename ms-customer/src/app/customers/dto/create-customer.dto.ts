@@ -11,6 +11,9 @@ export class CreateCustomerDto {
     tradingName: string;
 
     @IsNotEmpty()
+    birthDate: Date;
+
+    @IsNotEmpty()
     cnpj: string;
 
     @IsOptional()
