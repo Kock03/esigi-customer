@@ -14,7 +14,7 @@ export class CustomerProvider {
   findAll(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .get(environment.CUSTOMER_MS + 'customers')
+        .get('customers')
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
@@ -53,7 +53,7 @@ export class CustomerProvider {
   findOne(id: string | null): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .get(environment.CUSTOMER_MS + 'customers/:id', { id: id })
+        .get('customers/:id', { id: id })
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
@@ -64,7 +64,7 @@ export class CustomerProvider {
     return new Promise((resolve, reject) => {
       this.apiGateway
         .put(
-          environment.CUSTOMER_MS + 'customers/:id',
+          'customers/:id',
           { id: id },
           customer
         )
@@ -88,7 +88,7 @@ export class CustomerProvider {
   destroy(customerId: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .delete(environment.CUSTOMER_MS + 'customers/' + customerId)
+        .delete('customers/' + customerId)
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
