@@ -32,7 +32,7 @@ const routes: Routes = [
     component: CustomerListComponent,
   },
   {
-    path: 'novo',
+    path: ':id',
     component: CustomerCreateComponent,
   },
 ];

@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   CUSTOMER_MS: 'http://localhost:3502/api/v1/',
-  message: 'LOCAL'
+  message: 'LOCAL',
+  protocol: 'http',
 };
 
 /*

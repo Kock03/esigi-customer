@@ -77,7 +77,7 @@ export class CustomerProvider {
   store(customer: any): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .post(environment.CUSTOMER_MS + 'customers', customer)
+        .post('customers', customer)
 
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);

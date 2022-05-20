@@ -29,11 +29,13 @@ export class CustomerCreateComponent implements OnInit {
   ) {}
 
   async ngOnInit(): Promise<void> {
-    if (sessionStorage.getItem("customer_tab") == undefined) {
-      sessionStorage.setItem("customer_tab", "1");
+    this.customerId = this.route.snapshot.paramMap.get('id');
+    console.log("🚀 ~ file: customer-create.component.ts ~ line 27 ~ CustomerCreateComponent ~ ngOnInit ~ this.customerId", this.customerId)
+    if (sessionStorage.getItem('customer_tab') == undefined) {
+      sessionStorage.setItem('customer_tab', '1');
     }
-    this.customerId = this.route.snapshot.paramMap.get("id");
-    this.step = JSON.parse(sessionStorage.getItem("customer_tab")!);
+   
+    this.step = JSON.parse(sessionStorage.getItem('customer_tab')!);
 
     if (this.customerId !== "novo") {
       await this.getCustomer();
