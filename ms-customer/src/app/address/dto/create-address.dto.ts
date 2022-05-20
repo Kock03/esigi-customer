@@ -1,9 +1,9 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsOptional } from 'class-validator';
 import { CustomersEntity } from 'src/app/customers/customers.entity';
 
 export class CreateAddressDto{
 
-    @IsNotEmpty()
+    @IsOptional()
     zipCode: Number;
 
     @IsNotEmpty()
