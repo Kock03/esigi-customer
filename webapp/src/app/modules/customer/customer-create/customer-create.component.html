@@ -42,14 +42,14 @@
   </button>
   <button
     mat-flat-button
-    *ngIf="step !== 1 && step !== 3"
+    *ngIf="step === 1"
     (click)="navigate('next')"
     color="primary">
     Continuar
   </button>
   <button
     mat-flat-button
-    *ngIf="step === 1"
+    *ngIf="step === 2"
     (click)="saveCustomer()"
     color="primary">
     Salvar

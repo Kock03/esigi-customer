@@ -73,9 +73,7 @@ export class CustomerCreateComponent implements OnInit {
       active: [false],
       cnpj: [
         "",
-        [Validators.required,
-        Validators.maxLength(14),
-        Validators.minLength(14)],
+        [Validators.required,],
       ],
       stateRegistration: [
         "",
@@ -91,9 +89,9 @@ export class CustomerCreateComponent implements OnInit {
       ],
 
       Phone: this.fb.group({
-        phoneNumber: [null, [Validators.required, Validators.maxLength(9)]],
-        ddd: [null, [Validators.required, Validators.maxLength(2)]],
-        ddi: [null, Validators.required],
+        phoneNumber: [null],
+        ddd: [null],
+        ddi: [null],
       }),
       mail: ["", [Validators.email, Validators.required]],
       site: ["", Validators.required],
