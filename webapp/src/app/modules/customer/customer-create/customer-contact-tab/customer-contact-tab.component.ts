@@ -12,6 +12,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { MatTable } from "@angular/material/table";
 import { CustomerContactProvider } from "src/providers/contact.provider";
 import { CustomerProvider } from "src/providers/customer.provider";
+import { SnackBarService } from "src/services/snackbar.service";
 import { CustomerContactDialog } from "./customer-contact-dialog.component";
 
 export interface Contact {
@@ -55,7 +56,9 @@ export class CustomerContactTabComponent implements OnInit {
   constructor(private fb: FormBuilder,
     public dialog: MatDialog,
     private customerContactProvider:CustomerContactProvider,
-    private customerProvider: CustomerProvider) {}
+    private customerProvider: CustomerProvider, 
+    private snackbarService: SnackBarService 
+  ) {}
 
   ngOnInit(): void {
     this.customerMethod = sessionStorage.getItem('customer_method')!;
@@ -113,10 +116,10 @@ export class CustomerContactTabComponent implements OnInit {
         try {
           let deleteContact = await this.customerContactProvider.destroy(id);
           this.getContactList();
-          // this.snackbarService.successMessage('Registro Excluido Com Sucesso');
+          this.snackbarService.successMessage('Registro Excluido Com Sucesso');
         } catch (error) {
           console.log('ERROR 132' + error);
-          // this.snackbarService.showError('Falha ao Excluir');
+          this.snackbarService.showError('Falha ao Excluir');
         }
   }
 }

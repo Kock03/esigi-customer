@@ -78,9 +78,10 @@ export class CustomerListComponent implements OnInit {
         try {
           const customers = await this.customerProvider.destroy(customerId);
           this.getCustomerList();
-
+          this.snackbarService.showAlert('Item Excluido com sucesso')
         } catch (error) {
           console.log('ERROR 132' + error);
+          this.snackbarService.showError('Falha ao deletar')
         }
       }
   }

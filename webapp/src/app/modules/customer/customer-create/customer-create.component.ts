@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { CustomerProvider } from "src/providers/customer.provider";
 import { CepService } from "src/services/cep.service";
+import { SnackBarService } from "src/services/snackbar.service";
 
 @Component({
   selector: "app-customer-create",
@@ -25,7 +26,8 @@ export class CustomerCreateComponent implements OnInit {
     private http: HttpClient,
     private cepService: CepService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private snackbarService: SnackBarService
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -120,8 +122,10 @@ export class CustomerCreateComponent implements OnInit {
       const customer = await this.customerProvider.store(data);
       sessionStorage.setItem("customer_id", customer.id);
       sessionStorage.clear();
+      this.snackbarService.showAlert("Cliente salvo com sucesso")
     } catch (error: any) {
       console.log("ERROR 132" + error);
+      this.snackbarService.showError("Erro ao salvar o cliente")
     }
   }
 
