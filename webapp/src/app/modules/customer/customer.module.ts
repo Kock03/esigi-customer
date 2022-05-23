@@ -25,6 +25,7 @@ import { CustomerContractTabComponent } from './customer-create/customer-contrac
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { CustomerContactDialog } from './customer-create/customer-contact-tab/customer-contact-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { TranslateModule } from '@ngx-translate/core';
 
 const routes: Routes = [
   {
@@ -50,6 +51,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     CommonModule,
     MatTabsModule,
+    TranslateModule.forChild(),
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,

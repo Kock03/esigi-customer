@@ -1,0 +1,35 @@
+{
+    "customer-sidenav": {
+
+    },
+
+    "customer": {
+        "customer-create":{
+            "client": "Cliente",
+            "register": "Cadastro",
+            "contact": "Contatos",
+            "contract": "Contratos"
+        },
+
+        "custoemr-list": {
+
+        },
+
+        "customer-register":{
+
+        },
+        "customer-contact": {
+
+        },
+        "customer-contract": {
+
+        },
+        "customer-generic":{
+            "back-button": "Voltar",
+            "save-button": "Salvar",
+            "cancel-button": "Cancelar",
+            "edit-button": "Editar",
+            "continue-button": "Continuar"
+        }
+    }
+}
