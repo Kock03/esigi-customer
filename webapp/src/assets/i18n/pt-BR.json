@@ -62,7 +62,8 @@
             "delete-button": "Deletar",
             "continue-button": "Continuar",
             "active": "Ativos",
-            "inactive": "Inativos"
+            "inactive": "Inativos",
+            "ok_button": "Ok"
         },
 
         "customer-mat-error":{

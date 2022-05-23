@@ -4,6 +4,7 @@ import { Component, EventEmitter, Inject, Output } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { CustomerContactProvider } from "src/providers/contact.provider";
+import { SnackBarService } from "src/services/snackbar.service";
 
 @Component({
     selector: 'customer-contact-dialog',
@@ -41,6 +42,7 @@ export class CustomerContactDialog{
     constructor(
         public dialogRef: MatDialogRef<CustomerContactDialog>,
         private customerContactProvider:CustomerContactProvider,
+        private snackbarService: SnackBarService,
         private fb: FormBuilder,
         @Inject(MAT_DIALOG_DATA) public data: any
       ) {}
@@ -86,8 +88,10 @@ export class CustomerContactDialog{
           try {
             const contact = await this.customerContactProvider.store(data);
             sessionStorage.setItem(' contact_id', contact.id);
+            this.snackbarService.showAlert("Contato salvo com sucesso")
           } catch (error: any) {
             console.log('ERROR 132' + error);
+            this.snackbarService.showError("Falha ao salvar o contato")
           }
         }
         if (this.method === 'edit') {
@@ -97,8 +101,10 @@ export class CustomerContactDialog{
               this.contactId,
               data
             );
+            this.snackbarService.showAlert("Contato editado com sucesso")
           } catch (error: any) {
             console.log('ERROR 132' + error);
+            this.snackbarService.showError("Falha ao editar o contato")
           }
         }
       }

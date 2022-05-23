@@ -121,11 +121,8 @@ export class CustomerCreateComponent implements OnInit {
       this.handleStep(2);
       const customer = await this.customerProvider.store(data);
       sessionStorage.setItem("customer_id", customer.id);
-<<<<<<< HEAD
       sessionStorage.clear();
       this.snackbarService.showAlert("Cliente salvo com sucesso")
-=======
->>>>>>> 8ff74a47294d12e4583c053723699668becf25f9
     } catch (error: any) {
       console.log("ERROR 132" + error);
       this.snackbarService.showError("Erro ao salvar o cliente")
