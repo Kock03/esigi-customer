@@ -27,7 +27,7 @@ export class ContactsService{
         conditions: FindConditions<ContactsEntity>,
         options?: FindOneOptions<ContactsEntity>
     ){
-        options = { relations: ["Customer"] }
+        options = { relations: ["Customer", "Phone"] }
         try{
             return await this.contactsRepository.findOneOrFail(conditions, options);
         }catch(error){

@@ -1,5 +1,6 @@
-import { IsNotEmpty } from "class-validator";
+import { IsNotEmpty, IsObject } from "class-validator";
 import { CustomersEntity } from "src/app/customers/customers.entity";
+import { PhoneEntity } from "src/app/phone/phone.entity";
 
 export class CreateContacts{
     
@@ -13,7 +14,8 @@ export class CreateContacts{
     mail: String;
 
     @IsNotEmpty()
-    phoneNumber: String;
+    @IsObject()
+    Phone: PhoneEntity;
 
     @IsNotEmpty()
     Customer: CustomersEntity;
