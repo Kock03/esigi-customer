@@ -48,7 +48,8 @@
             "site": "Site"
         },
         "customer-contact": {
-            "office": "Cargo"
+            "office": "Cargo",
+            "register-contacts": "Cadastrar Contatos"
         },
         "customer-contract": {
 
