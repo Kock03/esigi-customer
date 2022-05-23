@@ -119,7 +119,6 @@ export class CustomerCreateComponent implements OnInit {
       this.handleStep(2);
       const customer = await this.customerProvider.store(data);
       sessionStorage.setItem("customer_id", customer.id);
-      sessionStorage.clear();
     } catch (error: any) {
       console.log("ERROR 132" + error);
     }

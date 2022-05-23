@@ -91,7 +91,8 @@ export class CustomerContactTabComponent implements OnInit {
     });
   }
 
-  getContact(contactSelected: any, id: string) {
+ async getContact(id: string) {
+   const contact = await this.customerContactProvider.findOne(id)
     this.method = 'edit';
     sessionStorage.setItem('method', this.method);
     this.contactId = id;
@@ -99,7 +100,7 @@ export class CustomerContactTabComponent implements OnInit {
     const dialogRef = this.dialog.open(CustomerContactDialog, {
       width: '500px',
       height: '400px',
-      data: contactSelected,
+      data: contact,
     });
     dialogRef.afterClosed().subscribe(contact => {
       if (contact) {
