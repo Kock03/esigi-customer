@@ -1,6 +1,7 @@
-import { IsNotEmpty, IsOptional } from 'class-validator';
+import { IsNotEmpty, IsObject, IsOptional } from 'class-validator';
 import { AddressEntity } from 'src/app/address/address.entity';
 import { ContactsEntity } from 'src/app/contacts/contacts.entity';
+import { PhoneEntity } from 'src/app/phone/phone.entity';
 import { CustomersEntity } from '../customers.entity';
 
 export class CreateCustomerDto {
@@ -19,14 +20,15 @@ export class CreateCustomerDto {
     @IsOptional()
     active: Boolean;
 
+    @IsNotEmpty()
+    @IsObject()
+    Phone: PhoneEntity;
+    
     @IsOptional()
     stateRegistration: String;
 
     @IsOptional()
     municipalRegistration: String;
-
-    @IsNotEmpty()
-    phoneNumber: String;
 
     @IsOptional()
     mail: String;
