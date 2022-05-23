@@ -49,7 +49,8 @@
             "site": "Site"
         },
         "customer-contact": {
-            "office": "Cargo"
+            "office": "Cargo",
+            "register-contacts": "Cadastrar Contatos"
         },
         "customer-contract": {
 
@@ -59,9 +60,12 @@
             "save-button": "Salvar",
             "cancel-button": "Cancelar",
             "edit-button": "Editar",
+            "delete-button": "Deletar",
             "continue-button": "Continuar",
+            "ok-button": "OK",
             "active": "Ativos",
-            "inactive": "Inativos"
+            "inactive": "Inativos",
+            "ok_button": "Ok"
         },
 
         "customer-mat-error":{

@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Repository, FindConditions, FindOneOptions } from "typeorm";
+import { Repository, FindConditions, FindOneOptions, FindManyOptions } from "typeorm";
 
 import { ContactsEntity } from "./contacts.entity";
 import { CreateContacts } from "./dto/create-contacts.dto";
@@ -15,12 +15,10 @@ export class ContactsService{
     ){ }
 
     async findAll(){
-        const contactsWithProjects = await this.contactsRepository
-        .createQueryBuilder('contacts')
-        .leftJoinAndSelect('contacts.projects', 'projects')
-        .getMany()
-
-        return contactsWithProjects;
+        const options: FindManyOptions = {
+            order: { createdAt: 'DESC' },
+          };
+          return await this.contactsRepository.find(options);
     }
 
     async findOneOfFall(

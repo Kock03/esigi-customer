@@ -1,11 +1,11 @@
 <div id="customerContactDialog" class="dialog">
   <div  *ngIf="contactForm">
-    <h2 class="title-dialog" mat-dialog-title>Cadastrar Contatos</h2>
+    <h2 class="title-dialog" mat-dialog-title>{{ "customer.customer-contact.register-contacts" | translate }}</h2>
     <mat-dialog-content class="mat-typography">
       <form [formGroup]="contactForm" fxLayout="column">
         <div fxFlex="100" fxLayout="row" fxLayoutGap="16px">
           <mat-form-field fxFlex="50" appearance="outline">
-            <mat-label>Nome</mat-label>
+            <mat-label>  {{ "customer.customer-list.name" | translate }}</mat-label>
             <input matInput placeholder="Nome" formControlName="name" />
             <mat-error
             *ngIf="
@@ -13,12 +13,12 @@
             contactForm.controls['name'].hasError('required')
             "
           >
-            Campo obrigatório
+          {{ "customer.customer-mat-error.required-field" | translate }}
           </mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="outline" fxFlex="50">
-            <mat-label>Cargo</mat-label>
+            <mat-label>{{ "customer.customer-contact.office" | translate }}</mat-label>
             <mat-select matInput disableRipple formControlName="office">
               <mat-option *ngFor="let role of roleList" [value]="role.value"
                 >{{ role.name }}</mat-option
@@ -30,14 +30,14 @@
             contactForm.controls['office'].hasError('required')
             "
           >
-            Campo obrigatório
+          {{ "customer.customer-mat-error.required-field" | translate }}
           </mat-error>
           </mat-form-field>
         </div>
 
         <div formGroupName="Phone" fxFlex="100" fxLayoutGap="16px">
           <mat-form-field fxFlex="15" appearance="outline">
-            <mat-label>DDI</mat-label>
+            <mat-label>{{ "customer.customer-register.phone.ddi" | translate }}</mat-label>
             <input matInput placeholder="DDI" formControlName="ddi" mask="+00"
               />
               <mat-error
@@ -46,12 +46,12 @@
               phoneForm.controls['ddi'].hasError('required')
               "
             >
-              Campo obrigatório
+            {{ "customer.customer-mat-error.required-field" | translate }}
             </mat-error>
           </mat-form-field>
 
           <mat-form-field fxFlex="15" appearance="outline">
-            <mat-label>DDD</mat-label>
+            <mat-label>{{ "customer.customer-register.phone.ddd" | translate }}</mat-label>
             <input matInput placeholder="DDD" formControlName="ddd" mask="(00)"
               />
               <mat-error
@@ -60,12 +60,12 @@
               phoneForm.controls['ddd'].hasError('required')
               "
             >
-              Campo obrigatório
+            {{ "customer.customer-mat-error.required-field" | translate }}
             </mat-error>
           </mat-form-field>
 
           <mat-form-field fxFlex="70" appearance="outline">
-            <mat-label>Telefone</mat-label>
+            <mat-label>{{ "customer.customer-register.phone.phone_number" | translate }}</mat-label>
             <input matInput placeholder="Telefone" formControlName="phoneNumber"
               mask="0000-0000||00000-0000" />
               <mat-error
@@ -74,28 +74,28 @@
               phoneForm.controls['phoneNumber'].hasError('required')
               "
             >
-              Campo obrigatório
+            {{ "customer.customer-mat-error.required-field" | translate }}
             </mat-error>
           </mat-form-field>
         </div>
 
         <div fxFlex="100" fxLayout="row" fxLayoutGap="16px">
           <mat-form-field fxFlex="100" appearance="outline">
-            <mat-label>Email</mat-label>
+            <mat-label>{{ "customer.customer-register.email" | translate }}</mat-label>
             <input matInput placeholder="Email" formControlName="mail" />
             <mat-error
               *ngIf="
               contactForm && contactForm.controls['mail'].hasError('email')
               "
             >
-              E-mail inválido</mat-error
+            {{ "customer.customer-mat-error.invalid-email" | translate }}</mat-error
             >
             <mat-error
               *ngIf="
                 contactForm && contactForm.controls['mail'].hasError('required')
               "
             >
-              Campo e-mail é orbrigatório
+            {{ "customer.customer-mat-error.required-field" | translate }}
             </mat-error>
           </mat-form-field>
 
