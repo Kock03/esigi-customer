@@ -63,7 +63,8 @@
             "continue-button": "Continuar",
             "ok-button": "OK",
             "active": "Ativos",
-            "inactive": "Inativos"
+            "inactive": "Inativos",
+            "ok_button": "Ok"
         },
 
         "customer-mat-error":{
