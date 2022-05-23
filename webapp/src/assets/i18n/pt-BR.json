@@ -59,6 +59,7 @@
             "save-button": "Salvar",
             "cancel-button": "Cancelar",
             "edit-button": "Editar",
+            "delete-button": "Deletar",
             "continue-button": "Continuar",
             "active": "Ativos",
             "inactive": "Inativos"
