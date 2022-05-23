@@ -11,15 +11,45 @@
             "contract": "Contratos"
         },
 
-        "custoemr-list": {
-
+        "customer-list": {
+            "clients": "Clientes",
+            "search_customers": "Buscar Clientes",
+            "name": "Nome",
+            "birth-date": " Data de nascimento",
+            "phone": "Telefone"
         },
 
         "customer-register":{
+            "corporate_name": "Razão Social",
+            "fantasy-name": "Nome fantasia",
+            "created-date": "Data da criação",
+            "active": "Ativo",
+            "cnpj": "CNPJ",
+            "state_registration": "Inscrição Estadual",
+            "municipal_inscription": "Inscrição Municipal",
 
+            "address": {
+                "cep": "CEP",
+                "number": "Número",
+                "complement": "Complemento",
+                "street": "Rua",
+                "city": "Cidade",
+                "district": "Bairro",
+                "state": "Estado"
+            },
+
+            "phone": {
+                "phone_number": "Telefone",
+                "ddd": "DDD",
+                "ddi": "DDI"
+            },
+
+            "email": "Email",
+            "site": "Site"
         },
         "customer-contact": {
-
+            "office": "Cargo",
+            "register-contacts": "Cadastrar Contatos"
         },
         "customer-contract": {
 
@@ -29,7 +59,19 @@
             "save-button": "Salvar",
             "cancel-button": "Cancelar",
             "edit-button": "Editar",
-            "continue-button": "Continuar"
+            "delete-button": "Deletar",
+            "continue-button": "Continuar",
+            "active": "Ativos",
+            "inactive": "Inativos"
+        },
+
+        "customer-mat-error":{
+            "required-field": " Campo obrigatório",
+            "state-registration-too-large": "Inscrição Estadual muito grande",
+            "state-registration-too-small": "Inscrição Estadual muito pequena",
+            "municipal-registration-too-large": "Inscrição Estadual muito grande",
+            "municipal-registration-too-small": "Inscrição Estadual muito pequena",
+            "invalid-email": " Email inválido"
         }
     }
 }

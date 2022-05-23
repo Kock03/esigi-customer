@@ -37,7 +37,7 @@ export class CustomersEntity {
   site: String;
 
   @OneToOne(() => PhoneEntity, {
-    eager: true,
+    orphanedRowAction: 'delete',
     cascade: ['insert', 'update', 'soft-remove'],
   })
   @JoinColumn()

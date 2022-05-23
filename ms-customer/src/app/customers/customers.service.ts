@@ -9,7 +9,7 @@ import { CreateCustomerDto } from './dto/create-customer.dto';
 import { UpdateCustomerDto } from './dto/update-customer.dto';
 import { CustomersEntity } from './customers.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, FindConditions, FindOneOptions } from 'typeorm';
+import { Repository, FindConditions, FindOneOptions, FindManyOptions } from 'typeorm';
 import { DocumentValidator } from '../validators/document.validator';
 import { DocumentsBadRequestExcpetion } from '../exceptions/documents-bad-request.exception';
 
@@ -21,18 +21,17 @@ export class CustomersService {
   ) {}
 
   async findAll() {
-    const customersWithUsers = await this.customersRepository
-      .createQueryBuilder('customers')
-      .getMany();
-
-    return customersWithUsers;
+    const options: FindManyOptions = {
+      order: { createdAt: 'DESC' },
+    };
+    return await this.customersRepository.find(options);
   }
 
   async findOneOrFail(
     conditions: FindConditions<CustomersEntity>,
     options?: FindOneOptions<CustomersEntity>,
   ) {
-    options = { relations: ['Address', 'Contacts'] };
+    options = { relations: ['Address', 'Contacts', 'Phone'] };
     try {
       return await this.customersRepository.findOneOrFail(conditions, options);
     } catch (error) {

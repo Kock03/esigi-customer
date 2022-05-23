@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 
 import { CustomerProvider } from 'src/providers/customer.provider';
+import { ConfirmDialogService } from 'src/services/confirn-dialog.service';
 import { SnackBarService } from 'src/services/snackbar.service';
 
 export interface Customer {
@@ -38,7 +39,8 @@ export class CustomerListComponent implements OnInit {
     private liveAnnouncer: LiveAnnouncer,
     private router: Router,
     private customerProvider: CustomerProvider,
-    private snackbarService: SnackBarService
+    private snackbarService: SnackBarService,
+    private dialogService: ConfirmDialogService,
   ) { }
 
   ngOnInit(): void {
@@ -75,6 +77,17 @@ export class CustomerListComponent implements OnInit {
   }
 
   async deleteCustomer(customerId: any) {
+    const options = {
+      data: {
+        title: 'Atenção',
+        subtitle: 'Você tem certeza que deseja excluir este cliente?',
+      },
+      panelClass: 'confirm-modal',
+    };
+
+    this.dialogService.open(options);
+    this.dialogService.confirmed().subscribe(async confirmed => {
+      if (confirmed) {
         try {
           const customers = await this.customerProvider.destroy(customerId);
           this.getCustomerList();
@@ -84,6 +97,8 @@ export class CustomerListComponent implements OnInit {
           this.snackbarService.showError('Falha ao deletar')
         }
       }
-  }
+    }
+  )}
+}
 
 

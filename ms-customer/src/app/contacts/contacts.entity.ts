@@ -1,6 +1,7 @@
 
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, JoinColumn, OneToOne } from 'typeorm';
 import { CustomersEntity } from '../customers/customers.entity';
+import { PhoneEntity } from '../phone/phone.entity';
 
 @Entity({name: 'contacts'})
 export class ContactsEntity{
@@ -14,11 +15,16 @@ export class ContactsEntity{
     @Column()
     office: String;
 
+    @OneToOne(() => PhoneEntity, {
+        orphanedRowAction: 'delete',
+        cascade: ['insert', 'update', 'soft-remove'],
+      })
+      @JoinColumn()
+      Phone: PhoneEntity;
+    
+
     @Column()
     mail: String;
-
-    @Column({length: 12})
-    phoneNumber: String;
 
     @ManyToOne(() => CustomersEntity, customers => customers.Contacts, {orphanedRowAction: 'delete'})
     Customer: CustomersEntity;

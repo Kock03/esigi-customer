@@ -62,6 +62,7 @@ export class CustomerContactDialog{
           name: ["", [Validators.required]],
           office: ["", [Validators.required]],
           mail: ["", [Validators.required, Validators.email]],
+          Customer: {id: this.customerId},
           Phone: this.fb.group({
             phoneNumber: [null],
             ddd: [null],

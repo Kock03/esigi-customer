@@ -7,6 +7,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { ContactsEntity } from '../contacts/contacts.entity';
 import { CustomersEntity } from '../customers/customers.entity';
 
 @Entity({ name: 'phone' })
@@ -25,6 +26,9 @@ export class PhoneEntity {
 
   @OneToOne(() => CustomersEntity, (customer) => customer.Phone)
   Customer: CustomersEntity;
+
+  @OneToOne(() => ContactsEntity, (contact) => contact.Phone)
+  Contact: ContactsEntity;
 
   @CreateDateColumn({ name: 'created_at', type: 'datetime' })
   createdAt: Date;

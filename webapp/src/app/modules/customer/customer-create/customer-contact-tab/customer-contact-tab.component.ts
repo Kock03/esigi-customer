@@ -42,7 +42,7 @@ export class CustomerContactTabComponent implements OnInit {
   ];
 
   data: [] = [];
-  
+
   contactForm!: FormGroup;
   Contact: any;
   checked = false;
@@ -51,9 +51,10 @@ export class CustomerContactTabComponent implements OnInit {
   contactId!: string;
   customerMethod!: string;
   selectedIndex: number = 0;
-  
+  dialogService: any;
 
-  constructor(private fb: FormBuilder,
+  constructor(
+    private fb: FormBuilder,
     public dialog: MatDialog,
     private customerContactProvider:CustomerContactProvider,
     private customerProvider: CustomerProvider, 
@@ -61,50 +62,49 @@ export class CustomerContactTabComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.customerMethod = sessionStorage.getItem('customer_method')!;
-    if (this.customerMethod === 'edit') {
+    this.customerMethod = sessionStorage.getItem("customer_method")!;
+    if (this.customerMethod === "edit") {
       this.getContactList();
     }
   }
 
   async getContactList() {
-    this.customerId = sessionStorage.getItem('customer_id');
+    this.customerId = sessionStorage.getItem("customer_id");
     const data = await this.customerProvider.findOne(this.customerId);
     this.data = data.Contacts;
   }
-
- 
 
   next() {
     this.onChange.next(true);
   }
 
   openDialog() {
-    this.method = 'add';
-    sessionStorage.setItem('method', this.method);
+    this.method = "add";
+    sessionStorage.setItem("method", this.method);
     const dialogRef = this.dialog.open(CustomerContactDialog, {
-      width: '500px',
-      height: '400px',
+      width: "500px",
+      height: "400px",
     });
 
-    dialogRef.afterClosed().subscribe(contact => {
+    dialogRef.afterClosed().subscribe((contact) => {
       if (contact) {
-        this.getContactList()
+        this.getContactList();
       }
     });
   }
 
-  getContact(contactSelected: any, id: string) {
-    this.method = 'edit';
-    sessionStorage.setItem('method', this.method);
+  async getContact(id: string) {
+    const contact = await this.customerContactProvider.findOne(id);
+    this.method = "edit";
+    sessionStorage.setItem("method", this.method);
     this.contactId = id;
-    sessionStorage.setItem('contact_id', this.contactId);
+    sessionStorage.setItem("contact_id", this.contactId);
     const dialogRef = this.dialog.open(CustomerContactDialog, {
-      width: '500px',
-      height: '400px',
-      data: contactSelected,
+      width: "500px",
+      height: "400px",
+      data: contact,
     });
-    dialogRef.afterClosed().subscribe(contact => {
+    dialogRef.afterClosed().subscribe((contact) => {
       if (contact) {
         this.getContactList();
       }
@@ -112,7 +112,17 @@ export class CustomerContactTabComponent implements OnInit {
   }
 
   async deleteContact(id: string) {
+    const options = {
+      data: {
+        title: 'Atenção',
+        subtitle: 'Você tem certeza que deseja excluir este contato?',
+      },
+      panelClass: 'confirm-modal',
+    };
 
+    this.dialogService.open(options);
+    this.dialogService.confirmed().subscribe(async (confirmed: any) => {
+      if (confirmed) {
         try {
           let deleteContact = await this.customerContactProvider.destroy(id);
           this.getContactList();
@@ -121,5 +131,7 @@ export class CustomerContactTabComponent implements OnInit {
           console.log('ERROR 132' + error);
           this.snackbarService.showError('Falha ao Excluir');
         }
-  }
+      }
+    }
+  )}
 }
