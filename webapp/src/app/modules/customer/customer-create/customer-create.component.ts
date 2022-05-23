@@ -161,7 +161,7 @@ export class CustomerCreateComponent implements OnInit {
     } else if (this.checkValid() && this.step < 8 && direction === "next") {
       this.step += 1;
     } else {
-      // this.snackbarService.showAlert('Verifique os campos');
+      this.snackbarService.showAlert('Verifique os campos');
     }
   }
 
