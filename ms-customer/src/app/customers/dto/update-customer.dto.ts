@@ -19,10 +19,10 @@ export class UpdateCustomerDto {
     @IsOptional()
     active: Boolean;
 
-    @IsNotEmpty()
+    @IsOptional()
     stateRegistration: String;
 
-    @IsNotEmpty()
+    @IsOptional()
     municipalRegistration: String;
 
     @IsNotEmpty()

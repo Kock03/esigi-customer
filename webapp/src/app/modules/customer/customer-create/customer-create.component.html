@@ -51,9 +51,7 @@
     mat-flat-button
     *ngIf="step === 1"
     (click)="saveCustomer()"
-    color="primary"
-    [disabled]="customerForm.invalid">
-
+    color="primary">
     Salvar
   </button>
 </div>
@@ -69,13 +67,13 @@
 
   <button
     mat-flat-button
-    *ngIf="step !== 2 && step !== 5"
+    *ngIf="step === 3"
     (click)="navigate('next')"
     color="primary">
     Continuar
   </button>
 
-  <button mat-flat-button  [disabled]="customerForm.invalid" *ngIf="step === 1" (click)="saveEditCustomer()" color="primary">
+  <button mat-flat-button *ngIf="step === 1" (click)="saveEditCustomer()" color="primary">
     Savar
   </button>
 </div>

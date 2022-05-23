@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 
 import { CustomerProvider } from 'src/providers/customer.provider';
+import { SnackBarService } from 'src/services/snackbar.service';
 
 export interface Customer {
   id: string;
@@ -37,6 +38,7 @@ export class CustomerListComponent implements OnInit {
     private liveAnnouncer: LiveAnnouncer,
     private router: Router,
     private customerProvider: CustomerProvider,
+    private snackbarService: SnackBarService
   ) { }
 
   ngOnInit(): void {

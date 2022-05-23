@@ -30,7 +30,6 @@ export class CustomerCreateComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.customerId = this.route.snapshot.paramMap.get('id');
-    console.log("🚀 ~ file: customer-create.component.ts ~ line 27 ~ CustomerCreateComponent ~ ngOnInit ~ this.customerId", this.customerId)
     if (sessionStorage.getItem('customer_tab') == undefined) {
       sessionStorage.setItem('customer_tab', '1');
     }
@@ -48,7 +47,7 @@ export class CustomerCreateComponent implements OnInit {
 
   async getCustomer() {
     try {
-      this.customer = await this.customerProvider.findOne(this.customer);
+      this.customer = await this.customerProvider.findOne(this.customerId);
     } catch (error) {
       console.error(error);
     }
@@ -67,32 +66,32 @@ export class CustomerCreateComponent implements OnInit {
 
   initForm() {
     this.customerForm = this.fb.group({
-      corporateName: ["", Validators.required],
-      tradingName: ["", Validators.required],
-      birthDate: [""],
+      corporateName: [null, Validators.required],
+      tradingName: [null, Validators.required],
+      birthDate: [null],
       active: [false],
       cnpj: [
-        "",
+        null,
         [Validators.required,],
       ],
       stateRegistration: [
-        "",
+        null,
         [
         Validators.maxLength(9),
         Validators.minLength(9)],
       ],
       municipalRegistration: [
-        "",
+        null,
         [
         Validators.maxLength(9),
         Validators.minLength(9)],
       ],
 
       
-      mail: ["", [Validators.email, Validators.required]],
-      site: ["", Validators.required],
-      name: ["", Validators.required],
-      office: ["", Validators.required],
+      mail: [null, [Validators.email, Validators.required]],
+      site: [null, Validators.required],
+      name: [null, Validators.required],
+      office: [null, Validators.required],
       Phone: this.fb.group({
         phoneNumber: [null],
         ddd: [null],
@@ -101,16 +100,16 @@ export class CustomerCreateComponent implements OnInit {
 
       Address: this.fb.group({
         zipCode: [
-          "",
+          null,
           [Validators.maxLength(9),
           Validators.minLength(9)],
         ],
-        street: [""],
-        number: [""],
-        complement: [""],
-        state: [""],
-        city: [""],
-        site: ["", Validators.required],
+        street: [null],
+        number: [null],
+        complement: [null],
+        state: [null],
+        city: [null],
+        site: [null, Validators.required],
       }),
     });
   }

@@ -7,6 +7,7 @@ import { AppService } from './app.service';
 import { AddressModule } from './app/address/address.module';
 import { ContactsModule } from './app/contacts/contacts.module';
 import { CustomersModule } from './app/customers/customers.module';
+import { PhoneModule } from './app/phone/phone.module';
 
 @Module({
   imports: [ ConfigModule.forRoot(),
@@ -20,7 +21,7 @@ import { CustomersModule } from './app/customers/customers.module';
       entities: [__dirname + '/**/*.entity{.js,.ts}'],
       synchronize: true,
       namingStrategy: new SnakeNamingStrategy(),
-    } as TypeOrmModuleOptions),CustomersModule, ContactsModule, AddressModule],
+    } as TypeOrmModuleOptions),CustomersModule, ContactsModule, AddressModule, PhoneModule],
   controllers: [AppController],
   providers: [AppService],
 })

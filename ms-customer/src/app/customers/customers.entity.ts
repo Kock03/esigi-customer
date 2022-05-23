@@ -2,6 +2,7 @@
 import { ContactsEntity } from '../contacts/contacts.entity';
 import { AddressEntity } from '../address/address.entity';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, JoinColumn, OneToOne, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
+import { PhoneEntity } from '../phone/phone.entity';
 
 @Entity({ name: 'customers' })
 export class CustomersEntity {
@@ -30,13 +31,17 @@ export class CustomersEntity {
   municipalRegistration: String;
 
   @Column()
-  phoneNumber: String;
-
-  @Column()
   mail: String;
 
   @Column()
   site: String;
+
+  @OneToOne(() => PhoneEntity, {
+    eager: true,
+    cascade: ['insert', 'update', 'soft-remove'],
+  })
+  @JoinColumn()
+  Phone: PhoneEntity;
 
   @OneToMany(() => ContactsEntity, contacts => contacts.Customer, {cascade: ["insert", "update", "remove"], orphanedRowAction: 'delete'})
   @JoinColumn()

@@ -3,10 +3,11 @@ import { MatSidenav } from "@angular/material/sidenav";
 import { BreakpointObserver, LayoutModule } from "@angular/cdk/layout";
 import { NavigationEnd, Router } from "@angular/router";
 import { filter } from "rxjs";
+import { TranslateService } from "@ngx-translate/core";
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"]
+  styleUrls: ["./app.component.scss"],
 })
 export class AppComponent {
   title = "esigi-customer";
@@ -29,24 +30,32 @@ export class AppComponent {
     },
   ];
 
-  constructor(private observer: BreakpointObserver, private router: Router) { }
+  constructor(
+    private observer: BreakpointObserver,
+    private router: Router,
+    public translateService: TranslateService
+  ) {
+    translateService.addLangs(["en-US", "pt-BR"]);
+  }
 
   ngOnInit(): void {
+    this.translateService.setDefaultLang("pt-BR");
+    this.translateService.use("pt-BR");
     this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
+      .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((res: any) => {
-        this.activeMenu = res.url.split('/')[1];
+        this.activeMenu = res.url.split("/")[1];
       });
   }
 
   ngAfterViewInit() {
     setTimeout(() => {
-      this.observer.observe(['(max-width: 800px)']).subscribe((res: any) => {
+      this.observer.observe(["(max-width: 800px)"]).subscribe((res: any) => {
         if (res.matches) {
-          this.sidenav.mode = 'over';
+          this.sidenav.mode = "over";
           this.sidenav.close();
         } else {
-          this.sidenav.mode = 'side';
+          this.sidenav.mode = "side";
           this.sidenav.open();
         }
       });
@@ -55,7 +64,4 @@ export class AppComponent {
   navigate(route: string) {
     this.router.navigate([route]);
   }
-
 }
-
-
