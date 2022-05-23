@@ -11,8 +11,12 @@
             "contract": "Contratos"
         },
 
-        "custoemr-list": {
-
+        "customer-list": {
+            "clients": "Clientes",
+            "search_customers": "Buscar Clientes",
+            "name": "Nome",
+            "birth-date": " Data de nascimento",
+            "phone": "Telefone"
         },
 
         "customer-register":{
@@ -29,7 +33,9 @@
             "save-button": "Salvar",
             "cancel-button": "Cancelar",
             "edit-button": "Editar",
-            "continue-button": "Continuar"
+            "continue-button": "Continuar",
+            "active": "Ativos",
+            "inactive": "Inativos"
         }
     }
 }
