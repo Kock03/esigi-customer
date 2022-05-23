@@ -24,6 +24,7 @@
             "fantasy-name": "Nome fantasia",
             "created-date": "Data da criação",
             "active": "Ativo",
+            "inactive": "Inativo",
             "cnpj": "CNPJ",
             "state_registration": "Inscrição Estadual",
             "municipal_inscription": "Inscrição Municipal",
