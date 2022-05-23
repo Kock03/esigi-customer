@@ -40,13 +40,14 @@
   <button mat-button *ngIf="step != 1" (click)="navigate('back')">
     {{ "customer.customer-generic.back-button" | translate }}
   </button>
+  <!-- Esse botão será usado apenas quando a tab de contratos dor feita!!!!
   <button
     mat-flat-button
     *ngIf="step === 2"
     (click)="navigate('next')"
     color="primary">
     {{ "customer.customer-generic.continue-button" | translate }}
-  </button>
+  </button> -->
   <button
     mat-flat-button
     *ngIf="step === 1"
