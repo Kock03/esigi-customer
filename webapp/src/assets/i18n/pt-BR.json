@@ -1,0 +1,41 @@
+{
+    "customer-sidenav": {
+
+    },
+
+    "customer": {
+        "customer-create":{
+            "client": "Cliente",
+            "register": "Cadastro",
+            "contact": "Contatos",
+            "contract": "Contratos"
+        },
+
+        "customer-list": {
+            "clients": "Clientes",
+            "search_customers": "Buscar Clientes",
+            "name": "Nome",
+            "birth-date": " Data de nascimento",
+            "phone": "Telefone"
+        },
+
+        "customer-register":{
+
+        },
+        "customer-contact": {
+
+        },
+        "customer-contract": {
+
+        },
+        "customer-generic":{
+            "back-button": "Voltar",
+            "save-button": "Salvar",
+            "cancel-button": "Cancelar",
+            "edit-button": "Editar",
+            "continue-button": "Continuar",
+            "active": "Ativos",
+            "inactive": "Inativos"
+        }
+    }
+}
