@@ -54,7 +54,7 @@ export class CustomerRegisterTabComponent implements OnInit {
   async getAddress() {
     const address = this.customerForm.controls['Address'].value;
     const district = await this.cepService.findDistrict(
-      address.cep.replace('-', '')
+      address.zipCode.replace('-', '')
     );
 
     if (district.erro) {
