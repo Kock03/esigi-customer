@@ -37,7 +37,7 @@
   fxLayoutAlign="center end"
   fxLayoutGap="16px"
   *ngIf="customerId === 'novo'">
-  <button mat-button *ngIf="step != 1" (click)="navigate('back')">
+  <button mat-button *ngIf="step != 1" color="primary" (click)="navigate('back')">
     {{ "customer.customer-generic.back-button" | translate }}
   </button>
   <!-- Esse botão será usado apenas quando a tab de contratos dor feita!!!!
@@ -62,7 +62,7 @@
   fxLayoutGap="16px"
   *ngIf="customerId !== 'novo'">
 
-  <button mat-button *ngIf="step != 1" (click)="navigate('back')">
+  <button mat-button *ngIf="step != 1" (click)="navigate('back')"  color="primary">
     {{ "customer.customer-generic.back-button"| translate }}
   </button>
 

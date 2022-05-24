@@ -74,11 +74,11 @@ export class CustomerCreateComponent implements OnInit {
       active: [false],
       cnpj: [null, Validators.required],
       stateRegistration: [
-        null,
+        "",
         [Validators.maxLength(9), Validators.minLength(9)],
       ],
       municipalRegistration: [
-        null,
+        "",
         [Validators.maxLength(9), Validators.minLength(9)],
       ],
 
@@ -97,8 +97,8 @@ export class CustomerCreateComponent implements OnInit {
           null,
           [
             Validators.required,
-            Validators.maxLength(9),
-            Validators.minLength(9),
+            Validators.maxLength(8),
+            Validators.minLength(8),
           ],
         ],
         street: [null],
@@ -112,28 +112,39 @@ export class CustomerCreateComponent implements OnInit {
   }
   async saveCustomer() {
     let data = this.customerForm.getRawValue();
-    try {
-      this.handleStep(2);
-      const customer = await this.customerProvider.store(data);
-      sessionStorage.setItem("customer_id", customer.id);
-      sessionStorage.clear();
-      this.snackbarService.showAlert("Cliente salvo com sucesso");
-    } catch (error: any) {
-      console.log("ERROR 132" + error);
-      this.snackbarService.showError("Erro ao salvar o cliente");
+    if (this.checkValid()) {
+      try {
+        const customer = await this.customerProvider.store(data);
+        sessionStorage.setItem("customer_id", customer.id);
+        this.handleStep(2);
+        this.snackbarService.showAlert("Cliente salvo com sucesso");
+        this.router.navigate([`cliente/${customer.id}`]); 
+        this.customerId = customer.id;
+      } catch (error: any) {
+        console.log("ERROR 132" + error);
+        this.snackbarService.showError("Erro ao salvar o cliente");
+      }
+    } else {
+      this.snackbarService.showAlert("Verifique os campos");
     }
   }
 
   async saveEditCustomer() {
     let data = this.customerForm.getRawValue();
-    try {
-      const customer = await this.customerProvider.update(
-        this.customerId,
-        data
-      );
-      this.router.navigate(["curriculo/lista"]);
-    } catch (error) {
-      console.error(error);
+    if (this.checkValid()) {
+      try {
+        const customer = await this.customerProvider.update(
+          this.customerId,
+          data
+        );
+        this.router.navigate(["cliente/lista"]);
+        this.snackbarService.showAlert("Cliente atualizado com sucesso");
+      } catch (error) {
+        this.snackbarService.showAlert("Erro ao atualizar o cliente");
+        console.error(error);
+      }
+    } else {
+      this.snackbarService.showAlert("Verifique os campos");
     }
   }
 
