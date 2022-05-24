@@ -31,12 +31,12 @@ export class CustomerCreateComponent implements OnInit {
   ) {}
 
   async ngOnInit(): Promise<void> {
-    this.customerId = this.route.snapshot.paramMap.get('id');
-    if (sessionStorage.getItem('customer_tab') == undefined) {
-      sessionStorage.setItem('customer_tab', '1');
+    this.customerId = this.route.snapshot.paramMap.get("id");
+    if (sessionStorage.getItem("customer_tab") == undefined) {
+      sessionStorage.setItem("customer_tab", "1");
     }
-   
-    this.step = JSON.parse(sessionStorage.getItem('customer_tab')!);
+
+    this.step = JSON.parse(sessionStorage.getItem("customer_tab")!);
 
     if (this.customerId !== "novo") {
       await this.getCustomer();
@@ -72,24 +72,16 @@ export class CustomerCreateComponent implements OnInit {
       tradingName: [null, Validators.required],
       birthDate: [null],
       active: [false],
-      cnpj: [
-        null,
-        [Validators.required,],
-      ],
+      cnpj: [null, Validators.required],
       stateRegistration: [
         null,
-        [
-        Validators.maxLength(9),
-        Validators.minLength(9)],
+        [Validators.maxLength(9), Validators.minLength(9)],
       ],
       municipalRegistration: [
         null,
-        [
-        Validators.maxLength(9),
-        Validators.minLength(9)],
+        [Validators.maxLength(9), Validators.minLength(9)],
       ],
 
-      
       mail: [null, [Validators.email, Validators.required]],
       site: [null, Validators.required],
       name: [null, Validators.required],
@@ -102,9 +94,12 @@ export class CustomerCreateComponent implements OnInit {
 
       Address: this.fb.group({
         zipCode: [
-          null, Validators.required,
-          [Validators.maxLength(9),
-          Validators.minLength(9)],
+          null,
+          [
+            Validators.required,
+            Validators.maxLength(9),
+            Validators.minLength(9),
+          ],
         ],
         street: [null],
         number: [null],
@@ -122,10 +117,10 @@ export class CustomerCreateComponent implements OnInit {
       const customer = await this.customerProvider.store(data);
       sessionStorage.setItem("customer_id", customer.id);
       sessionStorage.clear();
-      this.snackbarService.showAlert("Cliente salvo com sucesso")
+      this.snackbarService.showAlert("Cliente salvo com sucesso");
     } catch (error: any) {
       console.log("ERROR 132" + error);
-      this.snackbarService.showError("Erro ao salvar o cliente")
+      this.snackbarService.showError("Erro ao salvar o cliente");
     }
   }
 
@@ -161,7 +156,7 @@ export class CustomerCreateComponent implements OnInit {
     } else if (this.checkValid() && this.step < 8 && direction === "next") {
       this.step += 1;
     } else {
-      this.snackbarService.showAlert('Verifique os campos');
+      this.snackbarService.showAlert("Verifique os campos");
     }
   }
 

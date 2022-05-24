@@ -12,6 +12,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { MatTable } from "@angular/material/table";
 import { CustomerContactProvider } from "src/providers/contact.provider";
 import { CustomerProvider } from "src/providers/customer.provider";
+import { ConfirmDialogService } from "src/services/confirn-dialog.service";
 import { SnackBarService } from "src/services/snackbar.service";
 import { CustomerContactDialog } from "./customer-contact-dialog.component";
 
@@ -51,14 +52,14 @@ export class CustomerContactTabComponent implements OnInit {
   contactId!: string;
   customerMethod!: string;
   selectedIndex: number = 0;
-  dialogService: any;
 
   constructor(
     private fb: FormBuilder,
     public dialog: MatDialog,
     private customerContactProvider:CustomerContactProvider,
     private customerProvider: CustomerProvider, 
-    private snackbarService: SnackBarService 
+    private snackbarService: SnackBarService,
+    private dialogService: ConfirmDialogService,
   ) {}
 
   ngOnInit(): void {
