@@ -71,7 +71,7 @@ export class CustomerCreateComponent implements OnInit {
       corporateName: [null, Validators.required],
       tradingName: [null, Validators.required],
       birthDate: [null],
-      active: [false],
+      inactive: [false],
       cnpj: [null, Validators.required],
       stateRegistration: [
         "",

@@ -17,8 +17,8 @@ export class CreateCustomerDto {
     @IsNotEmpty()
     cnpj: string;
 
-    @IsOptional()
-    active: Boolean;
+    @IsNotEmpty()
+    inactive: Boolean;
 
     @IsNotEmpty()
     @IsObject()

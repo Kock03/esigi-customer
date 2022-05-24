@@ -17,8 +17,8 @@ export class UpdateCustomerDto {
     @IsNotEmpty()
     cnpj: string;
 
-    @IsOptional()
-    active: Boolean;
+    @IsNotEmpty()
+    inactive: Boolean;
 
     @IsOptional()
     stateRegistration: String;

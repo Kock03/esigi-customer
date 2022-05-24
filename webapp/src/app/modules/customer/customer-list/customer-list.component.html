@@ -9,9 +9,10 @@
             </mat-form-field>
             <mat-form-field fxFlex="20" appearance="outline">
                 <mat-label>Filtro</mat-label>
-                <mat-select matInput disableRipple>
-                    <mat-option [value]="1">{{ "customer.customer-generic.active" | translate }}</mat-option>
-                    <mat-option [value]="2">{{ "customer.customer-generic.inactive" | translate }}</mat-option>
+                <mat-select (selectionChange)="selectList($event)" matInput disableRipple>
+                    <mat-option [value]="1">{{ "customer.customer-generic.all" | translate }}</mat-option>
+                    <mat-option [value]="2">{{ "customer.customer-generic.active" | translate }}</mat-option>
+                    <mat-option [value]="3">{{ "customer.customer-generic.inactive" | translate }}</mat-option>
                 </mat-select>
             </mat-form-field>
         </form>
@@ -41,7 +42,7 @@
                     {{ "customer.customer-register.phone.phone_number" | translate }}
                 </th>
                 <td mat-cell *matCellDef="let customer">
-                    {{customer.phoneNumber}}
+                    ({{customer.Phone.ddd}}) {{customer.Phone.phoneNumber |  mask: '0000-0000||00000-0000'}}
                 </td>
             </ng-container>
 

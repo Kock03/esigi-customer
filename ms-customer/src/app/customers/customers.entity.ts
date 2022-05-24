@@ -22,7 +22,7 @@ export class CustomersEntity {
   cnpj: string;
 
   @Column()
-  active: Boolean;
+  inactive: Boolean;
 
   @Column()
   stateRegistration: String;

@@ -5,17 +5,14 @@ import { FormGroup } from '@angular/forms';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { fromEvent, debounceTime, distinctUntilChanged } from 'rxjs';
+import { ICustomer } from 'src/app/interfaces/icustomer';
 
 import { CustomerProvider } from 'src/providers/customer.provider';
 import { ConfirmDialogService } from 'src/services/confirn-dialog.service';
 import { SnackBarService } from 'src/services/snackbar.service';
 
-export interface Customer {
-  id: string;
-  corporateName: string;
-  birthDate: Date;
-  phoneNumber: number;
-}
+
 @Component({
   selector: 'app-customer-list',
   templateUrl: './customer-list.component.html',
@@ -27,7 +24,7 @@ export class CustomerListComponent implements OnInit {
   @ViewChild('filter', { static: true }) filter!: ElementRef;
   displayedCustomer: string[] = ['name', 'birthDate', 'phoneNumber', 'icon'];
 
-  customers!: Customer[];
+  customers!: ICustomer[];
   filteredCustomerList = new MatTableDataSource();
   index: any = null;
   Customer: any;
@@ -45,6 +42,7 @@ export class CustomerListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCustomerList();
+    this.initFilter();
   }
 
   async getCustomerList() {
@@ -62,6 +60,47 @@ export class CustomerListComponent implements OnInit {
       this.liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
     } else {
       this.liveAnnouncer.announce('Sorting cleared');
+    }
+  }
+
+  async selectList(ev: any) {
+    if (ev.value == 1) {
+      return (this.filteredCustomerList = this.customers =
+        await this.customerProvider.findAll());
+    }
+    if (ev.value == 2) {
+      return (this.filteredCustomerList = this.customers =
+        await this.customerProvider.findActive());
+    }
+    if (ev.value == 3) {
+      return (this.filteredCustomerList = this.customers =
+        await this.customerProvider.findInactive());
+    }
+  }
+
+  initFilter() {
+    fromEvent(this.filter.nativeElement, 'keyup')
+      .pipe(debounceTime(200), distinctUntilChanged())
+
+      .subscribe((res) => {
+        this.filteredCustomerList.data = this.customers.filter(
+          (costumer) =>         
+          costumer.corporateName
+              .toLocaleLowerCase()
+              .includes(this.filter.nativeElement.value.toLocaleLowerCase())
+              
+        )
+        const params = `corporateName=${this.filter.nativeElement.value}`;
+        this.searchCustomers(params);
+      });
+   
+  }
+
+  async searchCustomers(query?: string) {
+    try {
+      this.customers = await this.customerProvider.findByName(query);
+    } catch (error) {
+      console.error(error);
     }
   }
 

@@ -9,7 +9,7 @@ import { CreateCustomerDto } from './dto/create-customer.dto';
 import { UpdateCustomerDto } from './dto/update-customer.dto';
 import { CustomersEntity } from './customers.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, FindConditions, FindOneOptions, FindManyOptions } from 'typeorm';
+import { Repository, FindConditions, FindOneOptions, FindManyOptions, Like } from 'typeorm';
 import { DocumentValidator } from '../validators/document.validator';
 import { DocumentsBadRequestExcpetion } from '../exceptions/documents-bad-request.exception';
 
@@ -23,9 +23,35 @@ export class CustomersService {
   async findAll() {
     const options: FindManyOptions = {
       order: { createdAt: 'DESC' },
+      relations: ['Address', 'Contacts', 'Phone'] 
     };
     return await this.customersRepository.find(options);
   }
+
+  async findInactive() {
+    return await this.customersRepository
+      .createQueryBuilder('customers')
+      .leftJoinAndSelect("customers.Phone", "Phone")
+      .where('customers.inactive =true') 
+      .getMany();
+  }
+
+  async findActive() {
+    return await this.customersRepository
+      .createQueryBuilder('customers')
+      .leftJoinAndSelect("customers.Phone", "Phone")
+      .where('customers.inactive =false')
+      .getMany();
+  }
+
+  async findByName(query): Promise<CustomersEntity[]> {
+    return await this.customersRepository
+    .createQueryBuilder('customers')
+    .leftJoinAndSelect('customers.Phone', 'Phone')
+    .where("customers.corporateName like :corporateName", { corporateName:`${query.corporateName}%` })
+    .getMany();
+  }
+
 
   async findOneOrFail(
     conditions: FindConditions<CustomersEntity>,

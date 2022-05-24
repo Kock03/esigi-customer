@@ -24,7 +24,7 @@ export class CustomerProvider {
   findInactive(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .get(environment.CUSTOMER_MS + 'customers/list/inactive')
+        .get('customers/list/inactive')
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
@@ -34,7 +34,7 @@ export class CustomerProvider {
   findActive(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .get(environment.CUSTOMER_MS + 'customers/list/active')
+        .get('customers/list/active')
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
@@ -43,7 +43,7 @@ export class CustomerProvider {
 
   findByName(query: any): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.apiGateway.get(environment.CUSTOMER_MS + `customers/find/name?${query}`)
+      this.apiGateway.get(`customers/find/name?${query}`)
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
