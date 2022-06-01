@@ -47,6 +47,7 @@ export class CustomersService {
   async findByName(query): Promise<CustomersEntity[]> {
     return await this.customersRepository
     .createQueryBuilder('customers')
+    .select('customers.id, customers.corporateName')
     .leftJoinAndSelect('customers.Phone', 'Phone')
     .where("customers.corporateName like :corporateName", { corporateName:`${query.corporateName}%` })
     .getMany();
