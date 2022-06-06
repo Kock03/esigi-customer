@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams, HttpXsrfTokenExtractor } from '@angular/common/http';
 import { EventEmitter, Injectable, Output } from "@angular/core";
-import { environment } from './environments/environment'
+import { environment } from './environments/environment.prod'
 import { Observable, Subject, throwError } from "rxjs";
 import { catchError, finalize } from 'rxjs/operators';
 
