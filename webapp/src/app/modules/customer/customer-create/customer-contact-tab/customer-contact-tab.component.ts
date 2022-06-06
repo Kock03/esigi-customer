@@ -8,7 +8,13 @@ import {
   ViewChild,
 } from "@angular/core";
 import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { MatDialog } from "@angular/material/dialog";
 import { MatTable } from "@angular/material/table";
+import { CustomerContactProvider } from "src/providers/contact.provider";
+import { CustomerProvider } from "src/providers/customer.provider";
+import { ConfirmDialogService } from "src/services/confirn-dialog.service";
+import { SnackBarService } from "src/services/snackbar.service";
+import { CustomerContactDialog } from "./customer-contact-dialog.component";
 
 export interface Contact {
   name: string;
@@ -16,11 +22,6 @@ export interface Contact {
   mail: string;
   phoneNumber: string;
   status: boolean;
-}
-export interface Role {
-  id: string;
-  name: string;
-  value: string;
 }
 
 @Component({
@@ -30,7 +31,6 @@ export interface Role {
   encapsulation: ViewEncapsulation.None,
 })
 export class CustomerContactTabComponent implements OnInit {
-  @Input("form") customerForm!: FormGroup;
   @Output("onChange") onChange: EventEmitter<any> = new EventEmitter();
   @ViewChild("contactTable") contactTable!: MatTable<any>;
 
@@ -41,93 +41,98 @@ export class CustomerContactTabComponent implements OnInit {
     "phoneNumber",
     "icon",
   ];
-  // dataSource = contacts;
 
-  // contacts: Contact[] = [
-  //   {
-  //     name: '',
-  //     office: 'Comprador',
-  //     // 'Diretor de TI', 'Gerente de TI',
-  //     mail: '',
-  //     phoneNumber: '',
-  //     status: false,
-  //   },
-  // ];
+  data: [] = [];
 
-  contactForm!: FormGroup
-  roleList = [
-    {
-      id: 1,
-      name: "Comprador",
-      value: "Comprador",
-    },
-    {
-      id: 2,
-      name: "Diretor de TI",
-      value: "Diretor de TI",
-    },
-    {
-      id: 3,
-      name: "Gerente de TI",
-      value: "Gerente de TI",
-    },
-  ];
-
-  selectedIndex: number = 0;
-
-  index: any = null;
+  contactForm!: FormGroup;
   Contact: any;
   checked = false;
+  method!: string;
+  customerId!: any;
+  contactId!: string;
+  customerMethod!: string;
+  selectedIndex: number = 0;
 
-  get contactArray() {
-    return this.customerForm.controls["Contacts"] as FormArray;
-  }
-
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    public dialog: MatDialog,
+    private customerContactProvider:CustomerContactProvider,
+    private customerProvider: CustomerProvider, 
+    private snackbarService: SnackBarService,
+    private dialogService: ConfirmDialogService,
+  ) {}
 
   ngOnInit(): void {
-    this.initForm();
+    this.customerMethod = sessionStorage.getItem("customer_method")!;
+    if (this.customerMethod === "edit") {
+      this.getContactList();
+    }
   }
 
-  initForm(): void {
-    this.contactForm = this.fb.group({
-      name: ["", [Validators.required]],
-      office: ["", [Validators.required]],
-      mail: ["", [Validators.required, Validators.email]],
-      phoneNumber: ["", Validators.required],
-    });
+  async getContactList() {
+    this.customerId = sessionStorage.getItem("customer_id");
+    const data = await this.customerProvider.findOne(this.customerId);
+    this.data = data.Contacts;
   }
 
   next() {
     this.onChange.next(true);
   }
 
-  saveContact() {
-    const data = this.contactForm.getRawValue();
-    console.log("🚀 ~ file: customer-contact-tab.component.ts ~ line 102 ~ CustomerContactTabComponent ~ saveContact ~ data", data)
-    this.contactArray.insert(0, this.fb.group(data));
-    this.contactTable.renderRows();
-    this.contactForm.reset();
+  openDialog() {
+    this.method = "add";
+    sessionStorage.setItem("method", this.method);
+    const dialogRef = this.dialog.open(CustomerContactDialog, {
+      width: "500px",
+      height: "400px",
+    });
+
+    dialogRef.afterClosed().subscribe((contact) => {
+      if (contact) {
+        this.getContactList();
+      }
+    });
   }
 
-  getContact(contactSelected: any, index: number) {
-    this.index = index;
-    this.contactForm.patchValue(contactSelected);
+  async getContact(id: string) {
+    const contact = await this.customerContactProvider.findOne(id);
+    this.method = "edit";
+    sessionStorage.setItem("method", this.method);
+    this.contactId = id;
+    sessionStorage.setItem("contact_id", this.contactId);
+    const dialogRef = this.dialog.open(CustomerContactDialog, {
+      width: "500px",
+      height: "400px",
+      data: contact,
+    });
+    dialogRef.afterClosed().subscribe((contact) => {
+      if (contact) {
+        this.getContactList();
+      }
+    });
   }
 
-  editContact() {
-    this.contactArray.at(this.index).setValue(this.contactForm.getRawValue());
+  async deleteContact(id: string) {
+    const options = {
+      data: {
+        title: 'Atenção',
+        subtitle: 'Você tem certeza que deseja excluir este contato?',
+      },
+      panelClass: 'confirm-modal',
+    };
 
-    this.contactTable.renderRows();
-    this.contactForm.reset();
-    this.index = null;
-  }
-
-  cancelEdit() {
-    this.index = null;
-  }
-
-  deleteContact(index: number) {
-    this.contactArray.removeAt(index);
-  }
+    this.dialogService.open(options);
+    this.dialogService.confirmed().subscribe(async (confirmed: any) => {
+      if (confirmed) {
+        try {
+          let deleteContact = await this.customerContactProvider.destroy(id);
+          this.getContactList();
+          this.snackbarService.successMessage('Registro Excluido Com Sucesso');
+        } catch (error) {
+          console.log('ERROR 132' + error);
+          this.snackbarService.showError('Falha ao Excluir');
+        }
+      }
+    }
+  )}
 }

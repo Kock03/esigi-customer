@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { Form, FormGroup } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Form, FormBuilder, FormGroup, NgModel } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { CepService } from 'src/services/cep.service';
 
 @Component({
@@ -13,9 +14,37 @@ export class CustomerRegisterTabComponent implements OnInit {
   @Output('onChange') onChange: EventEmitter<any> = new EventEmitter();
 
 
-  constructor(private cepService: CepService){}
+  customerId!: string | null;
+  customer!: any;
+  addressForm!: FormGroup;
+  phoneForm!: FormGroup;
+
+  constructor(private cepService: CepService,
+    private fb: FormBuilder,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.customerId = this.route.snapshot.paramMap.get('id');
+
+    if (this.customerId == 'novo') {
+      this.customerForm.valueChanges.subscribe(res => {
+        const addressForm = this.customerForm.controls[
+          'Address'
+        ] as FormGroup;
+        this.addressForm = addressForm
+        // addressForm.controls['cep'].valueChanges.subscribe(res => { });
+
+        const phoneForm = this.customerForm.controls[
+          'Phone'
+        ] as FormGroup;
+        this.phoneForm = phoneForm
+        phoneForm.controls['ddi'].valueChanges.subscribe(res => {});
+      })
+    }
+  }
+  
+  ngAfterViewInit() {
+
   }
 
   next() {
@@ -23,50 +52,22 @@ export class CustomerRegisterTabComponent implements OnInit {
   }
 
   async getAddress() {
-
     const address = this.customerForm.controls['Address'].value;
-
-    console.log(address.zipCode);
-
     const district = await this.cepService.findDistrict(
-
       address.zipCode.replace('-', '')
-
     );
-
-    console.log(
-
-      '🚀 ~ file: collaborator-register-tab.component.ts ~ line 75 ~ CollaboratorRegisterTabComponent ~ getAddress ~ district',
-
-      district
-
-    );
-
-
 
     if (district.erro) {
-
       window.alert('Cep inválido');
-
       this.customerForm.controls['Address'].reset();
-
     } else {
-
       this.customerForm.controls['Address'].patchValue({
-
         zipCode: district.cep,
-
         city: district.localidade,
-
         street: district.logradouro,
-
         state: district.uf,
-
-        // district: district.bairro
-
+        district: district.bairro,
       });
-
     }
-
   }
 }

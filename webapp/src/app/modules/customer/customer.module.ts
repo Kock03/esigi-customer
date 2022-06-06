@@ -1,4 +1,5 @@
-import { NgModule } from '@angular/core';
+
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -12,7 +13,8 @@ import { MatTableModule } from '@angular/material/table'
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatIconModule } from "@angular/material/icon";
 import {MatSelectModule} from '@angular/material/select';
-
+import { NgxMaskModule } from 'ngx-mask';
+import { MatSortModule } from '@angular/material/sort';
 
 
 
@@ -20,10 +22,18 @@ import { CustomerCreateComponent } from './customer-create/customer-create.compo
 import { CustomerRegisterTabComponent } from './customer-create/customer-register-tab/customer-register-tab.component';
 import { CustomerContactTabComponent } from './customer-create/customer-contact-tab/customer-contact-tab.component';
 import { CustomerContractTabComponent } from './customer-create/customer-contract-tab/customer-contract-tab.component';
+import { CustomerListComponent } from './customer-list/customer-list.component';
+import { CustomerContactDialog } from './customer-create/customer-contact-tab/customer-contact-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { TranslateModule } from '@ngx-translate/core';
 
 const routes: Routes = [
   {
-    path: 'novo',
+    path: 'lista',
+    component: CustomerListComponent,
+  },
+  {
+    path: ':id',
     component: CustomerCreateComponent,
   },
 ];
@@ -34,30 +44,37 @@ const routes: Routes = [
     CustomerRegisterTabComponent,
     CustomerContactTabComponent,
     CustomerContractTabComponent,
+    CustomerListComponent,
+    CustomerContactDialog
   ],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
     MatTabsModule,
+    TranslateModule.forChild(),
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     FlexLayoutModule,
     MatButtonModule,
+    NgxMaskModule,
     MatCheckboxModule,
     MatTableModule,
     MatSidenavModule,
     MatIconModule,
     MatSelectModule,  
-    ReactiveFormsModule
-
+    MatSortModule,
+    MatDialogModule,
 
     
   ],
   entryComponents: [
+    CustomerListComponent,
     CustomerRegisterTabComponent,
     CustomerContactTabComponent,
     CustomerContractTabComponent,
-  ]
+    CustomerRegisterTabComponent,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CustomerModule {}

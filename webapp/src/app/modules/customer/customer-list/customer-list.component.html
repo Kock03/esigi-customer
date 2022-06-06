@@ -1,0 +1,70 @@
+<div id="CustomerList" class="page">
+    <h2>{{ "customer.customer-list.clients" | translate }}</h2>
+    <div fxLayout="row" fxLayoutAlign="space-between">
+        <form class="search" fxLayoutGap="16px">
+            <mat-form-field appearance="outline">
+                <mat-label>{{ "customer.customer-list.search_customers" | translate }}</mat-label>
+                <input matInput placeholder="Currículo" #filter matInput />
+                <mat-icon matSuffix style="cursor: pointer">search</mat-icon>
+            </mat-form-field>
+            <mat-form-field fxFlex="20" appearance="outline">
+                <mat-label>Filtro</mat-label>
+                <mat-select (selectionChange)="selectList($event)" matInput disableRipple>
+                    <mat-option [value]="1">{{ "customer.customer-generic.all" | translate }}</mat-option>
+                    <mat-option [value]="2">{{ "customer.customer-generic.active" | translate }}</mat-option>
+                    <mat-option [value]="3">{{ "customer.customer-generic.inactive" | translate }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </form>
+    </div>
+    <div class="envolti-table mat-elevation-z8" fxLayout="column">
+        <table mat-table [dataSource]="filteredCustomerList" matSort (matSortChange)="announceSortChange($event)">
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+                    {{ "customer.customer-list.name" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let customer">
+                    {{customer.corporateName}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="birthDate">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by birthDate">
+                    {{ "customer.customer-list.birth-date" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let customer">
+                    {{customer.birthDate | date: 'dd/MM/yyyy'}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="phoneNumber">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by phoneNumber">
+                    {{ "customer.customer-register.phone.phone_number" | translate }}
+                </th>
+                <td mat-cell *matCellDef="let customer">
+                    ({{customer.Phone.ddd}}) {{customer.Phone.phoneNumber |  mask: '0000-0000||00000-0000'}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="icon">
+                <th mat-header-cell *matHeaderCellDef style="text-align: end">
+                    <button class="edit-button" mat-flat-button color="primary" (click)="createCustomer()">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </th>
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td class="button-tab" mat-cell *matCellDef="let customer">
+                    <button class="table-button" mat-button (click)="editCustomer(customer.id)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button class="table-button" mat-button (click)="deleteCustomer(customer.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedCustomer; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedCustomer"></tr>
+        </table>
+    </div>
+</div>

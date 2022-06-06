@@ -1,11 +1,18 @@
-.navigation-buttons{
-    margin-top: 150px;
-    max-width: 900px;
-}
+
 
 #customerRegisterTab{
-    max-width: 100%;
+  max-width: 1200px;
+  width: 100%;
+  
+
+    .content-scroll {
+      overflow: auto;
+      height: calc(100vh - 300px);
+    }
+
+    .mat-checkbox{
+      margin-top: 15px;
+    }
+
 }
-.mat-checkbox{
-  margin-top: 15px;
-}
+

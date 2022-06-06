@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams, HttpXsrfTokenExtractor } from '@angular/common/http';
 import { EventEmitter, Injectable, Output } from "@angular/core";
-import { environment } from './environments/environment'
+import { environment } from './environments/environment.prod'
 import { Observable, Subject, throwError } from "rxjs";
 import { catchError, finalize } from 'rxjs/operators';
 
@@ -17,7 +17,7 @@ export declare const enum RequestMethod {
 }
 
 export class ApiGatewayOptions {
-    baseUrl!: string;
+    CUSTOMER_MS!: string;
     method!: RequestMethod;
     url!: string;
     headers!: HttpHeaders;
@@ -71,13 +71,13 @@ export class ApiGateway {
     
           case 'ms-cep':
     
-            options.baseUrl = 'http://localhost:8000/';
+            options.CUSTOMER_MS = 'http://localhost:8000/';
     
             break;
     
           default:
     
-            options.baseUrl = environment.baseUrl;
+            options.CUSTOMER_MS = environment.CUSTOMER_MS;
     
             break;
     
@@ -103,7 +103,7 @@ export class ApiGateway {
             params = {};
         }
         let options = new ApiGatewayOptions();
-        options.baseUrl = environment.baseUrl;
+        options.CUSTOMER_MS = environment.CUSTOMER_MS;
         options.method = RequestMethod.Post;
         options.url = url;
         options.params = params;
@@ -117,7 +117,7 @@ export class ApiGateway {
             params = {};
         }
         let options = new ApiGatewayOptions();
-        options.baseUrl = environment.baseUrl;
+        options.CUSTOMER_MS = environment.CUSTOMER_MS;
         options.method = RequestMethod.Put;
         options.url = url;
         options.params = params;
@@ -132,7 +132,7 @@ export class ApiGateway {
             params = {};
         }
         let options = new ApiGatewayOptions();
-        options.baseUrl = environment.baseUrl;
+        options.CUSTOMER_MS = environment.CUSTOMER_MS;
         options.method = RequestMethod.Delete;
         options.url = url;
         options.params = params;
@@ -148,7 +148,7 @@ export class ApiGateway {
             params = {};
         }
         let options = new ApiGatewayOptions();
-        options.baseUrl = environment.baseUrl;
+        options.CUSTOMER_MS = environment.CUSTOMER_MS;
         options.method = RequestMethod.Patch;
         options.url = url;
         options.params = params;
@@ -163,7 +163,7 @@ export class ApiGateway {
             params = {};
         }
         let options = new ApiGatewayOptions();
-        options.baseUrl = environment.baseUrl;
+        options.CUSTOMER_MS = environment.CUSTOMER_MS;
         options.method = RequestMethod.Head;
         options.url = url;
         options.params = params;
@@ -189,7 +189,7 @@ export class ApiGateway {
         
         let requestOptions = {
             "method": options.method,
-            "url": options.baseUrl + options.url,
+            "url": options.CUSTOMER_MS + options.url,
             "headers": options.headers,
             "search": this.buildUrlSearchParams(options.params),
             "body": JSON.stringify(options.data),
