@@ -31,6 +31,7 @@ export class CustomerListComponent implements OnInit {
   step: number = 1;
   form!: FormGroup;
   customer!: any;
+  params!: string;
 
   constructor(
     private liveAnnouncer: LiveAnnouncer,
@@ -40,8 +41,8 @@ export class CustomerListComponent implements OnInit {
     private dialogService: ConfirmDialogService,
   ) { }
 
-  ngOnInit(): void {
-    this.getCustomerList();
+  async ngOnInit(): Promise<void> {
+    await this.getCustomerList();
     this.initFilter();
   }
 
@@ -84,21 +85,24 @@ export class CustomerListComponent implements OnInit {
 
       .subscribe((res) => {
         this.filteredCustomerList.data = this.customers.filter(
-          (costumer) =>         
-          costumer.corporateName
+          (costumer) =>
+            costumer.corporateName
               .toLocaleLowerCase()
               .includes(this.filter.nativeElement.value.toLocaleLowerCase())
-              
+
         )
-        const params = `corporateName=${this.filter.nativeElement.value}`;
-        this.searchCustomers(params);
+        this.params = `corporateName=${this.filter.nativeElement.value}`;
+        this.searchCustomers(this.params);
+        if (this.filter.nativeElement.value === '') {
+          this.getCustomerList();
+        }
       });
-   
+
   }
 
-  async searchCustomers(query?: string) {
+  async searchCustomers(corporateName: string) {
     try {
-      this.customers = await this.customerProvider.findByName(query);
+      this.customers = await this.customerProvider.findByName(corporateName);
     } catch (error) {
       console.error(error);
     }
@@ -137,7 +141,8 @@ export class CustomerListComponent implements OnInit {
         }
       }
     }
-  )}
+    )
+  }
 }
 
 

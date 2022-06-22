@@ -18,12 +18,12 @@ export class CustomersService {
   constructor(
     @InjectRepository(CustomersEntity)
     private readonly customersRepository: Repository<CustomersEntity>,
-  ) {}
+  ) { }
 
   async findAll() {
     const options: FindManyOptions = {
       order: { createdAt: 'DESC' },
-      relations: ['Address', 'Contacts', 'Phone'] 
+      relations: ['Address', 'Contacts', 'Phone']
     };
     return await this.customersRepository.find(options);
   }
@@ -32,7 +32,7 @@ export class CustomersService {
     return await this.customersRepository
       .createQueryBuilder('customers')
       .leftJoinAndSelect("customers.Phone", "Phone")
-      .where('customers.inactive =true') 
+      .where('customers.inactive =true')
       .getMany();
   }
 
@@ -44,13 +44,22 @@ export class CustomersService {
       .getMany();
   }
 
-  async findByName(query): Promise<CustomersEntity[]> {
-    return await this.customersRepository
-    .createQueryBuilder('customers')
-    .select('customers.id, customers.corporateName')
-    .leftJoinAndSelect('customers.Phone', 'Phone')
-    .where("customers.corporateName like :corporateName", { corporateName:`${query.corporateName}%` })
-    .getMany();
+  // async findByName(query): Promise<CustomersEntity[]> {
+  //   return await this.customersRepository
+  //   .createQueryBuilder('customers')
+  //   .select('customers.id, customers.corporateName')
+  //   .leftJoinAndSelect('customers.Phone', 'Phone')
+  //   .where("customers.corporateName like :corporateName", { corporateName:`${query.corporateName}%` })
+  //   .getMany();
+  // }
+
+  async findByName(corporateName: string) {
+    return await this.customersRepository.query(
+      'select * from customers where customers.corporateName like' +
+      '"%' +
+      corporateName +
+      '"' +
+      'and customers.deleted_at is null ')
   }
 
 

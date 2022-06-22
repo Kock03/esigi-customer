@@ -33,7 +33,7 @@
                     {{ "customer.customer-list.birth-date" | translate }}
                 </th>
                 <td mat-cell *matCellDef="let customer">
-                    {{customer.birthDate | date: 'dd/MM/yyyy'}}
+                    {{customer.birthDate | mask: '00/00/0000'}}
                 </td>
             </ng-container>
 
@@ -42,7 +42,7 @@
                     {{ "customer.customer-register.phone.phone_number" | translate }}
                 </th>
                 <td mat-cell *matCellDef="let customer">
-                    ({{customer.Phone.ddd}}) {{customer.Phone.phoneNumber |  mask: '0000-0000||00000-0000'}}
+                    ({{customer.Phone.ddd}}) {{customer.Phone.phoneNumber | mask: '0000-0000||00000-0000'}}
                 </td>
             </ng-container>
 

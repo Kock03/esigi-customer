@@ -12,7 +12,7 @@ export class UpdateCustomerDto {
     tradingName: string;
 
     @IsOptional()
-    birthDate: Date;
+    birthDate: string;
 
     @IsOptional()
     cnpj: string;

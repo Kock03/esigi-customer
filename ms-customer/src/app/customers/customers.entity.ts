@@ -16,7 +16,7 @@ export class CustomersEntity {
   tradingName: String;
 
   @Column()
-  birthDate: Date;
+  birthDate: String;
 
   @Column({ unique: true })
   cnpj: string;
@@ -43,11 +43,11 @@ export class CustomersEntity {
   @JoinColumn()
   Phone: PhoneEntity;
 
-  @OneToMany(() => ContactsEntity, contacts => contacts.Customer, {cascade: ["insert", "update", "remove"], orphanedRowAction: 'delete'})
+  @OneToMany(() => ContactsEntity, contacts => contacts.Customer, { cascade: ["insert", "update", "remove"], orphanedRowAction: 'delete' })
   @JoinColumn()
   Contacts: ContactsEntity[];
 
-  @OneToOne(() => AddressEntity, address => address.customer, {cascade: ["insert", "update", "remove"]})
+  @OneToOne(() => AddressEntity, address => address.customer, { cascade: ["insert", "update", "remove"] })
   @JoinColumn()
   Address: AddressEntity;
 

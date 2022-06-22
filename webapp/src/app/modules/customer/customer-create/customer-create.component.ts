@@ -71,18 +71,18 @@ export class CustomerCreateComponent implements OnInit {
     this.customerForm = this.fb.group({
       corporateName: [null, Validators.required],
       tradingName: [null, Validators.required],
-      birthDate: [null],
+      birthDate: [null, Validators.required],
       inactive: [false],
       cnpj: this.fb.control({ value: null, disabled: false }, [
         DocumentValidator.isValidCnpj(), Validators.required
       ]),
       stateRegistration: [
         "",
-        [Validators.maxLength(9), Validators.minLength(9)],
+        [Validators.maxLength(18), Validators.minLength(9)],
       ],
       municipalRegistration: [
         "",
-        [Validators.maxLength(9), Validators.minLength(9)],
+        [Validators.maxLength(18), Validators.minLength(9)],
       ],
 
       mail: [null, [Validators.email, Validators.required]],

@@ -42,7 +42,8 @@
         </mat-form-field>
         <mat-form-field fxFlex="30" appearance="outline">
           <mat-label>{{ "customer.customer-register.state_registration" | translate }}</mat-label>
-          <input matInput placeholder="Inscrição Estadual" formControlName="stateRegistration" />
+          <input matInput placeholder="Inscrição Estadual" formControlName="stateRegistration"
+            mask="000.000.000||000.000.000.000||000.000.000.000-00" />
           <mat-error *ngIf="
               customerForm &&
               customerForm.controls['stateRegistration'].hasError('maxlength')
@@ -58,8 +59,9 @@
         </mat-form-field>
         <mat-form-field fxFlex="30" appearance="outline">
           <mat-label>{{ "customer.customer-register.municipal_inscription" | translate }}</mat-label>
-          <input matInput placeholder="Inscrição Municipal" formControlName="municipalRegistration" />
-          <mat-error *ngIf="
+          <input matInput placeholder="Inscrição Municipal" formControlName="municipalRegistration"
+            mask="000.000.000||000.000.000.000||000.000.000.000-00" />
+          <mat-error *ngIf="  
               customerForm &&
               customerForm.controls['municipalRegistration'].hasError('maxlength')
             ">

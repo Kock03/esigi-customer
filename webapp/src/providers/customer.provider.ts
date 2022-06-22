@@ -41,9 +41,9 @@ export class CustomerProvider {
     });
   }
 
-  findByName(query: any): Promise<any> {
+  findByName(corporateName: string): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.apiGateway.get(`customers/find/name?${query}`)
+      this.apiGateway.get(`customers/find/corporateName?${corporateName}`)
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);

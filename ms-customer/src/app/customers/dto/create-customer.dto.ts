@@ -12,7 +12,7 @@ export class CreateCustomerDto {
     tradingName: string;
 
     @IsNotEmpty()
-    birthDate: Date;
+    birthDate: string;
 
     @IsNotEmpty()
     cnpj: string;
@@ -23,7 +23,7 @@ export class CreateCustomerDto {
     @IsNotEmpty()
     @IsObject()
     Phone: PhoneEntity;
-    
+
     @IsOptional()
     stateRegistration: String;
 
@@ -32,7 +32,7 @@ export class CreateCustomerDto {
 
     @IsOptional()
     mail: String;
-    
+
     @IsOptional()
     site: String;
 

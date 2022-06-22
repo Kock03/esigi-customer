@@ -17,7 +17,7 @@ import { CustomersService } from './customers.service';
 
 @Controller('api/v1/customers')
 export class CustomersController {
-  constructor(private readonly customersService: CustomersService) {}
+  constructor(private readonly customersService: CustomersService) { }
 
   @Get()
   async index() {
@@ -44,9 +44,14 @@ export class CustomersController {
     return await this.customersService.findInactive();
   }
 
-  @Get('find/name')
-  async findByName(@Query() query: any) {
-    return this.customersService.findByName(query);
+  // @Get('find/name')
+  // async findByName(@Query() query: any) {
+  //   return this.customersService.findByName(query);
+  // }
+
+  @Get('find')
+  find(@Query('corporateName') corporateName?: any) {
+    return this.customersService.findByName(corporateName);
   }
 
   @Put(':id')
