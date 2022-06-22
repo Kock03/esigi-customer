@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
+import { DocumentValidator } from "src/app/validators/document.validator";
 import { CustomerProvider } from "src/providers/customer.provider";
 import { CepService } from "src/services/cep.service";
 import { SnackBarService } from "src/services/snackbar.service";
@@ -28,7 +29,7 @@ export class CustomerCreateComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private snackbarService: SnackBarService
-  ) {}
+  ) { }
 
   async ngOnInit(): Promise<void> {
     this.customerId = this.route.snapshot.paramMap.get("id");
@@ -72,7 +73,9 @@ export class CustomerCreateComponent implements OnInit {
       tradingName: [null, Validators.required],
       birthDate: [null],
       inactive: [false],
-      cnpj: [null, Validators.required],
+      cnpj: this.fb.control({ value: null, disabled: false }, [
+        DocumentValidator.isValidCnpj(), Validators.required
+      ]),
       stateRegistration: [
         "",
         [Validators.maxLength(9), Validators.minLength(9)],
@@ -118,7 +121,7 @@ export class CustomerCreateComponent implements OnInit {
         sessionStorage.setItem("customer_id", customer.id);
         this.handleStep(2);
         this.snackbarService.showAlert("Cliente salvo com sucesso");
-        this.router.navigate([`cliente/${customer.id}`]); 
+        this.router.navigate([`cliente/${customer.id}`]);
         this.customerId = customer.id;
       } catch (error: any) {
         console.log("ERROR 132" + error);
@@ -148,7 +151,7 @@ export class CustomerCreateComponent implements OnInit {
     }
   }
 
-  handleChanges(value: any): void {}
+  handleChanges(value: any): void { }
 
   handleStep(number: number): void {
     if (!this.checkValid() && this.step < number) {

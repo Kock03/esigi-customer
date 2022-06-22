@@ -1,118 +1,76 @@
 <div id="customerRegisterTab" class="tab">
   <div class="content-scroll">
-    <form
-      (submit)="next()"
-      [formGroup]="customerForm"
-      *ngIf="customerForm"
-      fxLayout="column"
-    >
+    <form (submit)="next()" [formGroup]="customerForm" *ngIf="customerForm" fxLayout="column">
       <div fxFlex="100" fxLayoutGap="16px">
         <mat-form-field fxFlex="30" appearance="outline">
           <mat-label>{{ "customer.customer-register.corporate_name" | translate }}</mat-label>
-          <input
-            matInput
-            placeholder="Razão Social"
-            formControlName="corporateName"
-          />
-          <mat-error
-            *ngIf="
+          <input matInput placeholder="Razão Social" formControlName="corporateName" />
+          <mat-error *ngIf="
               customerForm &&
               customerForm.controls['corporateName'].hasError('required')
-            "
-          >
-          {{ "customer.customer-mat-error.required-field" | translate }}
+            ">
+            {{ "customer.customer-mat-error.required-field" | translate }}
           </mat-error>
         </mat-form-field>
         <mat-form-field fxFlex="40" appearance="outline">
           <mat-label>{{ "customer.customer-register.corporate_name" | translate }}</mat-label>
-          <input
-            matInput
-            placeholder="Nome fantasia"
-            formControlName="tradingName"
-          />
-          <mat-error
-            *ngIf="
+          <input matInput placeholder="Nome fantasia" formControlName="tradingName" />
+          <mat-error *ngIf="
               customerForm && customerForm.controls['tradingName'].hasError('required')
-            "
-          >
-          {{ "customer.customer-mat-error.required-field" | translate }}
+            ">
+            {{ "customer.customer-mat-error.required-field" | translate }}
           </mat-error>
         </mat-form-field>
         <mat-form-field fxFlex="20" appearance="outline">
           <mat-label>{{ "customer.customer-register.created-date" | translate }}</mat-label>
-          <input
-            matInput
-            mask="00/00/0000"
-            [showMaskTyped]="true"
-            [dropSpecialCharacters]="false"
-            placeholder="Data de criação"
-            formControlName="birthDate"
-          />
+          <input matInput mask="00/00/0000" [showMaskTyped]="true" [dropSpecialCharacters]="false"
+            placeholder="Data de criação" formControlName="birthDate" />
         </mat-form-field>
-        <mat-checkbox fxFlex="10" color="primary" formControlName="inactive"
-          >{{ "customer.customer-register.inactive"  | translate }}</mat-checkbox
-        >
+        <mat-checkbox fxFlex="10" color="primary" formControlName="inactive">{{ "customer.customer-register.inactive" |
+          translate }}</mat-checkbox>
       </div>
 
       <div fxFlex="100" fxLayoutGap="16px">
         <mat-form-field fxFlex="40" appearance="outline">
           <mat-label>{{ "customer.customer-register.cnpj" | translate }}</mat-label>
-          <input matInput placeholder="CNPJ" formControlName="cnpj" />
-          <mat-error
-            *ngIf="
+          <input matInput placeholder="CNPJ" formControlName="cnpj" mask="00.000.000/0000-00" />
+          <mat-error *ngIf="
               customerForm && customerForm.controls['cnpj'].hasError('required')
-            "
-          >
-          {{ "customer.customer-mat-error.required-field" | translate }}
+            ">
+            {{ "customer.customer-mat-error.required-field" | translate }}
           </mat-error>
         </mat-form-field>
         <mat-form-field fxFlex="30" appearance="outline">
           <mat-label>{{ "customer.customer-register.state_registration" | translate }}</mat-label>
-          <input
-            matInput
-            placeholder="Inscrição Estadual"
-            formControlName="stateRegistration"
-          />
-          <mat-error
-            *ngIf="
+          <input matInput placeholder="Inscrição Estadual" formControlName="stateRegistration" />
+          <mat-error *ngIf="
               customerForm &&
               customerForm.controls['stateRegistration'].hasError('maxlength')
-            "
-          >
-          {{ "customer.customer-mat-error.state-registration-too-large" | translate }}
+            ">
+            {{ "customer.customer-mat-error.state-registration-too-large" | translate }}
           </mat-error>
-          <mat-error
-            *ngIf="
+          <mat-error *ngIf="
               customerForm &&
               customerForm.controls['stateRegistration'].hasError('minlength')
-            "
-          >
-          {{ "customer.customer-mat-error.state-registration-too-small" | translate }}
+            ">
+            {{ "customer.customer-mat-error.state-registration-too-small" | translate }}
           </mat-error>
         </mat-form-field>
         <mat-form-field fxFlex="30" appearance="outline">
           <mat-label>{{ "customer.customer-register.municipal_inscription" | translate }}</mat-label>
-          <input
-            matInput
-            placeholder="Inscrição Municipal"
-            formControlName="municipalRegistration"
-          />
-          <mat-error
-            *ngIf="
+          <input matInput placeholder="Inscrição Municipal" formControlName="municipalRegistration" />
+          <mat-error *ngIf="
               customerForm &&
               customerForm.controls['municipalRegistration'].hasError('maxlength')
-            "
-          >
-          {{ "customer.customer-mat-error.municipal-registration-too-large" | translate }}
+            ">
+            {{ "customer.customer-mat-error.municipal-registration-too-large" | translate }}
           </mat-error>
-          <mat-error
-            *ngIf="
+          <mat-error *ngIf="
               customerForm &&
               customerForm.controls['municipalRegistration'].hasError(
                 'minlength'
               )
-            "
-          > {{ "customer.customer-mat-error.municipal-registration-too-small" | translate }}
+            "> {{ "customer.customer-mat-error.municipal-registration-too-small" | translate }}
           </mat-error>
         </mat-form-field>
       </div>
@@ -135,49 +93,34 @@
         </mat-form-field>
         <mat-form-field fxFlex="60" appearance="outline">
           <mat-label>{{ "customer.customer-register.address.complement" | translate }}</mat-label>
-          <input
-            matInput
-            placeholder="Complemento"
-            formControlName="complement"
-          />
+          <input matInput placeholder="Complemento" formControlName="complement" />
         </mat-form-field>
       </div>
 
       <div fxFlex="100" fxLayoutGap="16px">
-        <mat-form-field
-          fxFlex="25"
-          appearance="outline"
-          formGroupName="Address"
-        >
+        <mat-form-field fxFlex="25" appearance="outline" formGroupName="Address">
           <mat-label>{{ "customer.customer-register.address.state" | translate }}</mat-label>
           <input matInput placeholder="Estado" formControlName="state" />
         </mat-form-field>
-        <mat-form-field
-          fxFlex="20"
-          appearance="outline"
-          formGroupName="Address"
-        >
+        <mat-form-field fxFlex="20" appearance="outline" formGroupName="Address">
           <mat-label>{{ "customer.customer-register.address.city" | translate }}</mat-label>
           <input matInput placeholder="Cidade" formControlName="city" />
         </mat-form-field>
-        
+
         <div formGroupName="Phone" fxFlex="100" fxLayoutGap="16px">
           <mat-form-field fxFlex="15" appearance="outline">
             <mat-label>{{ "customer.customer-register.phone.ddi" | translate }}</mat-label>
-            <input matInput placeholder="DDI" formControlName="ddi" mask="+00"
-              />
+            <input matInput placeholder="DDI" formControlName="ddi" mask="+00" />
           </mat-form-field>
 
           <mat-form-field fxFlex="15" appearance="outline">
             <mat-label>{{ "customer.customer-register.phone.ddd" | translate }}</mat-label>
-            <input matInput placeholder="DDD" formControlName="ddd" mask="(00)"
-              />
+            <input matInput placeholder="DDD" formControlName="ddd" mask="(00)" />
           </mat-form-field>
 
           <mat-form-field fxFlex="70" appearance="outline">
             <mat-label>{{ "customer.customer-register.phone.phone_number" | translate }}</mat-label>
-            <input matInput placeholder="Telefone" formControlName="phoneNumber"
-              mask="0000-0000||00000-0000" />
+            <input matInput placeholder="Telefone" formControlName="phoneNumber" mask="0000-0000||00000-0000" />
           </mat-form-field>
         </div>
 
@@ -186,12 +129,10 @@
         <mat-form-field fxFlex="50" appearance="outline">
           <mat-label>{{ "customer.customer-register.email" | translate }}</mat-label>
           <input matInput placeholder="Email" formControlName="mail" />
-          <mat-error
-            *ngIf="
+          <mat-error *ngIf="
               customerForm && customerForm.controls['mail'].hasError('email')
-            "
-          >
-          {{ "customer.customer-mat-error.invalid-email" | translate }}
+            ">
+            {{ "customer.customer-mat-error.invalid-email" | translate }}
           </mat-error>
         </mat-form-field>
         <mat-form-field fxFlex="50" appearance="outline">

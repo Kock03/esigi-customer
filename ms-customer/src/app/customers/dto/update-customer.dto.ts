@@ -5,19 +5,19 @@ import { PhoneEntity } from 'src/app/phone/phone.entity';
 import { CustomersEntity } from '../customers.entity';
 
 export class UpdateCustomerDto {
-    @IsNotEmpty()
+    @IsOptional()
     corporateName: string;
 
-    @IsNotEmpty()
+    @IsOptional()
     tradingName: string;
-    
-    @IsNotEmpty()
+
+    @IsOptional()
     birthDate: Date;
 
-    @IsNotEmpty()
+    @IsOptional()
     cnpj: string;
 
-    @IsNotEmpty()
+    @IsOptional()
     inactive: Boolean;
 
     @IsOptional()
@@ -33,12 +33,12 @@ export class UpdateCustomerDto {
     @IsOptional()
     site: String;
 
-    @IsNotEmpty()
+    @IsOptional()
     @IsObject()
     Phone: PhoneEntity;
 
     @IsOptional()
     Address: AddressEntity;
-    
+
 
 }

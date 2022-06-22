@@ -1,24 +1,24 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsOptional } from 'class-validator';
 import { CustomersEntity } from 'src/app/customers/customers.entity';
 
-export class UpdateAddressDto{
+export class UpdateAddressDto {
 
-    @IsNotEmpty()
+    @IsOptional()
     zipCode: Number;
 
-    @IsNotEmpty()
+    @IsOptional()
     street: string;
 
-    @IsNotEmpty()
+    @IsOptional()
     number: Number;
 
-    @IsNotEmpty()
+    @IsOptional()
     complement: String;
 
-    @IsNotEmpty()
+    @IsOptional()
     state: String;
 
-    @IsNotEmpty()
+    @IsOptional()
     city: String;
 
 }

@@ -1,24 +1,24 @@
 import { CustomersEntity } from 'src/app/customers/customers.entity';
-import { IsNotEmpty, IsObject } from "class-validator";
+import { IsOptional, IsObject } from "class-validator";
 import { PhoneEntity } from 'src/app/phone/phone.entity';
 
-export class UpdateContacts{
-    
-    @IsNotEmpty()
+export class UpdateContacts {
+
+    @IsOptional()
     name: string;
 
-    @IsNotEmpty()
+    @IsOptional()
     office: String;
 
-    @IsNotEmpty()
+    @IsOptional()
     mail: String;
 
 
-    @IsNotEmpty()
+    @IsOptional()
     @IsObject()
     Phone: PhoneEntity;
 
-    @IsNotEmpty()
+    @IsOptional()
     Customer: CustomersEntity;
 
 }
