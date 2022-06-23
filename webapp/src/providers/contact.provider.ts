@@ -7,9 +7,9 @@ import { environment } from "src/environments/environment.prod";
   providedIn: "root",
 })
 export class CustomerContactProvider {
-  constructor(private apiGateway: ApiGateway) {}
+  constructor(private apiGateway: ApiGateway) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   findAll(): Promise<any> {
     return new Promise((resolve, reject) => {
@@ -25,6 +25,16 @@ export class CustomerContactProvider {
     return new Promise((resolve, reject) => {
       this.apiGateway
         .get("contacts/:id", { id: id })
+        .subscribe((response: HttpResponse<any>) => {
+          resolve(response.body);
+        }, reject);
+    });
+  }
+
+  findContacts(id: string | null): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.apiGateway
+        .get("contacts/findContacs/:id", { id: id })
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);

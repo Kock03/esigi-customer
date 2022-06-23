@@ -4,7 +4,7 @@ import { AddressEntity } from '../address/address.entity';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, JoinColumn, OneToOne, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
 import { PhoneEntity } from '../phone/phone.entity';
 
-@Entity({ name: 'customers' })
+@Entity()
 export class CustomersEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -43,7 +43,7 @@ export class CustomersEntity {
   @JoinColumn()
   Phone: PhoneEntity;
 
-  @OneToMany(() => ContactsEntity, contacts => contacts.Customer, { cascade: ["insert", "update", "remove"], orphanedRowAction: 'delete', eager: true })
+  @OneToMany(() => ContactsEntity, contacts => contacts.Customer, { cascade: ["insert", "update", "remove"], orphanedRowAction: 'delete' })
   @JoinColumn()
   Contacts: ContactsEntity[];
 

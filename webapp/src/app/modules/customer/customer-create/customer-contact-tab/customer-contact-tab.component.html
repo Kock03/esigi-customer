@@ -21,7 +21,8 @@
         <ng-container matColumnDef="phoneNumber">
           <th mat-header-cell *matHeaderCellDef>{{ "customer.customer-register.phone.phone_number" | translate }}</th>
           <td mat-cell *matCellDef="let contact">
-            {{ contact.Phone }}</td>
+            +{{ contact.ddi }}
+            ({{ contact.ddd }}) {{ contact.phone_number }}</td>
         </ng-container>
 
         <!-- 

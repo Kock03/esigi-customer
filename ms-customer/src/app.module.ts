@@ -10,19 +10,19 @@ import { CustomersModule } from './app/customers/customers.module';
 import { PhoneModule } from './app/phone/phone.module';
 
 @Module({
-  imports: [ ConfigModule.forRoot(),
-    TypeOrmModule.forRoot({
-      type: process.env.TYPEORM_CONNECTION,
-      host: process.env.TYPEORM_HOST,
-      port: process.env.TYPEORM_PORT,
-      username: process.env.TYPEORM_USERNAME,
-      password: process.env.TYPEORM_PASSWORD,
-      database: process.env.TYPEORM_DATABASE,
-      entities: [__dirname + '/**/*.entity{.js,.ts}'],
-      synchronize: true,
-      namingStrategy: new SnakeNamingStrategy(),
-    } as TypeOrmModuleOptions),CustomersModule, ContactsModule, AddressModule, PhoneModule],
+  imports: [ConfigModule.forRoot(),
+  TypeOrmModule.forRoot({
+    type: process.env.TYPEORM_CONNECTION,
+    host: process.env.TYPEORM_HOST,
+    port: process.env.TYPEORM_PORT,
+    username: process.env.TYPEORM_USERNAME,
+    password: process.env.TYPEORM_PASSWORD,
+    database: process.env.TYPEORM_DATABASE,
+    entities: [__dirname + '/**/*.entity{.js,.ts}'],
+    synchronize: true,
+    namingStrategy: new SnakeNamingStrategy(),
+  } as TypeOrmModuleOptions), CustomersModule, ContactsModule, AddressModule, PhoneModule],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

@@ -10,6 +10,7 @@ import {
 import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatTable } from "@angular/material/table";
+import { ContactPanelModel } from "src/models/contact-panel-model";
 import { CustomerContactProvider } from "src/providers/contact.provider";
 import { CustomerProvider } from "src/providers/customer.provider";
 import { ConfirmDialogService } from "src/services/confirn-dialog.service";
@@ -42,7 +43,7 @@ export class CustomerContactTabComponent implements OnInit {
     "icon",
   ];
 
-  data: [] = [];
+  data: any[] = [];
 
   contactForm!: FormGroup;
   Contact: any;
@@ -71,8 +72,13 @@ export class CustomerContactTabComponent implements OnInit {
 
   async getContactList() {
     this.customerId = sessionStorage.getItem("customer_id");
-    const data = await this.customerProvider.findOne(this.customerId);
-    this.data = data.Contacts;
+    this.data = await this.customerContactProvider.findContacts(this.customerId);
+    // this.data.map((contact: any) => {
+    //   this.data.push(new ContactPanelModel(contact));
+    // });
+    // this.contactTable.renderRows();
+
+    console.log(this.data);
   }
 
   next() {
@@ -95,6 +101,7 @@ export class CustomerContactTabComponent implements OnInit {
   }
 
   async getContact(id: string) {
+    console.log(id)
     const contact = await this.customerContactProvider.findOne(id);
     this.method = "edit";
     sessionStorage.setItem("method", this.method);
