@@ -43,7 +43,7 @@ export class CustomersEntity {
   @JoinColumn()
   Phone: PhoneEntity;
 
-  @OneToMany(() => ContactsEntity, contacts => contacts.Customer, { cascade: ["insert", "update", "remove"], orphanedRowAction: 'delete' })
+  @OneToMany(() => ContactsEntity, contacts => contacts.Customer, { cascade: ["insert", "update", "remove"], orphanedRowAction: 'delete', eager: true })
   @JoinColumn()
   Contacts: ContactsEntity[];
 

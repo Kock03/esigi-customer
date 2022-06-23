@@ -44,14 +44,6 @@ export class CustomersService {
       .getMany();
   }
 
-  // async findByName(query): Promise<CustomersEntity[]> {
-  //   return await this.customersRepository
-  //   .createQueryBuilder('customers')
-  //   .select('customers.id, customers.corporateName')
-  //   .leftJoinAndSelect('customers.Phone', 'Phone')
-  //   .where("customers.corporateName like :corporateName", { corporateName:`${query.corporateName}%` })
-  //   .getMany();
-  // }
 
   async findByName(corporateName: string) {
     return await this.customersRepository.query(
@@ -67,7 +59,7 @@ export class CustomersService {
     conditions: FindConditions<CustomersEntity>,
     options?: FindOneOptions<CustomersEntity>,
   ) {
-    options = { relations: ['Address', 'Contacts', 'Phone'] };
+    options = { relations: ['Address', 'Phone'] };
     try {
       return await this.customersRepository.findOneOrFail(conditions, options);
     } catch (error) {

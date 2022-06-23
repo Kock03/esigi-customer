@@ -56,11 +56,11 @@ export class CustomerContactTabComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public dialog: MatDialog,
-    private customerContactProvider:CustomerContactProvider,
-    private customerProvider: CustomerProvider, 
+    private customerContactProvider: CustomerContactProvider,
+    private customerProvider: CustomerProvider,
     private snackbarService: SnackBarService,
     private dialogService: ConfirmDialogService,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.customerMethod = sessionStorage.getItem("customer_method")!;
@@ -134,5 +134,6 @@ export class CustomerContactTabComponent implements OnInit {
         }
       }
     }
-  )}
+    )
+  }
 }

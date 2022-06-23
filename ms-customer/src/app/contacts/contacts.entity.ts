@@ -3,38 +3,38 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, Up
 import { CustomersEntity } from '../customers/customers.entity';
 import { PhoneEntity } from '../phone/phone.entity';
 
-@Entity({name: 'contacts'})
-export class ContactsEntity{
+@Entity({ name: 'contacts' })
+export class ContactsEntity {
 
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-    @Column()
-    name: String;
+  @Column()
+  name: String;
 
-    @Column()
-    office: String;
+  @Column()
+  office: String;
 
-    @OneToOne(() => PhoneEntity, {
-        orphanedRowAction: 'delete',
-        cascade: ['insert', 'update', 'soft-remove'],
-      })
-      @JoinColumn()
-      Phone: PhoneEntity;
-    
+  @OneToOne(() => PhoneEntity, {
+    orphanedRowAction: 'delete',
+    cascade: ['insert', 'update', 'soft-remove'],
+  })
+  @JoinColumn()
+  Phone: PhoneEntity;
 
-    @Column()
-    mail: String;
 
-    @ManyToOne(() => CustomersEntity, customers => customers.Contacts, {orphanedRowAction: 'delete'})
-    Customer: CustomersEntity;
+  @Column()
+  mail: String;
 
-    @CreateDateColumn({ type: 'datetime' })
-    createdAt: Date;
+  @ManyToOne(() => CustomersEntity, customers => customers.Contacts, { orphanedRowAction: 'delete' })
+  Customer: CustomersEntity;
 
-    @UpdateDateColumn({ type: 'datetime' })
-     updatedAt: Date;
+  @CreateDateColumn({ type: 'datetime' })
+  createdAt: Date;
 
-    @DeleteDateColumn({ type: 'datetime' })
-    deletedAt: Date;
+  @UpdateDateColumn({ type: 'datetime' })
+  updatedAt: Date;
+
+  @DeleteDateColumn({ type: 'datetime' })
+  deletedAt: Date;
 }
