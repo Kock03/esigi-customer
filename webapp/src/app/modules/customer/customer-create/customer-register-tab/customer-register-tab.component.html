@@ -13,7 +13,7 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field fxFlex="40" appearance="outline">
-          <mat-label>{{ "customer.customer-register.corporate_name" | translate }}</mat-label>
+          <mat-label>{{ "customer.customer-register.fantasy_name" | translate }}</mat-label>
           <input matInput placeholder="Nome fantasia" formControlName="tradingName" />
           <mat-error *ngIf="
               customerForm && customerForm.controls['tradingName'].hasError('required')

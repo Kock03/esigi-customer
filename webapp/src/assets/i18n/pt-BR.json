@@ -1,16 +1,12 @@
 {
-    "customer-sidenav": {
-
-    },
-
+    "customer-sidenav": {},
     "customer": {
-        "customer-create":{
+        "customer-create": {
             "client": "Cliente",
             "register": "Cadastro",
             "contact": "Contatos",
             "contract": "Contratos"
         },
-
         "customer-list": {
             "clients": "Clientes",
             "search_customers": "Buscar Clientes",
@@ -18,17 +14,15 @@
             "birth-date": " Data de nascimento",
             "phone": "Telefone"
         },
-
-        "customer-register":{
+        "customer-register": {
             "corporate_name": "Razão Social",
-            "fantasy-name": "Nome fantasia",
+            "fantasy_name": "Nome fantasia",
             "created-date": "Data da criação",
             "active": "Ativo",
             "inactive": "Inativo",
             "cnpj": "CNPJ",
             "state_registration": "Inscrição Estadual",
             "municipal_inscription": "Inscrição Municipal",
-
             "address": {
                 "cep": "CEP",
                 "number": "Número",
@@ -38,13 +32,11 @@
                 "district": "Bairro",
                 "state": "Estado"
             },
-
             "phone": {
                 "phone_number": "Telefone",
                 "ddd": "DDD",
                 "ddi": "DDI"
             },
-
             "email": "Email",
             "site": "Site"
         },
@@ -52,10 +44,8 @@
             "office": "Cargo",
             "register-contacts": "Cadastrar Contatos"
         },
-        "customer-contract": {
-
-        },
-        "customer-generic":{
+        "customer-contract": {},
+        "customer-generic": {
             "back-button": "Voltar",
             "save-button": "Salvar",
             "cancel-button": "Cancelar",
@@ -68,8 +58,7 @@
             "all": "Todos",
             "ok_button": "Ok"
         },
-
-        "customer-mat-error":{
+        "customer-mat-error": {
             "required-field": " Campo obrigatório",
             "state-registration-too-large": "Inscrição Estadual muito grande",
             "state-registration-too-small": "Inscrição Estadual muito pequena",
