@@ -150,7 +150,36 @@
           formGroupName="Address"
         >
           <mat-label>{{ "customer.customer-register.address.state" | translate }}</mat-label>
-          <input matInput placeholder="Estado" formControlName="state" />
+          <mat-select matInput disableRipple formControlName="collaboratorTypes">
+            <mat-option [value]="1">{{'customer.customer-register.address.state_list.AC'|translate}}</mat-option>
+            <mat-option [value]="2">{{'customer.customer-register.address.state_list.AL'|translate}}</mat-option>
+            <mat-option [value]="3">{{'customer.customer-register.address.state_list.AP'|translate}}</mat-option>
+            <mat-option [value]="4">{{'customer.customer-register.address.state_list.AM'|translate}}</mat-option>
+            <mat-option [value]="5">{{'customer.customer-register.address.state_list.BA'|translate}}</mat-option>
+            <mat-option [value]="6">{{'customer.customer-register.address.state_list.CE'|translate}}</mat-option>
+            <mat-option [value]="7">{{'customer.customer-register.address.state_list.DF'|translate}}</mat-option>
+            <mat-option [value]="8">{{'customer.customer-register.address.state_list.ES'|translate}}</mat-option>
+            <mat-option [value]="9">{{'customer.customer-register.address.state_list.GO'|translate}}</mat-option>
+            <mat-option [value]="10">{{'customer.customer-register.address.state_list.MA'|translate}}</mat-option>
+            <mat-option [value]="11">{{'customer.customer-register.address.state_list.MT'|translate}}</mat-option>
+            <mat-option [value]="12">{{'customer.customer-register.address.state_list.MS'|translate}}</mat-option>
+            <mat-option [value]="13">{{'customer.customer-register.address.state_list.MG'|translate}}</mat-option>
+            <mat-option [value]="14">{{'customer.customer-register.address.state_list.PA'|translate}}</mat-option>
+            <mat-option [value]="15">{{'customer.customer-register.address.state_list.PB'|translate}}</mat-option>
+            <mat-option [value]="16">{{'customer.customer-register.address.state_list.PR'|translate}}</mat-option>
+            <mat-option [value]="17">{{'customer.customer-register.address.state_list.PE'|translate}}</mat-option>
+            <mat-option [value]="18">{{'customer.customer-register.address.state_list.PI'|translate}}</mat-option>
+            <mat-option [value]="19">{{'customer.customer-register.address.state_list.RJ'|translate}}</mat-option>
+            <mat-option [value]="20">{{'customer.customer-register.address.state_list.RN'|translate}}</mat-option>
+            <mat-option [value]="21">{{'customer.customer-register.address.state_list.RS'|translate}}</mat-option>
+            <mat-option [value]="22">{{'customer.customer-register.address.state_list.RO'|translate}}</mat-option>
+            <mat-option [value]="23">{{'customer.customer-register.address.state_list.RR'|translate}}</mat-option>
+            <mat-option [value]="24">{{'customer.customer-register.address.state_list.SC'|translate}}</mat-option>
+            <mat-option [value]="25">{{'customer.customer-register.address.state_list.SP'|translate}}</mat-option>
+            <mat-option [value]="26">{{'customer.customer-register.address.state_list.SE'|translate}}</mat-option>
+            <mat-option [value]="27">{{'customer.customer-register.address.state_list.TO'|translate}}</mat-option>
+            <mat-option [value]="28">{{'customer.customer-register.address.state_list.other'|translate}}</mat-option>
+          </mat-select>
         </mat-form-field>
         <mat-form-field
           fxFlex="20"
