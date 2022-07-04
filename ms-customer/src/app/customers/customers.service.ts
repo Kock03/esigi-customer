@@ -9,7 +9,7 @@ import { CreateCustomerDto } from './dto/create-customer.dto';
 import { UpdateCustomerDto } from './dto/update-customer.dto';
 import { CustomersEntity } from './customers.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, FindConditions, FindOneOptions, FindManyOptions, Like } from 'typeorm';
+import { Repository, FindConditions, FindOneOptions, FindManyOptions, In, Like, } from 'typeorm';
 import { DocumentValidator } from '../validators/document.validator';
 import { DocumentsBadRequestExcpetion } from '../exceptions/documents-bad-request.exception';
 
@@ -28,12 +28,26 @@ export class CustomersService {
     return await this.customersRepository.find(options);
   }
 
+  async findCustomerListById(idList: string[]) {
+    return await this.customersRepository.find({
+      select: ['id', 'corporateName'],
+      where: { id: In(idList) }
+    })
+  }
+
   async findInactive() {
     return await this.customersRepository
       .createQueryBuilder('customers')
       .leftJoinAndSelect("customers.Phone", "Phone")
       .where('customers.inactive =true')
       .getMany();
+  }
+
+  async shortListCustomers() {
+    return await this.customersRepository.find({
+      select: ['id', 'corporateName'],
+      where: { inactive: false },
+    });
   }
 
   async findActive() {
@@ -44,14 +58,12 @@ export class CustomersService {
       .getMany();
   }
 
-
-  async findByName(corporateName: string) {
-    return await this.customersRepository.query(
-      'select * from customers where customers.corporateName like' +
-      '"%' +
-      corporateName +
-      '"' +
-      'and customers.deleted_at is null ')
+  findByName(query): Promise<CustomersEntity[]> {
+    return this.customersRepository.find({
+      select: ['id', 'corporateName'],
+      where: [
+        { corporateName: Like(`%${query.corporateName}%`) }]
+    });
   }
 
 

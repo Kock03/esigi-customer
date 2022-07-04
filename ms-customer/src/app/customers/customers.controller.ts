@@ -14,6 +14,7 @@ import {
 import { CreateCustomerDto } from './dto/create-customer.dto';
 import { UpdateCustomerDto } from './dto/update-customer.dto';
 import { CustomersService } from './customers.service';
+import { ICustomer } from './interface/icustomers';
 
 @Controller('api/v1/customers')
 export class CustomersController {
@@ -27,6 +28,11 @@ export class CustomersController {
   @Post()
   async store(@Body() body: CreateCustomerDto) {
     return await this.customersService.store(body);
+  }
+
+  @Get('/short/list/customers')
+  async shortListCollaborators() {
+    return await this.customersService.shortListCustomers();
   }
 
   @Get(':id')
@@ -44,14 +50,14 @@ export class CustomersController {
     return await this.customersService.findInactive();
   }
 
-  // @Get('find/name')
-  // async findByName(@Query() query: any) {
-  //   return this.customersService.findByName(query);
-  // }
+  @Post('/list')
+  async findCustomersListById(@Body() body: ICustomer) {
+    return await this.customersService.findCustomerListById(body.idList);
+  }
 
-  @Get('find')
-  find(@Query('corporateName') corporateName?: any) {
-    return this.customersService.findByName(corporateName);
+  @Get('find/name')
+  async findByName(@Query() query: any) {
+    return this.customersService.findByName(query);
   }
 
   @Put(':id')
