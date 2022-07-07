@@ -71,7 +71,7 @@ export class CustomerCreateComponent implements OnInit {
     this.customerForm = this.fb.group({
       corporateName: [null, Validators.required],
       tradingName: [null, Validators.required],
-      birthDate: [null, Validators.required],
+      birthDate: this.fb.control({ value: ' ', disabled: false }, [DocumentValidator.isValidData(), Validators.required]),
       inactive: [false],
       cnpj: this.fb.control({ value: null, disabled: false }, [
         DocumentValidator.isValidCnpj(), Validators.required
