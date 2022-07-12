@@ -24,16 +24,16 @@ export class CustomersEntity {
   @Column()
   inactive: Boolean;
 
-  @Column()
+  @Column({ nullable: true })
   stateRegistration: String;
 
-  @Column()
+  @Column({ nullable: true })
   municipalRegistration: String;
 
   @Column()
   mail: String;
 
-  @Column()
+  @Column({ nullable: true })
   site: String;
 
   @OneToOne(() => PhoneEntity, {

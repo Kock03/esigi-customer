@@ -73,10 +73,8 @@ export class CustomerContactTabComponent implements OnInit {
   async getContactList() {
     this.customerId = sessionStorage.getItem("customer_id");
     this.data = await this.customerContactProvider.findContacts(this.customerId);
-    // this.data.map((contact: any) => {
-    //   this.data.push(new ContactPanelModel(contact));
-    // });
-    // this.contactTable.renderRows();
+
+    this.contactTable.renderRows();
 
     console.log(this.data);
   }

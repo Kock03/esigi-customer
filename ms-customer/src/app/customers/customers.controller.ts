@@ -45,6 +45,11 @@ export class CustomersController {
     return await this.customersService.findActive();
   }
 
+  @Get('find/corporateName')
+  async find(@Query('corporateName') corporateName?: any, @Query('inactive') inactive?: any) {
+    return this.customersService.find(corporateName, inactive);
+  }
+
   @Get('list/inactive')
   async findInactive() {
     return await this.customersService.findInactive();
@@ -55,10 +60,6 @@ export class CustomersController {
     return await this.customersService.findCustomerListById(body.idList);
   }
 
-  @Get('find/name')
-  async findByName(@Query() query: any) {
-    return this.customersService.findByName(query);
-  }
 
   @Put(':id')
   async update(

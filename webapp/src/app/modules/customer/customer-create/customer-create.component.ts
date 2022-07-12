@@ -69,32 +69,23 @@ export class CustomerCreateComponent implements OnInit {
 
   initForm() {
     this.customerForm = this.fb.group({
-      corporateName: [null, Validators.required],
-      tradingName: [null, Validators.required],
+      corporateName: ['', Validators.required],
+      tradingName: ['', Validators.required],
       birthDate: this.fb.control({ value: ' ', disabled: false }, [DocumentValidator.isValidData(), Validators.required]),
       inactive: [false],
       cnpj: this.fb.control({ value: null, disabled: false }, [
         DocumentValidator.isValidCnpj(), Validators.required
       ]),
-      stateRegistration: [
-        "",
-        [Validators.maxLength(18), Validators.minLength(9)],
-      ],
-      municipalRegistration: [
-        "",
-        [Validators.maxLength(18), Validators.minLength(9)],
-      ],
+      stateRegistration: [null],
+      municipalRegistration: [null],
 
-      mail: [null, [Validators.email, Validators.required]],
-      site: [null, Validators.required],
-      name: [null, Validators.required],
-      office: [null, Validators.required],
+      mail: ['', [Validators.email, Validators.required]],
+      site: [null],
       Phone: this.fb.group({
-        phoneNumber: [null],
-        ddd: [null],
-        ddi: [null],
+        phoneNumber: [null, [Validators.required, Validators.maxLength(9)]],
+        ddd: [null, [Validators.required, Validators.maxLength(2)]],
+        ddi: [null, Validators.required],
       }),
-
       Address: this.fb.group({
         zipCode: [
           null,
@@ -109,7 +100,7 @@ export class CustomerCreateComponent implements OnInit {
         complement: [null],
         state: [null],
         city: [null],
-        site: [null, Validators.required],
+
       }),
     });
   }

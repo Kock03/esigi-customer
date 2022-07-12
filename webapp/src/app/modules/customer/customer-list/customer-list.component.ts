@@ -65,18 +65,38 @@ export class CustomerListComponent implements OnInit {
   }
 
   async selectList(ev: any) {
+    var params = `inactive=${ev.value}`
     if (ev.value == 1) {
       return (this.filteredCustomerList = this.customers =
         await this.customerProvider.findAll());
-    }
-    if (ev.value == 2) {
+    } else if (ev.value === undefined) {
       return (this.filteredCustomerList = this.customers =
-        await this.customerProvider.findActive());
+        await this.customerProvider.findByName(this.params));
+    } else if (this.params === undefined) {
+      if (ev.value == 2) {
+        params = `inactive=0`
+        return (this.filteredCustomerList = this.customers =
+          await this.customerProvider.findByName(params));
+      }
+      if (ev.value == 3) {
+        params = `inactive=1`
+        return (this.filteredCustomerList = this.customers =
+          await this.customerProvider.findByName(params));
+      }
     }
-    if (ev.value == 3) {
-      return (this.filteredCustomerList = this.customers =
-        await this.customerProvider.findInactive());
+    else {
+      if (ev.value == 2) {
+        params = `inactive=0`
+        return (this.filteredCustomerList = this.customers =
+          await this.customerProvider.findByName(this.params, params));
+      }
+      if (ev.value == 3) {
+        params = `inactive=1`
+        return (this.filteredCustomerList = this.customers =
+          await this.customerProvider.findByName(this.params, params));
+      }
     }
+
   }
 
   initFilter() {
@@ -100,9 +120,9 @@ export class CustomerListComponent implements OnInit {
 
   }
 
-  async searchCustomers(corporateName: string) {
+  async searchCustomers(corporateName?: string, inactive?: string) {
     try {
-      this.customers = await this.customerProvider.findByName(corporateName);
+      this.customers = await this.customerProvider.findByName(corporateName, inactive);
     } catch (error) {
       console.error(error);
     }

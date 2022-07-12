@@ -35,6 +35,7 @@ export class CustomersService {
     })
   }
 
+
   async findInactive() {
     return await this.customersRepository
       .createQueryBuilder('customers')
@@ -64,6 +65,42 @@ export class CustomersService {
       where: [
         { corporateName: Like(`%${query.corporateName}%`) }]
     });
+  }
+
+  async find(corporateName?: string, inactive?: string) {
+    if (!corporateName) {
+      return this.customersRepository.find({
+        select: ['id', 'corporateName', 'birthDate'],
+        relations: ['Phone'],
+        where: [
+          { inactive: inactive }]
+      });
+
+    } else if (!inactive) {
+      return this.customersRepository.find({
+        select: ['id', 'corporateName', 'birthDate',],
+        relations: ['Phone'],
+        where: [
+          { corporateName: Like(`%${corporateName}%`) }]
+      });
+    } else {
+      if (inactive === '1') {
+        return this.customersRepository.find({
+          select: ['id', 'corporateName', 'birthDate'],
+          relations: ['Phone'],
+          where: [
+            { corporateName: Like(`%${corporateName}%`), inactive: true }]
+        });
+      } else {
+        return this.customersRepository.find({
+          select: ['id', 'corporateName', 'birthDate'],
+          relations: ['Phone'],
+          where: [
+            { corporateName: Like(`%${corporateName}%`), inactive: false }]
+        });
+      }
+
+    }
   }
 
 

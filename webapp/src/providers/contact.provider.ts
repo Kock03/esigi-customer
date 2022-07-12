@@ -34,7 +34,7 @@ export class CustomerContactProvider {
   findContacts(id: string | null): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .get("contacts/findContacs/:id", { id: id })
+        .get("contacts/findContacts/:id", { id: id })
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);

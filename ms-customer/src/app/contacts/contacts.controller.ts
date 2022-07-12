@@ -23,7 +23,7 @@ export class ContactsController {
         return await this.contactsService.findOneOfFall({ id });
     }
 
-    @Get('findContacs/:id')
+    @Get('findContacts/:id')
     async findListInterviews(@Param('id', new ParseUUIDPipe()) id: string) {
         return await this.contactsService.findContacts(id);
     }
