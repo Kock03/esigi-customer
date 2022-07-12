@@ -59,7 +59,7 @@ export class CustomersService {
       .getMany();
   }
 
-  findByName(query): Promise<CustomersEntity[]> {
+  findByName(query) {
     return this.customersRepository.find({
       select: ['id', 'corporateName'],
       where: [
