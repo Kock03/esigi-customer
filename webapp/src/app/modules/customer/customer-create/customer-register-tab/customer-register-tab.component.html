@@ -102,7 +102,36 @@
       <div fxFlex="100" fxLayoutGap="16px">
         <mat-form-field fxFlex="25" appearance="outline" formGroupName="Address">
           <mat-label>{{ "customer.customer-register.address.state" | translate }}</mat-label>
-          <input matInput placeholder="Estado" formControlName="state" />
+          <mat-select matInput disableRipple placeholder="Estado" formControlName="state">
+            <mat-option [value]="1">{{'generic.address.state_list.AC'|translate}}</mat-option>
+            <mat-option [value]="2">{{'generic.address.state_list.AL'|translate}}</mat-option>
+            <mat-option [value]="3">{{'generic.address.state_list.AP'|translate}}</mat-option>
+            <mat-option [value]="4">{{'generic.address.state_list.AM'|translate}}</mat-option>
+            <mat-option [value]="5">{{'generic.address.state_list.BA'|translate}}</mat-option>
+            <mat-option [value]="6">{{'generic.address.state_list.CE'|translate}}</mat-option>
+            <mat-option [value]="7">{{'generic.address.state_list.DF'|translate}}</mat-option>
+            <mat-option [value]="8">{{'generic.address.state_list.ES'|translate}}</mat-option>
+            <mat-option [value]="9">{{'generic.address.state_list.GO'|translate}}</mat-option>
+            <mat-option [value]="10">{{'generic.address.state_list.MA'|translate}}</mat-option>
+            <mat-option [value]="11">{{'generic.address.state_list.MT'|translate}}</mat-option>
+            <mat-option [value]="12">{{'generic.address.state_list.MS'|translate}}</mat-option>
+            <mat-option [value]="13">{{'generic.address.state_list.MG'|translate}}</mat-option>
+            <mat-option [value]="14">{{'generic.address.state_list.PA'|translate}}</mat-option>
+            <mat-option [value]="15">{{'generic.address.state_list.PB'|translate}}</mat-option>
+            <mat-option [value]="16">{{'generic.address.state_list.PR'|translate}}</mat-option>
+            <mat-option [value]="17">{{'generic.address.state_list.PE'|translate}}</mat-option>
+            <mat-option [value]="18">{{'generic.address.state_list.PI'|translate}}</mat-option>
+            <mat-option [value]="19">{{'generic.address.state_list.RJ'|translate}}</mat-option>
+            <mat-option [value]="20">{{'generic.address.state_list.RN'|translate}}</mat-option>
+            <mat-option [value]="21">{{'generic.address.state_list.RS'|translate}}</mat-option>
+            <mat-option [value]="22">{{'generic.address.state_list.RO'|translate}}</mat-option>
+            <mat-option [value]="23">{{'generic.address.state_list.RR'|translate}}</mat-option>
+            <mat-option [value]="24">{{'generic.address.state_list.SC'|translate}}</mat-option>
+            <mat-option [value]="25">{{'generic.address.state_list.SP'|translate}}</mat-option>
+            <mat-option [value]="26">{{'generic.address.state_list.SE'|translate}}</mat-option>
+            <mat-option [value]="27">{{'generic.address.state_list.TO'|translate}}</mat-option>
+            <mat-option [value]="28">{{'generic.address.state_list.other'|translate}}</mat-option>
+          </mat-select>
         </mat-form-field>
         <mat-form-field fxFlex="20" appearance="outline" formGroupName="Address">
           <mat-label>{{ "customer.customer-register.address.city" | translate }}</mat-label>
