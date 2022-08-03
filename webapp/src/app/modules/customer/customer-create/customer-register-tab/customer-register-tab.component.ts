@@ -18,6 +18,7 @@ export class CustomerRegisterTabComponent implements OnInit {
   customer!: any;
   addressForm!: FormGroup;
   phoneForm!: FormGroup;
+  view!: boolean;
 
   constructor(private cepService: CepService,
     private fb: FormBuilder,
@@ -27,6 +28,7 @@ export class CustomerRegisterTabComponent implements OnInit {
     this.customerId = this.route.snapshot.paramMap.get('id');
 
     if (this.customerId == 'novo') {
+      this.view = true;
       this.customerForm.valueChanges.subscribe(res => {
         const addressForm = this.customerForm.controls[
           'Address'
@@ -38,11 +40,13 @@ export class CustomerRegisterTabComponent implements OnInit {
           'Phone'
         ] as FormGroup;
         this.phoneForm = phoneForm
-        phoneForm.controls['ddi'].valueChanges.subscribe(res => {});
+        phoneForm.controls['ddi'].valueChanges.subscribe(res => { });
       })
+    } else {
+      this.view = false;
     }
   }
-  
+
   ngAfterViewInit() {
 
   }
@@ -60,7 +64,9 @@ export class CustomerRegisterTabComponent implements OnInit {
     if (district.erro) {
       window.alert('Cep inválido');
       this.customerForm.controls['Address'].reset();
+      this.view = true;
     } else {
+      this.view = false;
       this.customerForm.controls['Address'].patchValue({
         zipCode: district.cep,
         city: district.localidade,
