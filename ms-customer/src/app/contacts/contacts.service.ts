@@ -34,7 +34,7 @@ export class ContactsService {
     }
 
     async findContacts(id: string) {
-        console.log(id)
+
         return await this.contactsRepository.query(
             'select contacts_entity.id, contacts_entity.name, contacts_entity.office, contacts_entity.mail,contacts_entity.customer_id, p.phone_number, p.ddd, p.ddi from contacts_entity left join phone_entity p on  p.id=contacts_entity.phone_id where contacts_entity.customer_id = ' + '"' + id + '"' + ' and contacts_entity.deleted_at is null ',
         )
@@ -54,7 +54,4 @@ export class ContactsService {
         await this.contactsRepository.findOneOrFail({ id });
         this.contactsRepository.softDelete({ id });
     }
-
-
-
 }

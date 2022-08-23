@@ -76,7 +76,6 @@ export class CustomerContactTabComponent implements OnInit {
 
     this.contactTable.renderRows();
 
-    console.log(this.data);
   }
 
   next() {
