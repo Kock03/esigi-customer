@@ -1,4 +1,5 @@
 #CustomerList {
+  max-width: 1650px;
   .envolti-table {
     margin-top: 20px;
     overflow: auto;
@@ -19,7 +20,7 @@
 
   .search {
     width: 100%;
-    max-width: 1205px;
+    max-width: 1600px;
     margin-right: 5px;
     mat-form-field {
       width: 100%;
