@@ -15,15 +15,8 @@ export class AppComponent {
   activeMenu!: "";
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
-
-  menuList = [
-    {
-      name: "Cliente",
-      icon: "person",
-      selected: false,
-      action: "cliente/lista",
-    },
-  ];
+  openTree: boolean = false;
+  customer: string = "cliente";
 
   constructor(
     private observer: BreakpointObserver,
@@ -61,8 +54,22 @@ export class AppComponent {
     this.router.navigate([route]);
   }
 
+  recize() {
+
+    this.openTree = this.openTree === true ? false : true;
+  }
+
   openApp(): void {
     location.replace(`http://192.168.8.184:3406/portal`);
+  }
+
+  navigator(route: any) {
+    console.log("🚀 ~ file: app.component.ts ~ line 79 ~ AppComponent ~ navigator ~ route", route)
+    switch (route) {
+      case 'cliente':
+        this.router.navigate(['cliente/lista']);
+        break;
+    }
   }
 
   logout(): void {
