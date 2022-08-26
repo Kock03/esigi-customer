@@ -1,8 +1,12 @@
 
 
 <mat-toolbar fxLayoutAlign="space-between center">
-  <div>
+  <div fxLayout="row" >
     <img src="../assets/logo/logo-envolti-branca-roxo.png" alt="" />
+    <button mat-button class="menu-button-logout" (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>{{ "Logout" }}</span>
+    </button> 
   </div>
   <div>
     <button
