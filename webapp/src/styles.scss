@@ -168,6 +168,23 @@ html {
   }
 }
 
+.checkbox{
+  margin-top: 18px;
+}
+
+.form-checkbox{
+  margin-top: 3px;
+}
+
+.custom-frame {
+  & .mat-checkbox-background, .mat-checkbox-frame {
+    border-radius: 70% !important;
+    // width: 20px;
+    // height: 20px;
+  }
+}
+
+
 .content-scroll {
   overflow: auto;
   height: calc(100vh - 280px);
