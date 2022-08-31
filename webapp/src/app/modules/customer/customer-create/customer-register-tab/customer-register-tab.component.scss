@@ -1,0 +1,22 @@
+
+
+#customerRegisterTab{
+  max-width: 1650px;
+  width: 100%;
+  
+
+    .content-scroll {
+      overflow: auto;
+      height: calc(100vh - 300px);
+    }
+
+    .mat-checkbox{
+      margin-top: 15px;
+    }
+
+    .checkbox{
+      margin-top: 1px;
+    }
+
+}
+

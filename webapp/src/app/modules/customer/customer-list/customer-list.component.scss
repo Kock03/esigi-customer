@@ -1,0 +1,39 @@
+#CustomerList {
+  max-width: 1650px;
+  .envolti-table {
+    margin-top: 20px;
+    overflow: auto;
+    max-height: 650px;
+    width: 100%;
+    border-radius: 10px;
+
+    .mat-column-icon {
+      width: 50px;
+    }
+
+    .button-tab {
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+  
+  h2{
+    color: #2F3133;
+  }
+
+  .search {
+    width: 100%;
+    max-width: 1600px;
+    margin-right: 5px;
+    mat-form-field {
+      width: 100%;
+    }
+  }
+
+  .new-btn {
+    height: 40px;
+    width: 100%;
+    max-width: 100px;
+    margin-top: 8px;
+  }
+}

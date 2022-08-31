@@ -1,0 +1,223 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../src/app/layout/themes/table.scss";
+
+@import "../src/app/layout/themes/snack-bar.scss";
+
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  scrollbar-width: none !important;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+.page {
+  padding: 32px 32px 0;
+  // max-width: 1280px;
+  margin-left: 20px !important;
+  height: calc(100% - 64px);
+}
+
+// @media (min-width: 1201px) {
+//   .page {
+//     height: calc(100vh - 200px) !important;
+//   }
+// }
+
+.tab {
+  max-width: 1650px;
+  margin-top: 24px;
+
+  &-group {
+    width: 100%;
+    max-width: 1000px;
+    
+    
+  }
+
+  &-item {
+    cursor: default;
+    margin-bottom: 8px !important;
+    color: #2F3133;
+    
+  }
+
+  &-border {
+    border-bottom: 10px solid #b8bdbf;
+    border-radius: 4px;
+    
+  }
+
+
+  .done {
+    .tab-border {
+      border-color: #ff6a39 !important;
+     
+    }
+  }
+
+  .active {
+    p {
+      color: #ff6a39;
+    }
+  }
+
+  .disabled {
+    cursor: not-allowed !important;
+    color: grey;
+    opacity: 0.5;
+
+    p {
+      cursor: not-allowed !important;
+    }
+  }
+}
+
+.navigation-buttons {
+  margin: auto;
+  width: 100%;
+  position: relative;
+  display: flex;
+  bottom: 0;
+  margin-top: 12px;
+}
+
+.title {
+  margin-bottom: 24px !important;
+}
+
+.table-styles {
+  max-width: 1220px;
+
+  table {
+    width: 100%;
+  }
+
+  .envolti-table {
+    margin-top: 20px;
+    overflow: auto;
+    max-height: 600px;
+    width: 100%;
+    border-radius: 10px;
+
+
+
+
+    .mat-column-icon {
+      width: 50px;
+    }
+
+    .button-tab {
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .edit-button {
+      background-color: transparent !important;
+      color: white;
+    }
+  }
+}
+
+.table-button {
+  height: 100%;
+  margin-right: 0px !important;
+
+  mat-icon {
+    color: #753bbd;
+
+  }
+}
+
+.confirm-modal {
+  mat-dialog-container {
+    padding: 20px !important;
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+    max-height: 180px;
+    border-radius: 10px;
+    border: 2px solid #8f8d92;
+
+    p {
+      letter-spacing: 0.25px;
+    }
+
+    button.delete {
+      color: #673ab7;
+    }
+  }
+}
+
+.checkbox{
+  margin-top: 18px;
+}
+
+.form-checkbox{
+  margin-top: 3px;
+}
+
+.custom-frame {
+  & .mat-checkbox-background, .mat-checkbox-frame {
+    border-radius: 70% !important;
+    // width: 20px;
+    // height: 20px;
+  }
+}
+
+.mat-option:hover{
+  background: #D0E7EF !important;
+}
+
+.mat-selected{
+  background: #D0E7EF !important;
+}
+
+.mat-row:hover{
+  background: #D0E7EF !important;
+}
+
+
+.content-scroll {
+  overflow: auto;
+  height: calc(100vh - 280px);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

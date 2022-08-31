@@ -1,0 +1,56 @@
+<div id="customerContactTab" class="tab">
+  <div class="content-scroll">
+    <div class="envolti-table mat-elevation-z8" fxLayout="column">
+      <table mat-table [dataSource]="data" #contactTable>
+        >
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> {{ "customer.customer-list.name" | translate }}</th>
+          <td mat-cell *matCellDef="let contact">{{ contact.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="office">
+          <th mat-header-cell *matHeaderCellDef> {{ "customer.customer-contact.office" | translate }}</th>
+          <td mat-cell *matCellDef="let contact">{{ contact.office }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="mail">
+          <th mat-header-cell *matHeaderCellDef>{{ "customer.customer-register.email" | translate }}</th>
+          <td mat-cell *matCellDef="let contact">{{ contact.mail }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="phoneNumber">
+          <th mat-header-cell *matHeaderCellDef>{{ "customer.customer-register.phone.phone_number" | translate }}</th>
+          <td mat-cell *matCellDef="let contact">
+            +{{ contact.ddi }}
+            ({{ contact.ddd }}) {{ contact.phone_number }}</td>
+        </ng-container>
+
+        <!-- 
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let contact">{{ contact.status }}</td>
+        </ng-container> -->
+
+        <ng-container matColumnDef="icon">
+          <th mat-header-cell *matHeaderCellDef style="text-align: end">
+            <button class="edit-button" mat-flat-button color="primary" (click)="openDialog()">
+              <mat-icon>add</mat-icon>
+            </button>
+          </th>
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td class="button-tab" mat-cell *matCellDef="let contact; let index = index">
+            <button class="table-button" mat-button (click)="getContact(contact.id)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button class="table-button" mat-button (click)="deleteContact(contact.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+  </div>
+</div>

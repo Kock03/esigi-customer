@@ -1,0 +1,111 @@
+{
+    "customer-sidenav": {},
+    "customer": {
+        "customer-create": {
+            "client": "Cliente",
+            "register": "Cadastro",
+            "contact": "Contatos",
+            "contract": "Contratos"
+        },
+        "customer-list": {
+            "clients": "Clientes",
+            "search_customers": "Buscar Clientes",
+            "name": "Nome",
+            "birth-date": " Data de nascimento",
+            "phone": "Telefone"
+        },
+        "customer-register": {
+            "corporate_name": "Razão Social",
+            "fantasy_name": "Nome fantasia",
+            "created-date": "Data da criação",
+            "active": "Ativo",
+            "inactive": "Inativo",
+            "cnpj": "CNPJ",
+            "state_registration": "Inscrição Estadual",
+            "municipal_inscription": "Inscrição Municipal",
+            "address": {
+                "cep": "CEP",
+                "number": "Número",
+                "complement": "Complemento",
+                "street": "Rua",
+                "city": "Cidade",
+                "district": "Bairro",
+                "state": "Estado"
+            },
+            "phone": {
+                "phone_number": "Telefone",
+                "ddd": "DDD",
+                "ddi": "DDI"
+            },
+            "email": "Email",
+            "site": "Site"
+        },
+        "customer-contact": {
+            "office": "Cargo",
+            "register-contacts": "Cadastrar Contatos"
+        },
+        "customer-contract": {},
+        "customer-generic": {
+            "back-button": "Voltar",
+            "save-button": "Salvar",
+            "cancel-button": "Cancelar",
+            "edit-button": "Editar",
+            "delete-button": "Deletar",
+            "continue-button": "Continuar",
+            "ok-button": "OK",
+            "active": "Ativos",
+            "inactive": "Inativos",
+            "all": "Todos",
+            "ok_button": "Ok"
+        },
+        "customer-mat-error": {
+            "required-field": " Campo obrigatório",
+            "state-registration-too-large": "Inscrição Estadual muito grande",
+            "state-registration-too-small": "Inscrição Estadual muito pequena",
+            "municipal-registration-too-large": "Inscrição Estadual muito grande",
+            "municipal-registration-too-small": "Inscrição Estadual muito pequena",
+            "invalid-email": " Email inválido"
+        }
+    },
+    "generic": {
+        "address": {
+            "cep": "CEP",
+            "number": "Número",
+            "complement": "Complemento",
+            "street": "Rua",
+            "city": "Cidade",
+            "district": "Bairro",
+            "state": "Estado",
+            "state_list": {
+                "AC": "Acre",
+                "AL": "Alagoas",
+                "AP": "Amapá",
+                "AM": "Amazonas",
+                "BA": "Bahia",
+                "CE": "Ceará",
+                "DF": "Distrito Federal",
+                "ES": "Espírito Santo",
+                "GO": "Goiás",
+                "MA": "Maranhão",
+                "MT": "Mato Grosso",
+                "MS": "Mato Grosso do Sul",
+                "MG": "Minas Gerais",
+                "PA": "Pará",
+                "PB": "Paraíba",
+                "PR": "Paraná",
+                "PE": "Pernambuco",
+                "PI": "Piauí",
+                "RJ": "Rio de Janeiro",
+                "RN": "Rio Grande do Norte",
+                "RS": "Rio Grande do Sul",
+                "RO": "Rondônia",
+                "RR": "Roraima",
+                "SC": "Santa Catarina",
+                "SP": "São Paulo",
+                "SE": "Sergipe",
+                "TO": "Tocantins",
+                "other": "Outro"
+            }
+        }
+    }
+}

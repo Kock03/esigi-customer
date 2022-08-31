@@ -1,0 +1,66 @@
+#customerContactTab {
+  max-width: 1650px;
+  width: 100%;
+
+  .title-dialog {
+    margin-left: 140px;
+  }
+  .content-scroll {
+    overflow: auto;
+    height: calc(100vh - 300px);
+  }
+
+  .envolti-table {
+    margin-top: 20px;
+    overflow: auto;
+    max-height: 320px;
+    width: 100%;
+    border-radius: 10px;
+
+    .mat-column-icon {
+      width: 50px;
+    }
+
+    .button-tab {
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+
+  table {
+    width: 100%;
+  }
+  // .add-button {
+  //   height: 50px;
+  //   margin-top: 5px;
+  // }
+  .edit-button {
+    height: 50px;
+    margin-top: 0px;
+  }
+
+  .mat-icon {
+    width: 100% !important;
+    size: 50px;
+  }
+
+  .delete-icon {
+    margin-right: 10px !important;
+  }
+
+  .edit-icon {
+    margin-right: 10px !important;
+  }
+}
+
+#customerContactDialog {
+  max-height: 470px ;
+  height: 100%;
+
+  .button-dialog {
+    margin-left: 140px;
+    margin-top: 20px;
+  }
+
+  
+}
