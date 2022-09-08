@@ -31,7 +31,8 @@ export class CustomerListComponent implements OnInit {
   step: number = 1;
   form!: FormGroup;
   customer!: any;
-  params!: string;
+  params: string = '';
+ select: number = 1; 
 
   constructor(
     private liveAnnouncer: LiveAnnouncer,
@@ -65,37 +66,8 @@ export class CustomerListComponent implements OnInit {
   }
 
   async selectList(ev: any) {
-    var params = `inactive=${ev.value}`
-    if (ev.value == 1) {
-      return (this.filteredCustomerList = this.customers =
-        await this.customerProvider.findAll());
-    } else if (ev.value === undefined) {
-      return (this.filteredCustomerList = this.customers =
-        await this.customerProvider.findByName(this.params));
-    } else if (this.params === undefined) {
-      if (ev.value == 2) {
-        params = `inactive=0`
-        return (this.filteredCustomerList = this.customers =
-          await this.customerProvider.findByName(params));
-      }
-      if (ev.value == 3) {
-        params = `inactive=1`
-        return (this.filteredCustomerList = this.customers =
-          await this.customerProvider.findByName(params));
-      }
-    }
-    else {
-      if (ev.value == 2) {
-        params = `inactive=0`
-        return (this.filteredCustomerList = this.customers =
-          await this.customerProvider.findByName(this.params, params));
-      }
-      if (ev.value == 3) {
-        params = `inactive=1`
-        return (this.filteredCustomerList = this.customers =
-          await this.customerProvider.findByName(this.params, params));
-      }
-    }
+   this.select = ev.value
+   this.searchCustomers();
 
   }
 
@@ -111,18 +83,19 @@ export class CustomerListComponent implements OnInit {
               .includes(this.filter.nativeElement.value.toLocaleLowerCase())
 
         )
-        this.params = `corporateName=${this.filter.nativeElement.value}`;
-        this.searchCustomers(this.params);
-        if (this.filter.nativeElement.value === '') {
-          this.getCustomerList();
-        }
+        this.params = this.filter.nativeElement.value;
+        this.searchCustomers();
       });
 
   }
 
-  async searchCustomers(corporateName?: string, inactive?: string) {
+  async searchCustomers() {
+    const data = {
+      corporateName: this.params,
+      status: this.select,
+    };
     try {
-      this.customers = await this.customerProvider.findByName(corporateName, inactive);
+      this.filteredCustomerList.data = this.customers = await this.customerProvider.findByName(data);
     } catch (error) {
       console.error(error);
     }
