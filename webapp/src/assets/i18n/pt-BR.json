@@ -9,20 +9,20 @@
         },
         "customer-list": {
             "clients": "Clientes",
-            "search_customers": "Buscar Clientes",
+            "search_customers": "Buscar clientes",
             "name": "Nome",
             "birth-date": " Data de nascimento",
             "phone": "Telefone"
         },
         "customer-register": {
-            "corporate_name": "Razão Social",
+            "corporate_name": "Razão social",
             "fantasy_name": "Nome fantasia",
             "created-date": "Data da criação",
             "active": "Ativo",
             "inactive": "Inativo",
             "cnpj": "CNPJ",
-            "state_registration": "Inscrição Estadual",
-            "municipal_inscription": "Inscrição Municipal",
+            "state_registration": "Inscrição estadual",
+            "municipal_inscription": "Inscrição municipal",
             "address": {
                 "cep": "CEP",
                 "number": "Número",
@@ -42,7 +42,7 @@
         },
         "customer-contact": {
             "office": "Cargo",
-            "register-contacts": "Cadastrar Contatos"
+            "register-contacts": "Cadastrar contatos"
         },
         "customer-contract": {},
         "customer-generic": {
@@ -60,10 +60,10 @@
         },
         "customer-mat-error": {
             "required-field": " Campo obrigatório",
-            "state-registration-too-large": "Inscrição Estadual muito grande",
-            "state-registration-too-small": "Inscrição Estadual muito pequena",
-            "municipal-registration-too-large": "Inscrição Estadual muito grande",
-            "municipal-registration-too-small": "Inscrição Estadual muito pequena",
+            "state-registration-too-large": "Inscrição estadual muito grande",
+            "state-registration-too-small": "Inscrição estadual muito pequena",
+            "municipal-registration-too-large": "Inscrição estadual muito grande",
+            "municipal-registration-too-small": "Inscrição estadual muito pequena",
             "invalid-email": " Email inválido"
         }
     },
