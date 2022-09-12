@@ -9,7 +9,14 @@ import { CreateCustomerDto } from './dto/create-customer.dto';
 import { UpdateCustomerDto } from './dto/update-customer.dto';
 import { CustomersEntity } from './customers.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, FindConditions, FindOneOptions, FindManyOptions, In, Like, } from 'typeorm';
+import {
+  Repository,
+  FindConditions,
+  FindOneOptions,
+  FindManyOptions,
+  In,
+  Like,
+} from 'typeorm';
 import { DocumentValidator } from '../validators/document.validator';
 import { DocumentsBadRequestExcpetion } from '../exceptions/documents-bad-request.exception';
 
@@ -18,12 +25,12 @@ export class CustomersService {
   constructor(
     @InjectRepository(CustomersEntity)
     private readonly customersRepository: Repository<CustomersEntity>,
-  ) { }
+  ) {}
 
   async findAll() {
     const options: FindManyOptions = {
       order: { createdAt: 'DESC' },
-      relations: ['Address', 'Contacts', 'Phone']
+      relations: ['Address', 'Contacts', 'Phone'],
     };
     return await this.customersRepository.find(options);
   }
@@ -31,15 +38,14 @@ export class CustomersService {
   async findCustomerListById(idList: string[]) {
     return await this.customersRepository.find({
       select: ['id', 'corporateName'],
-      where: { id: In(idList) }
-    })
+      where: { id: In(idList) },
+    });
   }
-
 
   async findInactive() {
     return await this.customersRepository
       .createQueryBuilder('customers')
-      .leftJoinAndSelect("customers.Phone", "Phone")
+      .leftJoinAndSelect('customers.Phone', 'Phone')
       .where('customers.inactive =true')
       .getMany();
   }
@@ -54,7 +60,7 @@ export class CustomersService {
   async findActive() {
     return await this.customersRepository
       .createQueryBuilder('customers')
-      .leftJoinAndSelect("customers.Phone", "Phone")
+      .leftJoinAndSelect('customers.Phone', 'Phone')
       .where('customers.inactive =false')
       .getMany();
   }
@@ -62,47 +68,66 @@ export class CustomersService {
   findByName(query: any): Promise<CustomersEntity[]> {
     return this.customersRepository.find({
       select: ['id', 'corporateName'],
-      where: [
-        { corporateName: Like(`%${query.corporateName}%`) }]
+      where: [{ corporateName: Like(`%${query.corporateName}%`) }],
     });
   }
 
-  async find(corporateName?: string, inactive?: string) {
-    if (!corporateName) {
-      return this.customersRepository.find({
-        select: ['id', 'corporateName', 'birthDate'],
-        relations: ['Phone'],
-        where: [
-          { inactive: inactive }]
-      });
-
-    } else if (!inactive) {
-      return this.customersRepository.find({
-        select: ['id', 'corporateName', 'birthDate',],
-        relations: ['Phone'],
-        where: [
-          { corporateName: Like(`%${corporateName}%`) }]
-      });
-    } else {
-      if (inactive === '1') {
-        return this.customersRepository.find({
-          select: ['id', 'corporateName', 'birthDate'],
-          relations: ['Phone'],
-          where: [
-            { corporateName: Like(`%${corporateName}%`), inactive: true }]
-        });
-      } else {
-        return this.customersRepository.find({
-          select: ['id', 'corporateName', 'birthDate'],
-          relations: ['Phone'],
-          where: [
-            { corporateName: Like(`%${corporateName}%`), inactive: false }]
-        });
+  async find(corporateName: string, status: number) {
+    let customer;
+    if (corporateName === '') {
+      switch (status) {
+        case 1:
+          customer = this.findAll();
+          return customer;
+          break;
+        case 2:
+          customer = this.findActive();
+          return customer;
+          break;
+        case 3:
+          customer = this.findInactive();
+          return customer;
+          break;
       }
+    } else {
+      switch (status) {
+        case 1:
+          customer = await this.customersRepository.find({
+            select: ['id', 'corporateName', 'birthDate'],
+            relations: ['Phone'],
+            where: [
+              {
+                corporateName: Like(`%${corporateName}%`),
+              },
+            ],
+          });
 
+          return customer;
+
+          break;
+        case 2:
+          customer = await this.customersRepository.find({
+            select: ['id', 'corporateName', 'birthDate'],
+            relations: ['Phone'],
+            where: [
+              { corporateName: Like(`%${corporateName}%`), inactive: false },
+            ],
+          });
+          return customer;
+          break;
+        case 3:
+          customer = await this.customersRepository.find({
+            select: ['id', 'corporateName', 'birthDate'],
+            relations: ['Phone'],
+            where: [
+              { corporateName: Like(`%${corporateName}%`), inactive: true },
+            ],
+          });
+          return customer;
+          break;
+      }
     }
   }
-
 
   async findOneOrFail(
     conditions: FindConditions<CustomersEntity>,

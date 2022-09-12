@@ -45,9 +45,9 @@ export class CustomersController {
     return await this.customersService.findActive();
   }
 
-  @Get('find/corporateName')
-  async find(@Query('corporateName') corporateName?: any, @Query('inactive') inactive?: any) {
-    return this.customersService.find(corporateName, inactive);
+  @Post('find')
+  async find(@Body() body: any) {
+    return await this.customersService.find(body.corporateName, body.status);
   }
 
   @Get('find/name')

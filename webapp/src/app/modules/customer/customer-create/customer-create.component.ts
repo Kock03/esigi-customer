@@ -91,8 +91,6 @@ export class CustomerCreateComponent implements OnInit {
           null,
           [
             Validators.required,
-            Validators.maxLength(8),
-            Validators.minLength(8),
           ],
         ],
         street: [null],
