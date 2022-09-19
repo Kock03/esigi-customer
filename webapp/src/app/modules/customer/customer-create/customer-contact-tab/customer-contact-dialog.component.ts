@@ -108,4 +108,9 @@ export class CustomerContactDialog {
       }
     }
   }
+
+  close() {
+    this.dialogRef.close();
+    sessionStorage.clear;
+  }
 }
