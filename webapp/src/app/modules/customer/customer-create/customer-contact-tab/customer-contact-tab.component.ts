@@ -98,7 +98,6 @@ export class CustomerContactTabComponent implements OnInit {
   }
 
   async getContact(id: string) {
-    console.log(id)
     const contact = await this.customerContactProvider.findOne(id);
     this.method = "edit";
     sessionStorage.setItem("method", this.method);
