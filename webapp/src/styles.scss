@@ -150,20 +150,28 @@ html {
 
 .confirm-modal {
   mat-dialog-container {
-    padding: 20px !important;
-    width: 100%;
-    max-width: 500px;
-    height: 100%;
-    max-height: 180px;
-    border-radius: 10px;
-    border: 2px solid #8f8d92;
+    overflow: hidden !important;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+    padding-top: 20px !important;
+    padding-bottom: 30px !important;
+    // .mat-dialog-content{
 
+    // }
+    border-radius: 10px;
+    height: 100% !important;
+    min-width: 300px;
+    max-width: 300px;
+    width: 100%;
+    border: 2px solid #673ab7;
     p {
       letter-spacing: 0.25px;
     }
-
     button.delete {
       color: #673ab7;
+    }
+    .button-confirm {
+      margin-left: 40px;
     }
   }
 }
