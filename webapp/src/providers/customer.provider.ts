@@ -94,4 +94,14 @@ export class CustomerProvider {
         }, reject);
     });
   }
+
+  // shortListCustomers(): Promise<any> {
+  //   return new Promise((resolve, reject) => {
+  //     this.apiGateway
+  //       .get('/short/list/customers')
+  //       .subscribe((response: HttpResponse<any>) => {
+  //         resolve(response.body);
+  //       }, reject);
+  //   });
+  // }
 }

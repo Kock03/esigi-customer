@@ -54,12 +54,37 @@
 }
 
 #customerContactDialog {
-  max-height: 470px ;
+  max-height: 530px ;
   height: 100%;
+  overflow: hidden;
 
-  .button-dialog {
-    margin-left: 140px;
-    margin-top: 20px;
+  .dialog-content{
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+  }
+
+  h2{
+    color: white !important;
+    padding-top: 20px !important;
+    padding-left: 35px;
+  }
+
+  .content-header{
+      background-color: #208fd8;
+      height: 100% !important;
+      height: 70px !important;
+  }
+
+  .mat-icon-content{
+    color: white !important;
+    margin-left: 230px !important;
+    margin-top: 15px;
+  }
+
+  .button-dialog{
+    margin-left: 120px
   }
 
   
