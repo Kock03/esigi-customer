@@ -308,6 +308,12 @@ export class ApiGateway {
                 error = { message: 'Erro ao conectar-se ao servidor.', _error: error };
             }
             const excepetion = error.error;
+            if (error.status == 403) {
+                setTimeout(() => {
+                  localStorage.clear();
+                  location.replace(environment.portal);
+                }, 2000);
+              } 
             if (error.status == 401) {
                 // this.snackBar.errorMessage('Não autorizado');
                 setTimeout(() => {
