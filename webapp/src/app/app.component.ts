@@ -5,6 +5,7 @@ import { NavigationEnd, Router } from "@angular/router";
 import { filter } from "rxjs";
 import { TranslateService } from "@ngx-translate/core";
 import { UserService } from "src/services/user.service";
+import { environment } from "src/environments/environment";
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
@@ -33,6 +34,13 @@ export class AppComponent {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((res: any) => {
+        let valid = res.url.indexOf('validate');
+        if (valid === -1) {
+          let token = localStorage.getItem('token');
+          if (!token) {
+            location.replace(environment.portal);
+          }
+        }
         this.activeMenu = res.url.split("/")[1];
       });
   }
