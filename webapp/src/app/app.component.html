@@ -48,15 +48,15 @@
     </button>
     </div>
   
-    <div  [ngStyle]="openTree && {'margin-left': '1px'} || {'margin-left': '20px'}">
-      <button mat-flat-button  class="menu-button-more" (click)=recize() 
+    <div [ngStyle]="openTree && {'margin-left': '1px', 'margin-top': '360px'} || {'margin-left': '20px', 'margin-top': '310px'}" >
+      <button   mat-icon-button   (click)=recize() 
       [ngStyle]="openTree && {'margin-left': '5px'} || {'margin-right': '25px'}">
-        <mat-icon  [ngStyle]="openTree && {'margin-top': '375px'} || {'margin-top': '330px'}">more_horiz</mat-icon>
+        <mat-icon >more_horiz</mat-icon>
       </button>
       </div>
   </div>
   </mat-sidenav>
-  <mat-sidenav-content [ngStyle]="openTree && {'margin-left': '100px'} || {'margin-left': '250px'}">
+  <mat-sidenav-content [ngStyle]="openTree && {'margin-left': '170px'} || {'margin-left': '250px'}">
     <div class="content">
       <router-outlet></router-outlet>
     </div>
