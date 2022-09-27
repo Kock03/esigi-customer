@@ -18,6 +18,7 @@ export class AppComponent {
   sidenav!: MatSidenav;
   openTree: boolean = false;
   customer: string = "cliente";
+  token!: string;
 
   constructor(
     private observer: BreakpointObserver,
@@ -36,8 +37,8 @@ export class AppComponent {
       .subscribe((res: any) => {
         let valid = res.url.indexOf('validate');
         if (valid === -1) {
-          let token = localStorage.getItem('token');
-          if (!token) {
+           this.token = localStorage.getItem('token')!;
+          if (!this.token) {
             location.replace(environment.portal);
           }
         }
@@ -68,11 +69,10 @@ export class AppComponent {
   }
 
   openApp(port: number): void {
-    location.replace(`http://localhost:${port}`);
+    location.replace(`http://localhost:${port}/validate/${this.token}`);
   }
 
   navigator(route: any) {
-    console.log("🚀 ~ file: app.component.ts ~ line 79 ~ AppComponent ~ navigator ~ route", route)
     switch (route) {
       case 'cliente':
         this.router.navigate(['cliente/lista']);
