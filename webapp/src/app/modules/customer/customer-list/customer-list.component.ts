@@ -136,6 +136,10 @@ export class CustomerListComponent implements OnInit {
     }
     )
   }
+
+  goHome(port: number): void {
+    location.replace(`http://localhost:${port}/portal`);
+  }
 }
 
 
