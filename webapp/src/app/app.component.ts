@@ -5,6 +5,7 @@ import { NavigationEnd, Router } from "@angular/router";
 import { filter } from "rxjs";
 import { TranslateService } from "@ngx-translate/core";
 import { UserService } from "src/services/user.service";
+import { environment } from "src/environments/environment";
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
@@ -17,6 +18,7 @@ export class AppComponent {
   sidenav!: MatSidenav;
   openTree: boolean = false;
   customer: string = "cliente";
+  token!: string;
 
   constructor(
     private observer: BreakpointObserver,
@@ -33,6 +35,13 @@ export class AppComponent {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((res: any) => {
+        let valid = res.url.indexOf('validate');
+        if (valid === -1) {
+           this.token = localStorage.getItem('token')!;
+          if (!this.token) {
+            location.replace(environment.portal);
+          }
+        }
         this.activeMenu = res.url.split("/")[1];
       });
   }
@@ -60,7 +69,7 @@ export class AppComponent {
   }
 
   openApp(port: number): void {
-    location.replace(`http://localhost:${port}`);
+    location.replace(`http://localhost:${port}/validate/${this.token}`);
   }
 
   openAppPortal(port: number): void {
@@ -68,7 +77,6 @@ export class AppComponent {
   }
 
   navigator(route: any) {
-    console.log("🚀 ~ file: app.component.ts ~ line 79 ~ AppComponent ~ navigator ~ route", route)
     switch (route) {
       case 'cliente':
         this.router.navigate(['cliente/lista']);

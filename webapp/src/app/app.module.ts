@@ -23,9 +23,10 @@ import { ConfirmDialogModule } from './components/confirm-dialog/confirm-dialog.
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
+import { ValidateTokenComponent } from './components/validate-token/validate-token.component';
 
 @NgModule({
-  declarations: [AppComponent, ToolbarComponent, SnackBarComponent],
+  declarations: [AppComponent, ToolbarComponent, SnackBarComponent, ValidateTokenComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
