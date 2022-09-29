@@ -63,6 +63,10 @@ export class AppComponent {
     location.replace(`http://localhost:${port}`);
   }
 
+  openAppPortal(port: number): void {
+    location.replace(`http://localhost:${port}`);
+  }
+
   navigator(route: any) {
     console.log("🚀 ~ file: app.component.ts ~ line 79 ~ AppComponent ~ navigator ~ route", route)
     switch (route) {
