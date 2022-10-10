@@ -26,6 +26,7 @@ import { CustomerListComponent } from './customer-list/customer-list.component';
 import { CustomerContactDialog } from './customer-create/customer-contact-tab/customer-contact-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
+import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 
 const routes: Routes = [
   {
@@ -65,6 +66,7 @@ const routes: Routes = [
     MatSelectModule,  
     MatSortModule,
     MatDialogModule,
+    MatSelectCountryModule,
 
     
   ],
