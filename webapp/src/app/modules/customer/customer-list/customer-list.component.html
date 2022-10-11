@@ -1,6 +1,6 @@
 <div id="CustomerList" class="page">
     <div  class="btn-header" fxLayout="row"  >
-        <button  mat-icon-button    (click)="goHome(3406)" color="primary">
+        <button   mat-icon-button (click)="goHome(3406)" color="primary" style="margin-top: 0">
           <mat-icon>chevron_left</mat-icon>
         </button>
         <h2>{{ "customer.customer-list.clients" | translate }}</h2>
@@ -53,7 +53,7 @@
 
             <ng-container matColumnDef="icon">
                 <th mat-header-cell *matHeaderCellDef style="text-align: end">
-                    <button class="edit-button" mat-flat-button color="primary" (click)="createCustomer()">
+                    <button class="edit-button" mat-icon-button  (click)="createCustomer()">
                         <mat-icon>add</mat-icon>
                     </button>
                 </th>
