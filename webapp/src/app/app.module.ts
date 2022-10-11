@@ -24,6 +24,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { ValidateTokenComponent } from './components/validate-token/validate-token.component';
+import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 
 @NgModule({
   declarations: [AppComponent, ToolbarComponent, SnackBarComponent, ValidateTokenComponent],
@@ -32,6 +33,7 @@ import { ValidateTokenComponent } from './components/validate-token/validate-tok
     AppRoutingModule,
     BrowserAnimationsModule,
     NgxMaskModule.forRoot(),
+    MatSelectCountryModule.forRoot('br'),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

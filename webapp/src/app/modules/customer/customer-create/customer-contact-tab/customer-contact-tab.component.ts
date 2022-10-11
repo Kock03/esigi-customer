@@ -7,7 +7,7 @@ import {
   ViewEncapsulation,
   ViewChild,
 } from "@angular/core";
-import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatTable } from "@angular/material/table";
 import { ContactPanelModel } from "src/models/contact-panel-model";
@@ -45,7 +45,7 @@ export class CustomerContactTabComponent implements OnInit {
 
   data: any[] = [];
 
-  contactForm!: FormGroup;
+  contactForm!: UntypedFormGroup;
   Contact: any;
   checked = false;
   method!: string;
@@ -55,7 +55,7 @@ export class CustomerContactTabComponent implements OnInit {
   selectedIndex: number = 0;
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     public dialog: MatDialog,
     private customerContactProvider: CustomerContactProvider,
     private customerProvider: CustomerProvider,

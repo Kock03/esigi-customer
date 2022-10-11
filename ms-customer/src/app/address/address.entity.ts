@@ -1,5 +1,13 @@
 
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  DeleteDateColumn,
+  Column,
+  OneToOne,
+} from 'typeorm';
 import { CustomersEntity } from '../customers/customers.entity';
 
 @Entity()
@@ -8,22 +16,31 @@ export class AddressEntity {
   id: string;
 
   @Column()
-  zipCode: Number;
+  country: string;
+
+  @Column()
+  flag: string;
+
+  @Column()
+  cep: string;
+
+  @Column()
+  number: string;
 
   @Column()
   street: string;
 
   @Column()
-  number: Number;
+  district: string;
 
   @Column()
-  complement: String;
+  state: string;
 
   @Column()
-  state: String;
+  city: string;
 
   @Column()
-  city: String;
+  complement: string;
 
   @OneToOne(() => CustomersEntity, customers => customers.Address) // specify inverse side as a second parameter
   customer: CustomersEntity;

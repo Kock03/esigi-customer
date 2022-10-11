@@ -26,6 +26,7 @@
     "@nestjs/config": "^2.0.1",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/swagger": "^6.1.2",
     "@nestjs/typeorm": "^8.0.3",
     "@ngx-translate/core": "^14.0.0",
     "class-transformer": "^0.5.1",

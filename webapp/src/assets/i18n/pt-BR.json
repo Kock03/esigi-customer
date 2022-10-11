@@ -69,6 +69,7 @@
     },
     "generic": {
         "address": {
+            "zip_code": "Zip Code",
             "cep": "CEP",
             "number": "Número",
             "complement": "Complemento",
@@ -107,5 +108,10 @@
                 "other": "Outro"
             }
         }
+    },
+    "validators": {
+        "collaborator-types-validator": "Selecione o tipo de contrato",
+        "validator-required": "Campo obrigatório",
+        "select-option": "Selecione uma opção"
     }
 }

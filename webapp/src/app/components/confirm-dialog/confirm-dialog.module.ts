@@ -10,17 +10,16 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 
 @NgModule({
-  declarations: [ConfirmDialogComponent],
-  imports: [MatDialogModule, MatButtonModule, CommonModule, FlexLayoutModule, TranslateModule.forRoot({
-    loader: {
-      provide: TranslateLoader,
-      useFactory: translateFactory,
-      deps: [HttpClient],
-    },
-  }),],
-  entryComponents: [ConfirmDialogComponent],
-  exports: [ConfirmDialogComponent],
-  providers: [ConfirmDialogService],
+    declarations: [ConfirmDialogComponent],
+    imports: [MatDialogModule, MatButtonModule, CommonModule, FlexLayoutModule, TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: translateFactory,
+                deps: [HttpClient],
+            },
+        }),],
+    exports: [ConfirmDialogComponent],
+    providers: [ConfirmDialogService]
 })
 export class ConfirmDialogModule { }
 

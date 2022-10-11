@@ -21,7 +21,7 @@
     </div>
   </div>
 
-  <app-customer-register-tab [hidden]="step != 1" [form]="customerForm" (onChange)="handleChanges($event)">
+  <app-customer-register-tab [hidden]="step != 1" [form]="customerForm" [country]="countryControl" (onChange)="handleChanges($event)">
   </app-customer-register-tab>
   <app-customer-contact-tab [hidden]="step != 2" (onChange)="handleChanges($event)"></app-customer-contact-tab>
   <app-customer-contract-tab [hidden]="step != 3"></app-customer-contract-tab>

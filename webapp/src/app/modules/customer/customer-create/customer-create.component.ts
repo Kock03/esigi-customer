@@ -1,11 +1,12 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators, FormControl } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { DocumentValidator } from "src/app/validators/document.validator";
 import { CustomerProvider } from "src/providers/customer.provider";
 import { CepService } from "src/services/cep.service";
 import { SnackBarService } from "src/services/snackbar.service";
+import { RequireMatch } from 'src/services/autocomplete.service';
 
 @Component({
   selector: "app-customer-create",
@@ -14,15 +15,17 @@ import { SnackBarService } from "src/services/snackbar.service";
   encapsulation: ViewEncapsulation.None,
 })
 export class CustomerCreateComponent implements OnInit {
-  customerForm!: FormGroup;
+  customerForm!: UntypedFormGroup;
   step: any = 2;
   customer!: any;
   customerId!: string | null;
+  countryControl = new FormControl('', [Validators.required, RequireMatch]);
+  country: any;
 
   validations = [["corporateName", "tradingName", "cnpj", "mail"]];
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private customerProvider: CustomerProvider,
     private http: HttpClient,
     private cepService: CepService,
@@ -32,6 +35,7 @@ export class CustomerCreateComponent implements OnInit {
   ) { }
 
   async ngOnInit(): Promise<void> {
+    this.country = sessionStorage.getItem('country_value')
     this.customerId = this.route.snapshot.paramMap.get("id");
     if (sessionStorage.getItem("customer_tab") == undefined) {
       sessionStorage.setItem("customer_tab", "1");
@@ -87,26 +91,27 @@ export class CustomerCreateComponent implements OnInit {
         ddi: [null, Validators.required],
       }),
       Address: this.fb.group({
-        zipCode: [
-          null,
-          [
-            Validators.required,
-          ],
-        ],
-        street: [null],
-        number: [null],
-        complement: [null],
-        state: [null],
-        city: [null],
-
+        country: ['', Validators.required],
+        flag: ['', Validators.required],
+        cep: ['', Validators.required],
+        number: ['', Validators.required],
+        complement: ['', Validators.required],
+        street: ['', Validators.required],
+        state: ['', Validators.required],
+        city: ['', Validators.required],
+        district: ['', Validators.required],
       }),
     });
   }
   async saveCustomer() {
     let data = this.customerForm.getRawValue();
+    console.log("🚀 ~ file: customer-create.component.ts ~ line 108 ~ CustomerCreateComponent ~ saveCustomer ~ customerForm", this.customerForm)
+    
     if (this.checkValid()) {
       try {
         const customer = await this.customerProvider.store(data);
+        console.log("🚀 ~ file: customer-create.component.ts ~ line 111 ~ CustomerCreateComponent ~ saveCustomer ~ data", data)
+        
         sessionStorage.setItem("customer_id", customer.id);
         this.handleStep(2);
         this.snackbarService.showAlert("Cliente salvo com sucesso");

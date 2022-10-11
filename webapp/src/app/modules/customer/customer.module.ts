@@ -15,6 +15,8 @@ import { MatIconModule } from "@angular/material/icon";
 import {MatSelectModule} from '@angular/material/select';
 import { NgxMaskModule } from 'ngx-mask';
 import { MatSortModule } from '@angular/material/sort';
+import {  HttpClientModule } from '@angular/common/http';
+
 
 
 
@@ -40,43 +42,35 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    CustomerCreateComponent,
-    CustomerRegisterTabComponent,
-    CustomerContactTabComponent,
-    CustomerContractTabComponent,
-    CustomerListComponent,
-    CustomerContactDialog
-  ],
-  imports: [
-    RouterModule.forChild(routes),
-    CommonModule,
-    MatTabsModule,
-    TranslateModule.forChild(),
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FlexLayoutModule,
-    MatButtonModule,
-    NgxMaskModule,
-    MatCheckboxModule,
-    MatTableModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatSelectModule,  
-    MatSortModule,
-    MatDialogModule,
-    MatSelectCountryModule,
-
-    
-  ],
-  entryComponents: [
-    CustomerListComponent,
-    CustomerRegisterTabComponent,
-    CustomerContactTabComponent,
-    CustomerContractTabComponent,
-    CustomerRegisterTabComponent,
-  ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    declarations: [
+        CustomerCreateComponent,
+        CustomerRegisterTabComponent,
+        CustomerContactTabComponent,
+        CustomerContractTabComponent,
+        CustomerListComponent,
+        CustomerContactDialog
+    ],
+    imports: [
+        RouterModule.forChild(routes),
+        CommonModule,
+        MatTabsModule,
+        TranslateModule.forChild(),
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        FlexLayoutModule,
+        MatButtonModule,
+        NgxMaskModule,
+        MatCheckboxModule,
+        MatTableModule,
+        MatSidenavModule,
+        MatIconModule,
+        MatSelectModule,
+        MatSortModule,
+        MatDialogModule,
+        MatSelectCountryModule,
+        HttpClientModule,
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CustomerModule {}

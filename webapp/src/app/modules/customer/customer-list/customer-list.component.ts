@@ -1,6 +1,6 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -29,7 +29,7 @@ export class CustomerListComponent implements OnInit {
   index: any = null;
   Customer: any;
   step: number = 1;
-  form!: FormGroup;
+  form!: UntypedFormGroup;
   customer!: any;
   params: string = '';
  select: number = 1; 
