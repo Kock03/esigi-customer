@@ -5,6 +5,7 @@ import { NavigationEnd, Router } from "@angular/router";
 import { filter } from "rxjs";
 import { TranslateService } from "@ngx-translate/core";
 import { UserService } from "src/services/user.service";
+import { environment } from "src/environments/environment";
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
@@ -60,7 +61,7 @@ export class AppComponent {
   }
 
   openApp(): void {
-    location.replace(`http://192.168.8.184:3406/portal`);
+    location.replace(environment.port + `3406/portal`);
   }
 
   navigator(route: any) {

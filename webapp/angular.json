@@ -109,5 +109,8 @@
       }
     }
   },
-  "defaultProject": "esigi-customer"
+  "defaultProject": "esigi-customer",
+  "cli": {
+    "analytics": "46f18b06-8b93-48f6-948f-b3d672a4d616"
+  }
 }
