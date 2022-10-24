@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Repository, FindConditions, FindOneOptions, FindManyOptions } from "typeorm";
+import { Repository, FindConditions, FindOneOptions, FindManyOptions, In } from "typeorm";
 
 import { ContactsEntity } from "./contacts.entity";
 import { CreateContacts } from "./dto/create-contacts.dto";
@@ -19,6 +19,20 @@ export class ContactsService {
             order: { createdAt: 'DESC' },
         };
         return await this.contactsRepository.find(options);
+    }
+
+
+
+    async findContactsListById(idList: string[]) {
+        return await this.contactsRepository.find({
+            select: ['id', 'name'],
+            where: { id: In(idList) },
+        });
+    }
+    async findByCustomer(idCustomer: string, name) {
+        return await this.contactsRepository.createQueryBuilder('contacts')
+            .where(`customer_id="${idCustomer}" && name like "%${name}%"`)
+            .getMany();
     }
 
     async findOneOfFall(

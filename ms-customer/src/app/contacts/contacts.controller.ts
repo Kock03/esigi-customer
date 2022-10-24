@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseUUIDPipe, Post, Put } from "@nestjs/common";
+import { Public } from "src/decorators/public.decorator";
 import { ContactsService } from "./contacts.service";
 import { CreateContacts } from "./dto/create-contacts.dto";
 import { UpdateContacts } from "./dto/update-contacts.dto";
@@ -18,6 +19,13 @@ export class ContactsController {
 
     }
 
+    @Public()
+    @Post('find')
+    async find(@Body() body: any) {
+        return await this.contactsService.findByCustomer(body.id, body.name)
+    }
+
+
     @Get(':id')
     async show(@Param('id', new ParseUUIDPipe()) id: string) {
         return await this.contactsService.findOneOfFall({ id });
@@ -26,6 +34,11 @@ export class ContactsController {
     @Get('findContacts/:id')
     async findListInterviews(@Param('id', new ParseUUIDPipe()) id: string) {
         return await this.contactsService.findContacts(id);
+    }
+
+    @Post('/list')
+    async findCustomersListById(@Body() body: any) {
+        return await this.contactsService.findContactsListById(body.idList);
     }
 
     @Put(':id')
