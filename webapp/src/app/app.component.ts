@@ -78,16 +78,20 @@ export class AppComponent {
     }
   }
 
-  openAppPortal(port: number): void {
-    location.replace(`http://localhost:${port}`);
-  }
+  // openCustomer(port: number): void {
+  //   location.replace(`http://localhost:${port}/validate/${this.token}`);
+  // }
 
-  navigator(route: any) {
+   navigator(route: any) {
     switch (route) {
       case 'cliente':
         this.router.navigate(['cliente/lista']);
         break;
     }
+  }
+
+  openAppPortal(port: number): void {
+    location.replace(`http://localhost:${port}`);
   }
 
   logout(): void {

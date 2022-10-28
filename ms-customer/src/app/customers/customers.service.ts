@@ -25,7 +25,7 @@ export class CustomersService {
   constructor(
     @InjectRepository(CustomersEntity)
     private readonly customersRepository: Repository<CustomersEntity>,
-  ) {}
+  ) { }
 
   async findAll() {
     const options: FindManyOptions = {
@@ -54,7 +54,21 @@ export class CustomersService {
     return await this.customersRepository.find({
       select: ['id', 'corporateName'],
       where: { inactive: false },
+      relations: ['Contacts']
+
     });
+
+
+
+    // return from(this.usersRepository.findOne({
+    //   where: { id },
+    //   relations: {
+    //     Client: true,
+    //     Doctor: true,
+    //     DetailsProfile: true
+
+    //   },
+    // }));
   }
 
   async findActive() {
@@ -94,7 +108,7 @@ export class CustomersService {
         case 1:
           customer = await this.customersRepository.find({
             select: ['id', 'corporateName', 'birthDate'],
-            relations: ['Phone'],
+            relations: ['Phone', 'Contacts'],
             where: [
               {
                 corporateName: Like(`%${corporateName}%`),
@@ -108,7 +122,7 @@ export class CustomersService {
         case 2:
           customer = await this.customersRepository.find({
             select: ['id', 'corporateName', 'birthDate'],
-            relations: ['Phone'],
+            relations: ['Phone', 'Contacts'],
             where: [
               { corporateName: Like(`%${corporateName}%`), inactive: false },
             ],
@@ -118,7 +132,7 @@ export class CustomersService {
         case 3:
           customer = await this.customersRepository.find({
             select: ['id', 'corporateName', 'birthDate'],
-            relations: ['Phone'],
+            relations: ['Phone', 'Contacts'],
             where: [
               { corporateName: Like(`%${corporateName}%`), inactive: true },
             ],

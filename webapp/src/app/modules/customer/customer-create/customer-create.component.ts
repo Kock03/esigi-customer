@@ -7,6 +7,7 @@ import { CustomerProvider } from "src/providers/customer.provider";
 import { CepService } from "src/services/cep.service";
 import { SnackBarService } from "src/services/snackbar.service";
 import { RequireMatch } from 'src/services/autocomplete.service';
+import { DateValidator } from 'src/app/validators/date.validator';
 
 @Component({
   selector: "app-customer-create",
@@ -75,7 +76,7 @@ export class CustomerCreateComponent implements OnInit {
     this.customerForm = this.fb.group({
       corporateName: ['', Validators.required],
       tradingName: ['', Validators.required],
-      birthDate: this.fb.control({ value: ' ', disabled: false }, [DocumentValidator.isValidData(), Validators.required]),
+      birthDate: this.fb.control({ value: new Date().toLocaleDateString(), disabled: false }, [DateValidator.isValidData(), Validators.required]),
       inactive: [false],
       cnpj: this.fb.control({ value: null, disabled: false }, [
         DocumentValidator.isValidCnpj(), Validators.required
