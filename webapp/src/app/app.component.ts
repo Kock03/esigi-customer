@@ -5,7 +5,9 @@ import { NavigationEnd, Router } from "@angular/router";
 import { filter } from "rxjs";
 import { TranslateService } from "@ngx-translate/core";
 import { UserService } from "src/services/user.service";
+// import { environment } from "src/environments/environment.prod";
 import { environment } from "src/environments/environment";
+
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
@@ -69,7 +71,11 @@ export class AppComponent {
   }
 
   openApp(port: number): void {
-    location.replace(`http://localhost:${port}/validate/${this.token}`);
+    if(environment.production === false){
+      this.openAppPortal(port)
+    }else{+
+      location.replace(environment.port +`${port}/validate/${this.token}`);
+    }
   }
 
   openAppPortal(port: number): void {
