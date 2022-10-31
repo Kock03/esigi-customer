@@ -58,17 +58,6 @@ export class CustomersService {
 
     });
 
-
-
-    // return from(this.usersRepository.findOne({
-    //   where: { id },
-    //   relations: {
-    //     Client: true,
-    //     Doctor: true,
-    //     DetailsProfile: true
-
-    //   },
-    // }));
   }
 
   async findActive() {
