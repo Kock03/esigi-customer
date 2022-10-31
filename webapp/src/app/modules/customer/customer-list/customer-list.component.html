@@ -1,10 +1,10 @@
 <div id="CustomerList" class="page">
-    <div  class="btn-header" fxLayout="row"  >
-        <button   mat-icon-button (click)="goHome(3406)" color="primary" style="margin-top: 0">
-          <mat-icon>chevron_left</mat-icon>
+    <div class="btn-header" fxLayout="row">
+        <button mat-icon-button (click)="goHome(3406)" color="primary" style="margin-top: 0">
+            <mat-icon>chevron_left</mat-icon>
         </button>
         <h2>{{ "customer.customer-list.clients" | translate }}</h2>
-      </div>
+    </div>
     <div fxLayout="row" fxLayoutAlign="space-between">
         <form class="search" fxLayoutGap="16px">
             <mat-form-field appearance="outline">
@@ -53,13 +53,13 @@
 
             <ng-container matColumnDef="icon">
                 <th mat-header-cell *matHeaderCellDef style="text-align: end">
-                    <button class="edit-button" mat-icon-button  (click)="createCustomer()">
+                    <button class="edit-button" mat-icon-button (click)="createCustomer()">
                         <mat-icon>add</mat-icon>
                     </button>
                 </th>
                 <th mat-header-cell *matHeaderCellDef></th>
                 <td class="button-tab" mat-cell *matCellDef="let customer">
-                    <button class="table-button" mat-button (click)="editCustomer(customer.id)">
+                    <button class="table-button" mat-button (click)="editCustomer(customer.id,  customer.Address)">
                         <mat-icon>edit</mat-icon>
                     </button>
                     <button class="table-button" mat-button (click)="deleteCustomer(customer.id)">

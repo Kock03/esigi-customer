@@ -32,7 +32,7 @@ export class CustomerListComponent implements OnInit {
   form!: UntypedFormGroup;
   customer!: any;
   params: string = '';
- select: number = 1; 
+  select: number = 1;
 
   constructor(
     private liveAnnouncer: LiveAnnouncer,
@@ -66,8 +66,8 @@ export class CustomerListComponent implements OnInit {
   }
 
   async selectList(ev: any) {
-   this.select = ev.value
-   this.searchCustomers();
+    this.select = ev.value
+    this.searchCustomers();
 
   }
 
@@ -105,10 +105,14 @@ export class CustomerListComponent implements OnInit {
     this.router.navigate(['cliente/novo']);
   }
 
-  editCustomer(customerId: any) {
+  editCustomer(customerId: any, address: any) {
     this.router.navigate([`cliente/${customerId}`]);
     const method = 'edit';
     sessionStorage.setItem('customer_method', method)
+    sessionStorage.setItem('flag_value', address.flag);
+    sessionStorage.setItem('country_value', address.country);
+
+
     sessionStorage.setItem('customer_id', customerId);
   }
 
