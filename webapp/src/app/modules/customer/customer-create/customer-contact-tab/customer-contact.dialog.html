@@ -11,100 +11,80 @@
         <form [formGroup]="contactForm" fxLayout="column">
           <div fxFlex="100" fxLayout="row" fxLayoutGap="16px">
             <mat-form-field fxFlex="50" appearance="outline">
-              <mat-label>  {{ "customer.customer-list.name" | translate }}</mat-label>
+              <mat-label> {{ "customer.customer-list.name" | translate }}</mat-label>
               <input matInput placeholder="Nome" formControlName="name" />
-              <mat-error
-              *ngIf="
+              <mat-error *ngIf="
               contactForm &&
               contactForm.controls['name'].hasError('required')
-              "
-            >
-            {{ "customer.customer-mat-error.required-field" | translate }}
-            </mat-error>
+              ">
+                {{ "customer.customer-mat-error.required-field" | translate }}
+              </mat-error>
             </mat-form-field>
-  
+
             <mat-form-field appearance="outline" fxFlex="50">
               <mat-label>{{ "customer.customer-contact.office" | translate }}</mat-label>
               <mat-select matInput disableRipple formControlName="office">
-                <mat-option *ngFor="let role of roleList" [value]="role.value"
-                  >{{ role.name }}</mat-option
-                >
+                <mat-option *ngFor="let postion of positions" [value]="postion.id">{{ postion.value }}</mat-option>
               </mat-select>
-              <mat-error
-              *ngIf="
+              <mat-error *ngIf="
               contactForm &&
               contactForm.controls['office'].hasError('required')
-              "
-            >
-            {{ "customer.customer-mat-error.required-field" | translate }}
-            </mat-error>
+              ">
+                {{ "customer.customer-mat-error.required-field" | translate }}
+              </mat-error>
             </mat-form-field>
           </div>
-  
+
           <div formGroupName="Phone" fxFlex="100" fxLayoutGap="16px">
             <mat-form-field fxFlex="15" appearance="outline">
               <mat-label>{{ "customer.customer-register.phone.ddi" | translate }}</mat-label>
-              <input matInput placeholder="DDI" formControlName="ddi" mask="+00"
-                />
-                <mat-error
-                *ngIf="
+              <input matInput placeholder="DDI" formControlName="ddi" mask="+00" />
+              <mat-error *ngIf="
                 phoneForm &&
                 phoneForm.controls['ddi'].hasError('required')
-                "
-              >
-              {{ "customer.customer-mat-error.required-field" | translate }}
+                ">
+                {{ "customer.customer-mat-error.required-field" | translate }}
               </mat-error>
             </mat-form-field>
-  
+
             <mat-form-field fxFlex="15" appearance="outline">
               <mat-label>{{ "customer.customer-register.phone.ddd" | translate }}</mat-label>
-              <input matInput placeholder="DDD" formControlName="ddd" mask="(00)"
-                />
-                <mat-error
-                *ngIf="
+              <input matInput placeholder="DDD" formControlName="ddd" mask="(00)" />
+              <mat-error *ngIf="
                 phoneForm &&
                 phoneForm.controls['ddd'].hasError('required')
-                "
-              >
-              {{ "customer.customer-mat-error.required-field" | translate }}
+                ">
+                {{ "customer.customer-mat-error.required-field" | translate }}
               </mat-error>
             </mat-form-field>
-  
+
             <mat-form-field fxFlex="70" appearance="outline">
               <mat-label>{{ "customer.customer-register.phone.phone_number" | translate }}</mat-label>
-              <input matInput placeholder="Telefone" formControlName="phoneNumber"
-                mask="0000-0000||00000-0000" />
-                <mat-error
-                *ngIf="
+              <input matInput placeholder="Telefone" formControlName="phoneNumber" mask="0000-0000||00000-0000" />
+              <mat-error *ngIf="
                 phoneForm &&
                 phoneForm.controls['phoneNumber'].hasError('required')
-                "
-              >
-              {{ "customer.customer-mat-error.required-field" | translate }}
+                ">
+                {{ "customer.customer-mat-error.required-field" | translate }}
               </mat-error>
             </mat-form-field>
           </div>
-  
+
           <div fxFlex="100" fxLayout="row" fxLayoutGap="16px">
             <mat-form-field fxFlex="100" appearance="outline">
               <mat-label>{{ "customer.customer-register.email" | translate }}</mat-label>
               <input matInput placeholder="Email" formControlName="mail" />
-              <mat-error
-                *ngIf="
+              <mat-error *ngIf="
                 contactForm && contactForm.controls['mail'].hasError('email')
-                "
-              >
-              {{ "customer.customer-mat-error.invalid-email" | translate }}</mat-error
-              >
-              <mat-error
-                *ngIf="
+                ">
+                {{ "customer.customer-mat-error.invalid-email" | translate }}</mat-error>
+              <mat-error *ngIf="
                   contactForm && contactForm.controls['mail'].hasError('required')
-                "
-              >
-              {{ "customer.customer-mat-error.required-field" | translate }}
+                ">
+                {{ "customer.customer-mat-error.required-field" | translate }}
               </mat-error>
             </mat-form-field>
-  
+
           </div>
         </form>
       </mat-dialog-content>
@@ -114,11 +94,7 @@
           <button mat-flat-button mat-dialog-close (click)="onNoClick()">
             Cancelar
           </button>
-          <button
-            color="primary"
-            [disabled]="contactForm.invalid"
-            mat-flat-button
-            [mat-dialog-close]="true"
+          <button color="primary" [disabled]="contactForm.invalid" mat-flat-button [mat-dialog-close]="true"
             (click)="save()">
             Salvar
           </button>

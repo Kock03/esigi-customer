@@ -7,10 +7,12 @@ import {
   ViewEncapsulation,
   ViewChild,
 } from "@angular/core";
+
 import { FormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatTable } from "@angular/material/table";
 import { ContactPanelModel } from "src/models/contact-panel-model";
+import { ConfigProvider } from "src/providers/config-provider";
 import { CustomerContactProvider } from "src/providers/contact.provider";
 import { CustomerProvider } from "src/providers/customer.provider";
 import { ConfirmDialogService } from "src/services/confirn-dialog.service";
@@ -53,10 +55,12 @@ export class CustomerContactTabComponent implements OnInit {
   contactId!: string;
   customerMethod!: string;
   selectedIndex: number = 0;
+  positions: any[] = []
 
   constructor(
     private fb: UntypedFormBuilder,
     public dialog: MatDialog,
+    private configProvider: ConfigProvider,
     private customerContactProvider: CustomerContactProvider,
     private customerProvider: CustomerProvider,
     private snackbarService: SnackBarService,
@@ -64,15 +68,39 @@ export class CustomerContactTabComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getKeys();
     this.customerMethod = sessionStorage.getItem("customer_method")!;
     if (this.customerMethod === "edit") {
       this.getContactList();
     }
   }
 
+  async getKeys() {
+    let data = {
+      key: ["customer_positions"]
+    }
+    const arrays = await this.configProvider.findKeys('customer', data)
+
+    const keyList = arrays.reduce(function (array: any, register: any) {
+      array[register.key] = array[register.key] || [];
+      array[register.key].push({ id: register.id, value: register.value });
+      return array;
+    }, Object.create(null));
+    this.positions = keyList['customer_positions'];
+    console.log(this.positions)
+
+  }
+
   async getContactList() {
     this.customerId = sessionStorage.getItem("customer_id");
     this.data = await this.customerContactProvider.findContacts(this.customerId);
+    for (let i = 0; i < this.data.length; i++) {
+      for (let j = 0; j < this.positions.length; j++) {
+        if (this.data[i].office === this.positions[j].id) {
+          this.data[i].office = this.positions[j].value
+        }
+      }
+    }
 
     this.contactTable.renderRows();
 

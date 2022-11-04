@@ -3,6 +3,7 @@
 import { Component, EventEmitter, Inject, Output } from "@angular/core";
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { ConfigProvider } from "src/providers/config-provider";
 import { CustomerContactProvider } from "src/providers/contact.provider";
 import { SnackBarService } from "src/services/snackbar.service";
 
@@ -19,37 +20,21 @@ export class CustomerContactDialog {
   customerId!: string | null;
   contactId!: string | null;
   phoneForm!: UntypedFormGroup;
-
-  roleList = [
-    {
-      id: 1,
-      name: "Comprador",
-      value: "Comprador",
-    },
-    {
-      id: 2,
-      name: "Diretor de TI",
-      value: "Diretor de TI",
-    },
-    {
-      id: 3,
-      name: "Gerente de TI",
-      value: "Gerente de TI",
-    },
-  ];
-
+  positions: any[] = []
 
   constructor(
     public dialogRef: MatDialogRef<CustomerContactDialog>,
     private customerContactProvider: CustomerContactProvider,
     private snackbarService: SnackBarService,
     private fb: UntypedFormBuilder,
+    private configProvider: ConfigProvider,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   ngOnInit(): void {
     this.method = sessionStorage.getItem('method')!;
     this.customerId = sessionStorage.getItem('customer_id')!;
+    this.getKeys();
     this.initForm();
 
     const phoneForm = this.contactForm.controls[
@@ -57,6 +42,22 @@ export class CustomerContactDialog {
     ] as UntypedFormGroup;
     this.phoneForm = phoneForm
     phoneForm.controls['ddi'].valueChanges.subscribe(res => { });
+  }
+
+  async getKeys() {
+    let data = {
+      key: ["customer_positions"]
+    }
+    const arrays = await this.configProvider.findKeys('customer', data)
+
+    const keyList = arrays.reduce(function (array: any, register: any) {
+      array[register.key] = array[register.key] || [];
+      array[register.key].push({ id: register.id, value: register.value });
+      return array;
+    }, Object.create(null));
+    this.positions = keyList['customer_positions'];
+    console.log(this.positions)
+
   }
 
   initForm(): void {

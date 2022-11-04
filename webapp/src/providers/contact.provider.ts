@@ -1,7 +1,7 @@
 import { HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { ApiGateway } from "src/api-gateway";
-import { environment } from "src/environments/environment.prod";
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: "root",
@@ -14,7 +14,7 @@ export class CustomerContactProvider {
   findAll(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .get("contacts")
+        .get(environment.CUSTOMER_MS + "contacts")
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
@@ -24,7 +24,7 @@ export class CustomerContactProvider {
   findOne(id: string | null): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .get("contacts/:id", { id: id })
+        .get(environment.CUSTOMER_MS + "contacts/:id", { id: id })
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
@@ -34,7 +34,7 @@ export class CustomerContactProvider {
   findContacts(id: string | null): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .get("contacts/findContacts/:id", { id: id })
+        .get(environment.CUSTOMER_MS + "contacts/findContacts/:id", { id: id })
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
@@ -44,7 +44,7 @@ export class CustomerContactProvider {
   update(id: string | null, contact: any): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .put("contacts/:id", { id: id }, contact)
+        .put(environment.CUSTOMER_MS + "contacts/:id", { id: id }, contact)
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
@@ -54,7 +54,7 @@ export class CustomerContactProvider {
   store(contact: any): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .post("contacts", contact)
+        .post(environment.CUSTOMER_MS + "contacts", contact)
 
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
@@ -65,7 +65,7 @@ export class CustomerContactProvider {
   destroy(contactId: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .delete("contacts/" + contactId)
+        .delete(environment.CUSTOMER_MS + "contacts/" + contactId)
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
