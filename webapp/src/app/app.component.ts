@@ -5,7 +5,9 @@ import { NavigationEnd, Router } from "@angular/router";
 import { filter } from "rxjs";
 import { TranslateService } from "@ngx-translate/core";
 import { UserService } from "src/services/user.service";
+// import { environment } from "src/environments/environment.prod";
 import { environment } from "src/environments/environment";
+
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
