@@ -311,7 +311,7 @@ export class ApiGateway {
             if (error.status == 403) {
                 setTimeout(() => {
                   localStorage.clear();
-                  location.replace(environment.portal);
+                  location.replace(`http://192.168.8.184:3406/portal`);
                 }, 2000);
               } 
             if (error.status == 401) {
