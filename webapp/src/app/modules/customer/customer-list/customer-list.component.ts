@@ -33,6 +33,7 @@ export class CustomerListComponent implements OnInit {
   customer!: any;
   params: string = '';
   select: number = 1;
+  token!: string;
 
   constructor(
     private liveAnnouncer: LiveAnnouncer,
@@ -141,8 +142,8 @@ export class CustomerListComponent implements OnInit {
     )
   }
 
-  goHome(port: number): void {
-    location.replace(`http://localhost:${port}/portal`);
+  goHome(): void {
+    location.replace(`http://192.168.8.184:3406/validate/${this.token}`);
   }
 }
 
