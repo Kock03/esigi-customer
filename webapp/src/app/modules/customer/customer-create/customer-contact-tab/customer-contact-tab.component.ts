@@ -71,6 +71,8 @@ export class CustomerContactTabComponent implements OnInit {
     this.getKeys();
     this.customerMethod = sessionStorage.getItem("customer_method")!;
     if (this.customerMethod === "edit") {
+      this.getKeys();
+
       this.getContactList();
     }
   }
