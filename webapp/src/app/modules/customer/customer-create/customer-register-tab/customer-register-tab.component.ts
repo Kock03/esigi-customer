@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Form, UntypedFormBuilder, UntypedFormGroup, NgModel, FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ConfigProvider } from 'src/providers/config-provider';
 import { CepService } from 'src/services/cep.service';
 
 @Component({
@@ -24,12 +25,16 @@ export class CustomerRegisterTabComponent implements OnInit {
   defaultValue: any;
   Country!: any;
   token!: string;
+  ddi: any[] = []
 
   constructor(private cepService: CepService,
     private fb: UntypedFormBuilder,
+    private configProvider: ConfigProvider,
+
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.getKeys()
     this.token = localStorage.getItem('token')!;
     this.searchEnabled = false;
     this.customerId = this.route.snapshot.paramMap.get('id');
@@ -59,11 +64,27 @@ export class CustomerRegisterTabComponent implements OnInit {
       this.view = false;
     }
 
+
     this.defaultValue = {
       name: sessionStorage.getItem('country_value'),
       alpha2Code: sessionStorage.getItem('flag_value')
 
     };
+  }
+  async getKeys() {
+    let data = {
+      key: ["ddi"]
+    }
+    const arrays = await this.configProvider.findKeys('generic', data)
+
+    const keyList = arrays.reduce(function (array: any, register: any) {
+      array[register.key] = array[register.key] || [];
+      array[register.key].push({ id: register.id, value: register.value });
+      return array;
+    }, Object.create(null));
+    this.ddi = keyList['ddi'];
+    console.log(this.ddi)
+
   }
 
   onCountrySelected(country: any) {

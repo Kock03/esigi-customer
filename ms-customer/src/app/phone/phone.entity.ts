@@ -21,7 +21,7 @@ export class PhoneEntity {
   @Column({ name: 'ddd', length: 2 })
   ddd: string;
 
-  @Column({ name: 'ddi', length: 3 })
+  @Column()
   ddi: string;
 
   @OneToOne(() => CustomersEntity, (customer) => customer.Phone)

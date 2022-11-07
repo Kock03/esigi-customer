@@ -20,8 +20,7 @@ export class CreatePhoneDto {
   ddd: string;
 
   @IsNotEmpty()
-  @MinLength(2)
-  @MaxLength(2)
+
   @IsString()
   ddi: string;
 }
