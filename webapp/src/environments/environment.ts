@@ -4,8 +4,19 @@
 
 export const environment = {
   production: false,
-  CUSTOMER_MS: 'http://localhost:3506/api/v1/',
+  COLLABORATOR_MS: 'localhost:3501/api/v1/',
+  RESUME_MS: 'localhost:3502/api/v1/',
+  JOBS_MS: 'localhost:3503/api/v1/',
+  SETTING_MS: 'localhost:3504/api/v1/',
+  CONFIG_MS: 'localhost:3508/api/v1/registers/',
+  AUTH_SERVICE_MS: 'localhost:3500/api/v1/',
+  CUSTOMER_MS: 'localhost:3506/api/v1/',
+  PROJECT_MS: 'localhost:3505/api/v1/',
   portal: 'http://localhost:3406/login',
+  port: 'http://localhost:',
+
+
+
   message: 'LOCAL',
   protocol: 'http',
 };

@@ -19,8 +19,7 @@ export class UpdatePhoneDto {
   ddd: string;
 
   @IsOptional()
-  @MinLength(2)
-  @MaxLength(2)
+
   @IsString()
   ddi: string;
 }

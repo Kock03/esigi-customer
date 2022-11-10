@@ -14,7 +14,7 @@ export class CustomerProvider {
   findAll(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .get('customers')
+        .get(environment.CUSTOMER_MS + 'customers')
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
@@ -34,7 +34,7 @@ export class CustomerProvider {
   findActive(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .get('customers/list/active')
+        .get(environment.CUSTOMER_MS + 'customers/list/active')
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
@@ -43,7 +43,7 @@ export class CustomerProvider {
 
   findByName(data: any): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.apiGateway.post('customers/find', data)
+      this.apiGateway.post(environment.CUSTOMER_MS + 'customers/find', data)
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
@@ -53,7 +53,7 @@ export class CustomerProvider {
   findOne(id: string | null): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .get('customers/:id', { id: id })
+        .get(environment.CUSTOMER_MS + 'customers/:id', { id: id })
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);
@@ -64,7 +64,7 @@ export class CustomerProvider {
     return new Promise((resolve, reject) => {
       this.apiGateway
         .put(
-          'customers/:id',
+          environment.CUSTOMER_MS + 'customers/:id',
           { id: id },
           customer
         )
@@ -77,7 +77,7 @@ export class CustomerProvider {
   store(customer: any): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .post('customers', customer)
+        .post(environment.CUSTOMER_MS + 'customers', customer)
 
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
@@ -88,7 +88,7 @@ export class CustomerProvider {
   destroy(customerId: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this.apiGateway
-        .delete('customers/' + customerId)
+        .delete(environment.CUSTOMER_MS + 'customers/' + customerId)
         .subscribe((response: HttpResponse<any>) => {
           resolve(response.body);
         }, reject);

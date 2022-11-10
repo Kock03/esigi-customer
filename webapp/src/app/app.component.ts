@@ -5,7 +5,9 @@ import { NavigationEnd, Router } from "@angular/router";
 import { filter } from "rxjs";
 import { TranslateService } from "@ngx-translate/core";
 import { UserService } from "src/services/user.service";
+// import { environment } from "src/environments/environment.prod";
 import { environment } from "src/environments/environment";
+
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
@@ -18,6 +20,7 @@ export class AppComponent {
   sidenav!: MatSidenav;
   openTree: boolean = false;
   customer: string = "cliente";
+  home: string = "portal";
   token!: string;
 
   constructor(
@@ -39,7 +42,7 @@ export class AppComponent {
         if (valid === -1) {
            this.token = localStorage.getItem('token')!;
           if (!this.token) {
-            location.replace(environment.portal);
+            location.replace(`http://192.168.8.184:3406/portal`);
           }
         }
         this.activeMenu = res.url.split("/")[1];
@@ -68,24 +71,15 @@ export class AppComponent {
     this.openTree = this.openTree === true ? false : true;
   }
 
-  openApp(port: number): void {
-    location.replace(`http://localhost:${port}/validate/${this.token}`);
-  }
-
-  // openCustomer(port: number): void {
-  //   location.replace(`http://localhost:${port}/validate/${this.token}`);
-  // }
-
    navigator(route: any) {
     switch (route) {
       case 'cliente':
-        this.router.navigate(['cliente/lista']);
+         location.replace(`http://192.168.8.184:3403/validate/${this.token}`)
+        break;
+        case 'portal':
+          location.replace(`http://192.168.8.184:3406/validate/${this.token}`);
         break;
     }
-  }
-
-  openAppPortal(port: number): void {
-    location.replace(`http://localhost:${port}`);
   }
 
   logout(): void {
