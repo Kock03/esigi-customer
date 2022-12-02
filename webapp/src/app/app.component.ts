@@ -42,7 +42,7 @@ export class AppComponent {
         if (valid === -1) {
            this.token = localStorage.getItem('token')!;
           if (!this.token) {
-            location.replace(`http://192.168.8.184:3406/portal`);
+            location.replace(`http://44.198.33.18:3406/portal`);
           }
         }
         this.activeMenu = res.url.split("/")[1];
@@ -74,10 +74,10 @@ export class AppComponent {
    navigator(route: any) {
     switch (route) {
       case 'cliente':
-         location.replace(`http://192.168.8.184:3403/validate/${this.token}`)
+         location.replace(`http://44.198.33.18:3403/validate/${this.token}`)
         break;
         case 'portal':
-          location.replace(`http://192.168.8.184:3406/validate/${this.token}`);
+          location.replace(`http://44.198.33.18:3406/validate/${this.token}`);
         break;
     }
   }

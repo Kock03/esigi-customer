@@ -28,7 +28,7 @@ export class RolesGuard implements CanActivate {
     const token = request.headers.authorization;
     return new Promise<boolean>(async (resolve, reject) => {
       const { data: user } = await this.httpService.axiosRef.get(
-        'http://localhost:3500/api/v1/auth/decode',
+        'http://44.198.33.18:3500/api/v1/auth/decode',
         {
           headers: {
             authorization: `${token.split('Bearer ')[1]}`,
@@ -38,7 +38,7 @@ export class RolesGuard implements CanActivate {
       if (!user) resolve(false);
       // Fazer um request para o ms-authorization usando o user.login para recuperar os perfis do usuário
       // this.httpService.axiosRef
-      //   .get(`http://localhost:3507/api/v1/profiles/${user.login}`, {})
+      //   .get(`http://44.198.33.18:3507/api/v1/profiles/${user.login}`, {})
       //   .then((res) => {
       //     const user: UserProfile = res.data.profiles;
       //     user.profiles.forEach((profile) => {

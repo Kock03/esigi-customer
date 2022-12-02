@@ -280,7 +280,7 @@ export class ApiGateway {
             if (error.status == 403) {
                 setTimeout(() => {
                     localStorage.clear();
-                    location.replace(`http://192.168.8.184:3406/portal`);
+                    location.replace(`http://44.198.33.18:3406/portal`);
                 }, 2000);
             }
             if (error.status == 401) {
