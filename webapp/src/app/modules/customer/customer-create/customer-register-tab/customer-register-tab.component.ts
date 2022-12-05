@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
-import { Form, UntypedFormBuilder, UntypedFormGroup, NgModel, FormGroup, FormControl } from '@angular/forms';
+import { Form, FormBuilder, NgModel, FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ConfigProvider } from 'src/providers/config-provider';
 import { CepService } from 'src/services/cep.service';
@@ -11,15 +11,15 @@ import { CepService } from 'src/services/cep.service';
   encapsulation: ViewEncapsulation.None
 })
 export class CustomerRegisterTabComponent implements OnInit {
-  @Input('form') customerForm!: UntypedFormGroup;
+  @Input('form') customerForm!: FormGroup;
   @Output('onChange') onChange: EventEmitter<any> = new EventEmitter();
   @Input('country') countryControl!: FormControl;
 
 
   customerId!: string | null;
   customer!: any;
-  addressForm!: UntypedFormGroup;
-  phoneForm!: UntypedFormGroup;
+  addressForm!: FormGroup;
+  phoneForm!: FormGroup;
   view!: boolean;
   searchEnabled!: boolean;
   defaultValue: any;
@@ -28,7 +28,7 @@ export class CustomerRegisterTabComponent implements OnInit {
   ddi: any[] = []
 
   constructor(private cepService: CepService,
-    private fb: UntypedFormBuilder,
+    private fb: FormBuilder,
     private configProvider: ConfigProvider,
 
     private route: ActivatedRoute) { }
@@ -50,13 +50,13 @@ export class CustomerRegisterTabComponent implements OnInit {
 
         // const addressForm = this.customerForm.controls[
         //   'Address'
-        // ] as UntypedFormGroup;
+        // ] as FormGroup;
         // this.addressForm = addressForm
         // addressForm.controls['cep'].valueChanges.subscribe(res => { });
 
         const phoneForm = this.customerForm.controls[
           'Phone'
-        ] as UntypedFormGroup;
+        ] as FormGroup;
         this.phoneForm = phoneForm
         phoneForm.controls['ddi'].valueChanges.subscribe(res => { });
       })
