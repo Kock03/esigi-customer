@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
-import { Form, FormBuilder, FormGroup, NgModel, FormGroup, FormControl } from '@angular/forms';
+import { Form, FormBuilder, FormGroup, NgModel, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ConfigProvider } from 'src/providers/config-provider';
 import { CepService } from 'src/services/cep.service';
