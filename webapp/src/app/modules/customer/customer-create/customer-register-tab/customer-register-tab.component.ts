@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
-import { Form, UntypedFormBuilder, UntypedFormGroup, NgModel, FormGroup, FormControl } from '@angular/forms';
+import { Form, FormBuilder, UntypedFormGroup, NgModel, FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ConfigProvider } from 'src/providers/config-provider';
 import { CepService } from 'src/services/cep.service';
@@ -28,7 +28,7 @@ export class CustomerRegisterTabComponent implements OnInit {
   ddi: any[] = []
 
   constructor(private cepService: CepService,
-    private fb: UntypedFormBuilder,
+    private fb: FormBuilder,
     private configProvider: ConfigProvider,
 
     private route: ActivatedRoute) { }

@@ -1,7 +1,7 @@
 
 
 import { Component, EventEmitter, Inject, Output } from "@angular/core";
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
+import { FormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { ConfigProvider } from "src/providers/config-provider";
 import { CustomerContactProvider } from "src/providers/contact.provider";
@@ -26,7 +26,7 @@ export class CustomerContactDialog {
     public dialogRef: MatDialogRef<CustomerContactDialog>,
     private customerContactProvider: CustomerContactProvider,
     private snackbarService: SnackBarService,
-    private fb: UntypedFormBuilder,
+    private fb: FormBuilder,
     private configProvider: ConfigProvider,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
