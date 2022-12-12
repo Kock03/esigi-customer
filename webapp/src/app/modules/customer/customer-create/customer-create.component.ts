@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { UntypedFormBuilder, UntypedFormGroup, Validators, FormControl } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators, FormControl } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { DocumentValidator } from "src/app/validators/document.validator";
 import { CustomerProvider } from "src/providers/customer.provider";
@@ -16,17 +16,18 @@ import { DateValidator } from 'src/app/validators/date.validator';
   encapsulation: ViewEncapsulation.None,
 })
 export class CustomerCreateComponent implements OnInit {
-  customerForm!: UntypedFormGroup;
+  customerForm!: FormGroup;
   step: any = 2;
   customer!: any;
   customerId!: string | null;
   countryControl = new FormControl('', [Validators.required, RequireMatch]);
   country: any;
+  token!: string;
 
   validations = [["corporateName", "tradingName", "cnpj", "mail"]];
 
   constructor(
-    private fb: UntypedFormBuilder,
+    private fb: FormBuilder,
     private customerProvider: CustomerProvider,
     private http: HttpClient,
     private cepService: CepService,
@@ -38,6 +39,7 @@ export class CustomerCreateComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.country = sessionStorage.getItem('country_value')
     this.customerId = this.route.snapshot.paramMap.get("id");
+    this.token = localStorage.getItem('token')!;
     if (sessionStorage.getItem("customer_tab") == undefined) {
       sessionStorage.setItem("customer_tab", "1");
     }

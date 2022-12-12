@@ -1,7 +1,7 @@
 
 
 import { Component, EventEmitter, Inject, Output } from "@angular/core";
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { ConfigProvider } from "src/providers/config-provider";
 import { CustomerContactProvider } from "src/providers/contact.provider";
@@ -15,18 +15,21 @@ import { SnackBarService } from "src/services/snackbar.service";
 export class CustomerContactDialog {
   @Output() onChange: EventEmitter<any> = new EventEmitter();
 
-  contactForm!: UntypedFormGroup;
+  // contactForm!: UntypedFormGroup;
+  contactForm!: FormGroup;
   method!: string;
   customerId!: string | null;
   contactId!: string | null;
-  phoneForm!: UntypedFormGroup;
+  // phoneForm!: UntypedFormGroup;
+  phoneForm!: FormGroup;
   positions: any[] = []
 
   constructor(
     public dialogRef: MatDialogRef<CustomerContactDialog>,
     private customerContactProvider: CustomerContactProvider,
     private snackbarService: SnackBarService,
-    private fb: UntypedFormBuilder,
+    // private fb: UntypedFormBuilder,
+    private fb: FormBuilder,
     private configProvider: ConfigProvider,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
@@ -39,7 +42,7 @@ export class CustomerContactDialog {
 
     const phoneForm = this.contactForm.controls[
       'Phone'
-    ] as UntypedFormGroup;
+    ] as FormGroup;
     this.phoneForm = phoneForm
     phoneForm.controls['ddi'].valueChanges.subscribe(res => { });
   }
