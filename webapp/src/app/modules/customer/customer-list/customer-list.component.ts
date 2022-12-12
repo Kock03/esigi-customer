@@ -1,6 +1,6 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { UntypedFormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -29,7 +29,7 @@ export class CustomerListComponent implements OnInit {
   index: any = null;
   Customer: any;
   step: number = 1;
-  form!: UntypedFormGroup;
+  form!: FormGroup;
   customer!: any;
   params: string = '';
   select: number = 1;
@@ -143,7 +143,10 @@ export class CustomerListComponent implements OnInit {
   }
 
   goHome(): void {
-    location.replace(`http://192.168.8.184:3406/validate/${this.token}`);
+    // location.replace(`http://192.168.8.184:3406/validate/${this.token}`);
+    this.token = localStorage.getItem('token')!;
+    location.replace(`http://localhost:3406/validate/${this.token}`)
+    
   }
 }
 
