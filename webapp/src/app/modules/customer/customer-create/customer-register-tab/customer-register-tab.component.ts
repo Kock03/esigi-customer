@@ -25,7 +25,6 @@ export class CustomerRegisterTabComponent implements OnInit {
   defaultValue: any;
   Country!: any;
   token!: string;
-  ddi: any[] = []
 
   constructor(private cepService: CepService,
     private fb: FormBuilder,
@@ -34,7 +33,6 @@ export class CustomerRegisterTabComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.getKeys()
     this.token = localStorage.getItem('token')!;
     this.searchEnabled = false;
     this.customerId = this.route.snapshot.paramMap.get('id');
@@ -71,21 +69,7 @@ export class CustomerRegisterTabComponent implements OnInit {
 
     };
   }
-  async getKeys() {
-    let data = {
-      key: ["ddi"]
-    }
-    const arrays = await this.configProvider.findKeys('generic', data)
 
-    const keyList = arrays.reduce(function (array: any, register: any) {
-      array[register.key] = array[register.key] || [];
-      array[register.key].push({ id: register.id, value: register.value });
-      return array;
-    }, Object.create(null));
-    this.ddi = keyList['ddi'];
-    console.log(this.ddi)
-
-  }
 
   onCountrySelected(country: any) {
     console.log(country)
