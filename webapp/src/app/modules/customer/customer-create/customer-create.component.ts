@@ -22,6 +22,7 @@ export class CustomerCreateComponent implements OnInit {
   customerId!: string | null;
   countryControl = new FormControl('', [Validators.required, RequireMatch]);
   country: any;
+  token!: string;
 
   validations = [["corporateName", "tradingName", "cnpj", "mail"]];
 
@@ -38,6 +39,7 @@ export class CustomerCreateComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.country = sessionStorage.getItem('country_value')
     this.customerId = this.route.snapshot.paramMap.get("id");
+    this.token = localStorage.getItem('token')!;
     if (sessionStorage.getItem("customer_tab") == undefined) {
       sessionStorage.setItem("customer_tab", "1");
     }

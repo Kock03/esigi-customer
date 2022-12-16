@@ -42,7 +42,8 @@ export class AppComponent {
         if (valid === -1) {
            this.token = localStorage.getItem('token')!;
           if (!this.token) {
-            location.replace(`http://192.168.8.184:3406/portal`);
+            // location.replace(`http://192.168.8.184:3406/portal`);
+            location.replace(`http://localhost:3406/portal`)
           }
         }
         this.activeMenu = res.url.split("/")[1];
