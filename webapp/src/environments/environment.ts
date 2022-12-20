@@ -4,16 +4,16 @@
 
 export const environment = {
   production: false,
-  COLLABORATOR_MS: 'localhost:3501/api/v1/',
-  RESUME_MS: 'localhost:3502/api/v1/',
-  JOBS_MS: 'localhost:3503/api/v1/',
-  SETTING_MS: 'localhost:3504/api/v1/',
-  CONFIG_MS: 'localhost:3508/api/v1/registers/',
-  AUTH_SERVICE_MS: 'localhost:3500/api/v1/',
-  CUSTOMER_MS: 'localhost:3506/api/v1/',
-  PROJECT_MS: 'localhost:3505/api/v1/',
-  portal: 'http://localhost:3406/login',
-  port: 'http://localhost:',
+  COLLABORATOR_MS: '44.205.159.254:3501/api/v1/',
+  RESUME_MS: '44.205.159.254:3502/api/v1/',
+  JOBS_MS: '44.205.159.254:3503/api/v1/',
+  SETTING_MS: '44.205.159.254:3504/api/v1/',
+  CONFIG_MS: '44.205.159.254:3508/api/v1/registers/',
+  AUTH_SERVICE_MS: '44.205.159.254:3500/api/v1/',
+  CUSTOMER_MS: '44.205.159.254:3506/api/v1/',
+  PROJECT_MS: '44.205.159.254:3505/api/v1/',
+  portal: 'http://44.205.159.254:3406/login',
+  port: 'http://44.205.159.254:',
 
 
 
