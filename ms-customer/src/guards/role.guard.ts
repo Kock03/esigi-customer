@@ -28,7 +28,7 @@ export class RolesGuard implements CanActivate {
     const token = request.headers.authorization;
     return new Promise<boolean>(async (resolve, reject) => {
       const { data: user } = await this.httpService.axiosRef.get(
-        'http://localhost:3500/api/v1/auth/decode',
+        'http://44.205.159.254:3500/api/v1/auth/decode',
         {
           headers: {
             authorization: `${token.split('Bearer ')[1]}`,

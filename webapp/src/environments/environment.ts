@@ -12,7 +12,7 @@ export const environment = {
   AUTH_SERVICE_MS: '44.205.159.254:3500/api/v1/',
   CUSTOMER_MS: '44.205.159.254:3506/api/v1/',
   PROJECT_MS: '44.205.159.254:3505/api/v1/',
-  portal: 'http://44.205.159.254:3406/login',
+  portal: 'https://aws-amplify.d3tee2p1a2jxch.amplifyapp.com/login',
   port: 'http://44.205.159.254:',
 
 

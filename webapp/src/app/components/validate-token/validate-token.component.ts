@@ -18,7 +18,7 @@ export class ValidateTokenComponent implements OnInit {
 
     if (!this.token) {
       // location.replace(`http://192.168.8.184:3406/portal`);
-      location.replace(`http://localhost:3406/portal`)
+      location.replace(`https://aws-amplify.d3tee2p1a2jxch.amplifyapp.com/portal`)
     } else {
       localStorage.setItem('token', this.token);
       this.router.navigate(['/cliente/lista']);
