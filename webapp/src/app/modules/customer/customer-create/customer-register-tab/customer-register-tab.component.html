@@ -230,9 +230,7 @@
           <mat-label>{{
             "customer.customer-register.phone.ddi" | translate
             }}</mat-label>
-          <mat-select matInput disableRipple formControlName="ddi">
-            <mat-option *ngFor="let ddi of ddi" [value]="ddi.id">{{ ddi.value }}</mat-option>
-          </mat-select>
+          <input matInput placeholder="DDI" formControlName="ddi" />
         </mat-form-field>
 
 
