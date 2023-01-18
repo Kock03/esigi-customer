@@ -30,7 +30,7 @@ export class AuthGuard implements CanActivate {
     return new Promise<boolean>(async (resolve, reject) => {
       try {
         const { data } = await this.httpService.axiosRef.get<boolean>(
-          'https://esigi.envolti.com.br:3500/api/v1/auth/validate',
+          'https://esigi.envolti.com.br/auth/api/v1/auth/validate',
           {
             headers: {
               authorization: `${token.split('Bearer ')[1]}`,

@@ -4,7 +4,7 @@ import { ContactsService } from "./contacts.service";
 import { CreateContacts } from "./dto/create-contacts.dto";
 import { UpdateContacts } from "./dto/update-contacts.dto";
 
-@Controller('api/v1/contacts')
+@Controller('customer/api/v1/contacts')
 export class ContactsController {
     constructor(private readonly contactsService: ContactsService) { }
 

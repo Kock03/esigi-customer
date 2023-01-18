@@ -12,7 +12,7 @@ import {
   import { UpdatePhoneDto } from './dto/update-phone.dto';
   import { PhoneService } from './phone.service';
   
-  @Controller('api/v1/phone')
+  @Controller('customer/api/v1/phone')
   export class PhoneController {
     constructor(private readonly phoneService: PhoneService) { }
   
