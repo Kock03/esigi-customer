@@ -266,7 +266,7 @@ export class ApiGateway {
             }
             return '';
         });
-        options.url = options.url.replace(/\/{2,}/g, '/');
+        // options.url = options.url.replace(/\/{2,}/g, '/');
 
         return options;
     }

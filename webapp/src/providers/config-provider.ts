@@ -13,7 +13,7 @@ export class ConfigProvider {
 
     findKeys(context: any, key: any): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.apiGateway.post(environment.CONFIG_MS + '/list/' + context + '/key', key)
+            this.apiGateway.post(environment.CONFIG_MS + 'list/' + context + '/key', key)
                 .subscribe((response: HttpResponse<any>) => {
 
                     resolve(response.body);
