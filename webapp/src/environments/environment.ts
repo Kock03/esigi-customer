@@ -10,7 +10,7 @@ export const environment = {
   SETTING_MS: 'esigi.envolti.com.br/setting/api/v1/',
   CONFIG_MS: 'esigi.envolti.com.br/config/api/v1/registers/',
   AUTH_SERVICE_MS: 'esigi.envolti.com.br/auth/api/v1/',
-  CUSTOMER_MS: 'esigi.envolti.com.br/customer/api/v1/',
+  CUSTOMER_MS: 'https://esigi.envolti.com.br/customer/api/v1/',
   PROJECT_MS: 'esigi.envolti.com.br/projects/api/v1/',
   portal: 'https://aws-amplify.d3tee2p1a2jxch.amplifyapp.com/login',
   port: 'https://esigi.envolti.com.br:',

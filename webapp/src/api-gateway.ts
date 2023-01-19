@@ -162,7 +162,7 @@ export class ApiGateway {
 
         let requestOptions = {
             method: options.method,
-            url: `${environment.protocol}://${options.url}`,
+            url: `${options.url}`,
             headers: options.headers,
             search: this.buildUrlSearchParams(options.params),
             body: JSON.stringify(options.data),
