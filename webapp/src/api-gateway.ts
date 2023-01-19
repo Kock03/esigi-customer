@@ -268,6 +268,7 @@ export class ApiGateway {
         });
         // options.url = options.url.replace(/\/{2,}/g, '/');
 
+
         return options;
     }
 
