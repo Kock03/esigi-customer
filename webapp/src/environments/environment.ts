@@ -14,6 +14,7 @@ export const environment = {
   PROJECT_MS: 'esigi.envolti.com.br/projects/api/v1/',
   portal: 'https://aws-amplify.d3tee2p1a2jxch.amplifyapp.com/login',
   port: 'https://esigi.envolti.com.br:',
+  
 
 
 
