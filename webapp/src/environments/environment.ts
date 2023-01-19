@@ -18,7 +18,7 @@ export const environment = {
 
 
   message: 'LOCAL',
-  protocol: 'http',
+  protocol: 'https',
 };
 
 /*
