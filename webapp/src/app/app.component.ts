@@ -43,7 +43,7 @@ export class AppComponent {
            this.token = localStorage.getItem('token')!;
           if (!this.token) {
             // location.replace(`http://192.168.8.184:3406/portal`);
-            location.replace(`https://aws-amplify.d3tee2p1a2jxch.amplifyapp.com/portal`)
+            // location.replace(`https://aws-amplify.d3tee2p1a2jxch.amplifyapp.com/portal`)
           }
         }
         this.activeMenu = res.url.split("/")[1];

@@ -3,6 +3,8 @@ import { Form, FormBuilder, FormGroup, NgModel, FormControl } from '@angular/for
 import { ActivatedRoute } from '@angular/router';
 import { ConfigProvider } from 'src/providers/config-provider';
 import { CepService } from 'src/services/cep.service';
+import { StatesAndCities } from 'src/services/states-cities.service';
+
 
 @Component({
   selector: 'app-customer-register-tab',
@@ -25,11 +27,13 @@ export class CustomerRegisterTabComponent implements OnInit {
   defaultValue: any;
   Country!: any;
   token!: string;
+  cityList: Array<any> = [];
+  data!: any;
 
   constructor(private cepService: CepService,
     private fb: FormBuilder,
     private configProvider: ConfigProvider,
-
+    private statesAndCities: StatesAndCities,
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -131,6 +135,45 @@ export class CustomerRegisterTabComponent implements OnInit {
         state: district.uf,
         district: district.bairro,
       });
+    }
+  }
+
+  async searchCep() {
+    this.data = await this.cepService.searchCep(this.addressForm.controls['cep'].value);
+    this.customerForm.controls['Address'].patchValue({
+      cep: this.data.cep,
+      city: this.data.localidade,
+      street: this.data.logradouro,
+      state: this.data.uf,
+      district: this.data.bairro,
+    });
+    this.searchCities({ value: this.data.uf })
+    if (this.data.erro == true) {
+      window.alert('Cep inválido');
+    }
+  }
+
+  searchCities(e: any) {
+    const city = document.querySelector('#cities') as HTMLSelectElement;
+    let state_number = this.statesAndCities.json_cities.estados.length;
+    let j_index = -1;
+    for (var x = 0; x < state_number; x++) {
+      if (this.statesAndCities.json_cities.estados[x].sigla == e.value) {
+        j_index = x;
+      }
+    }
+    let line = {};
+    let arrayCity = Array<any>();
+    if (j_index != -1) {
+      this.statesAndCities.json_cities.estados[j_index].cidades.forEach(
+        cities => {
+          line = cities;
+          arrayCity.push(line);
+        }
+      );
+      this.cityList = arrayCity;
+    } else {
+      city.innerHTML = '';
     }
   }
 }

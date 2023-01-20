@@ -121,7 +121,7 @@
         <mat-form-field fxFlex="20" appearance="outline" *ngIf="searchEnabled === true">
           <mat-label>{{'generic.address.cep'|translate}} </mat-label>
           <input matInput placeholder="CEP" formControlName="cep" type="text" mask="99999-999" />
-          <mat-icon matSuffix style="cursor: pointer" (click)="getAddress()">
+          <mat-icon matSuffix style="cursor: pointer" (click)="searchCep()">
             search
           </mat-icon>
           <mat-error *ngIf="addressForm &&
@@ -173,18 +173,9 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field fxFlex="40" appearance="outline">
-          <mat-label>{{'generic.address.city'|translate}}</mat-label>
-          <input matInput placeholder="Cidade" formControlName="city" />
-          <mat-error *ngIf="addressForm &&
-          addressForm.controls['city'].hasError('required')">
-            {{'validators.validator-required' | translate}}
-          </mat-error>
-        </mat-form-field>
-
         <mat-form-field fxFlex="40" appearance="outline" *ngIf="this.view">
           <mat-label>{{'generic.address.state'|translate}}</mat-label>
-          <mat-select matInput disableRipple placeholder="Estado" formControlName="state">
+          <mat-select matInput disableRipple placeholder="Estado" formControlName="state" id="state" (selectionChange)="searchCities($event)">
             <mat-option [value]="'AC'">{{'generic.address.state_list.AC'|translate}}</mat-option>
             <mat-option [value]="'AL'">{{'generic.address.state_list.AL'|translate}}</mat-option>
             <mat-option [value]="'AP'">{{'generic.address.state_list.AP'|translate}}</mat-option>
@@ -223,6 +214,20 @@
           <mat-label>Estado</mat-label>
           <input matInput placeholder="Nome" formControlName="state" />
         </mat-form-field>
+
+        <mat-form-field fxFlex="40" appearance="outline" *ngIf="this.view">
+          <mat-label>{{'generic.address.city'|translate}}</mat-label>
+          <mat-select id="cities" placeholder="Cidade" matInput disableRipple formControlName="city">
+            <mat-option *ngFor="let cities of cityList" [value]="cities">
+              {{cities}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="addressForm &&
+          addressForm.controls['city'].hasError('required')">
+            {{'validators.validator-required' | translate}}
+          </mat-error>
+        </mat-form-field>
+
       </div>
 
       <div formGroupName="Phone" fxFlex="100" fxLayoutGap="16px">
